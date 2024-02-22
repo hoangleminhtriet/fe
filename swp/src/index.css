@@ -1,0 +1,25 @@
+.main {
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 100vw;
+}
+
+main {
+  flex: 1;
+}
+
+.content-container {
+  margin: 0;
+}
+
+.content-item {
+  background-color: #def3ff;
+}
+
+/* footer */
+.footer {
+  margin-top: auto;
+  text-align: center;
+}

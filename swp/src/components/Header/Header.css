@@ -1,0 +1,62 @@
+li {
+  list-style: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.nav-port-item {
+  font-size: x-large;
+  font-weight: 700;
+  margin-left: 3vw;
+  text-decoration: none;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.logo-nav {
+  max-width: 20vw; /* Adjusted from 20svw to 20vw */
+  max-height: 15vh; /* Adjusted from 15svh to 15vh */
+}
+
+.nav-menu-main {
+  flex-grow: 1; /* Updated grid-column to flex-grow */
+}
+
+.nav-menu-main ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.social-media {
+  text-align: center;
+}
+
+.social-media-links ul {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.social-icon {
+  width: 50px;
+  height: 50px;
+  font-size: xx-large;
+  margin-right: 1rem;
+  border-radius: 15px;
+  box-shadow: -2px -2px 3px rgba(225, 225, 225, 0.05),
+    3px 3px 3px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease-in-out; /* Add transition effect */
+}
+
+.social-icon:hover {
+  box-shadow: -4px -4px 6px rgba(225, 225, 225, 0.1),
+    6px 6px 6px rgba(0, 0, 0, 0.3); /* Change box shadow on hover */
+}
