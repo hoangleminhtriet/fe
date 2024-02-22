@@ -60,3 +60,10 @@ ul {
   box-shadow: -4px -4px 6px rgba(225, 225, 225, 0.1),
     6px 6px 6px rgba(0, 0, 0, 0.3); /* Change box shadow on hover */
 }
+.button-header {
+  background-color: white !important;
+  border: none !important;
+  color: black !important;
+  margin: 1em;
+  font-weight: bold !important;
+}

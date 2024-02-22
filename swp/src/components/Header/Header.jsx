@@ -22,10 +22,18 @@ const Header = ({
         <BootstrapNavbar.Toggle aria-controls="navbar" />
         <BootstrapNavbar.Collapse id="navbar">
           <Nav className="me-auto" style={{ marginLeft: "40%" }}>
-            <Button onClick={toggleOverview}>Toggle Overview</Button>
-            <Button onClick={toggleDiscount}>Toggle Discount</Button>
-            <Button onClick={toggleService}>Toggle Service</Button>
-            <Button onClick={toggleContact}>Toggle Contact</Button>
+            <Button className="button-header" onClick={toggleOverview}>
+              Toggle Overview
+            </Button>
+            <Button className="button-header" onClick={toggleDiscount}>
+              Toggle Discount
+            </Button>
+            <Button className="button-header" onClick={toggleService}>
+              Toggle Service
+            </Button>
+            <Button className="button-header" onClick={toggleContact}>
+              Toggle Contact
+            </Button>
           </Nav>
         </BootstrapNavbar.Collapse>
       </Container>
