@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 const Contact = () => {
   return (
     <Container className="content-container">
-      <div className="content-item">
+      <div className="content-item" style={{ margin: "5%" }}>
         <h1>Thông tin liên hệ</h1>
         <h2>Địa chỉ: FPT University HCMC Saigon Hi-tech park district </h2>
         <h3>Email: contact@contentionary.com</h3>
