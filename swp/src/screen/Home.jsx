@@ -16,8 +16,8 @@ const Home = () => {
       <Container style={{ backgroundColor: "#DEF3FF", borderRadius: "25px" }}>
         {}
         <Row>
-          <Col className="mt-5">
-            Booking Birthday For Kids
+          <Col className="text-booking">
+            Booking <strong>Birthday</strong> For Kids.
             <Col>
               <Button className="mt-5" variant="primary">
                 Đặt tiệc ngay
@@ -31,11 +31,11 @@ const Home = () => {
       </Container>
 
       {/*Order*/}
-      <Container className="mt-5">
-        <Row style={{ textAlign: "center" }}>
-          <Col>Đặt tiệc sinh nhật</Col>
+      <Container className="mt-3">
+        <Row className="text-oder" style={{ textAlign: "center" }}>
+          <Col>ĐẶT TIỆC SINH NHẬT</Col>
         </Row>
-        <Row>
+        <Row className="mt-3">
           <Col>
             <Image fluid src={FAQ} />
           </Col>
@@ -50,7 +50,7 @@ const Home = () => {
 
       {/*Party*/}
       <Container className="mt-5">
-        <Row style={{ textAlign: "center" }}>
+        <Row className="text-oder" style={{ textAlign: "center" }}>
           <Col>Các gói tiệc chúng tôi có</Col>
         </Row>
 
