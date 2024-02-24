@@ -1,0 +1,26 @@
+.food-card {
+  background-color: #00003e !important;
+  color: #fff !important;
+  border-radius: 20px !important;
+}
+
+.food-img {
+  border-radius: 20px !important;
+}
+
+.food-price {
+  max-width: 10em !important;
+  background-color: #29295d !important;
+  color: #fff !important;
+  padding: 0 !important;
+}
+
+.price-detail {
+  background-color: #5f5f86;
+}
+
+@media (max-width: 767px) {
+  .food-price {
+    max-width: 5em !important;
+  }
+}

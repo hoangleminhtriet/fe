@@ -16,13 +16,13 @@ ul {
 .main-nav {
   display: flex;
   justify-content: space-between;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 80px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  border-bottom: #fff 1px solid;
+  margin-bottom: 5em;
 }
 
 .logo-nav {
-  max-width: 20vw; /* Adjusted from 20svw to 20vw */
-  max-height: 15vh; /* Adjusted from 15svh to 15vh */
+  max-width: 25vw; /* Adjusted from 20svw to 20vw */
+  max-height: 20vh; /* Adjusted from 15svh to 15vh */
 }
 
 .nav-menu-main {
@@ -61,9 +61,9 @@ ul {
     6px 6px 6px rgba(0, 0, 0, 0.3); /* Change box shadow on hover */
 }
 .button-header {
-  background-color: white !important;
+  background-color: transparent !important;
   border: none !important;
-  color: black !important;
+  color: #fff !important;
   margin: 1em;
   font-weight: bold !important;
 }

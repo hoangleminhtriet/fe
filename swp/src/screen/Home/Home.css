@@ -1,0 +1,31 @@
+.steps-img {
+  max-width: 100vw;
+  max-height: 10em;
+}
+
+.steps-card {
+  max-width: 30vw;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.steps-content {
+  overflow: auto;
+  height: 250px;
+}
+
+.party-card {
+  max-width: 30vw;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.party-img {
+  max-width: 100vw;
+  max-height: 10em;
+}
+
+.party-content {
+  overflow: auto;
+  height: 250px;
+}

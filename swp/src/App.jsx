@@ -7,13 +7,13 @@ import {
   Navigate,
 } from "react-router-dom";
 import Footer from "./components/Footer";
-import Home from "./screen/Home";
+import Home from "./screen/Home/Home";
 import Header from "./components/Header/Header";
 import Overview from "./components/Navbar/Overview";
 import Discount from "./components/Navbar/Discount";
 import Service from "./components/Navbar/Service";
 import Contact from "./components/Navbar/Contact";
-import FoodScreen from "./screen/FoodScreen";
+import FoodScreen from "./screen/Food/FoodScreen";
 
 function App() {
   const [showOverview, setShowOverview] = useState(false);

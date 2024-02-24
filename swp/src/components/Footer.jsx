@@ -1,4 +1,4 @@
-import { Row, Col, Image, Form, Button } from "react-bootstrap";
+import { Row, Col, Image, Form, Button, Container } from "react-bootstrap";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import Logo from "../assets/image/logo.png";
@@ -7,9 +7,9 @@ const Footer = () => {
   return (
     <footer
       className="footer"
-      style={{ backgroundColor: "#A3D2E0", color: "#fff", padding: "20px" }}
+      style={{ backgroundColor: "#300058", color: "#fff", padding: "20px", marginTop:"5em" }}
     >
-      <>
+      <Container>
         <Row>
           <Col style={{ textAlign: "left" }}>
             <Image src={Logo} alt="FPT Booking" style={{ maxWidth: "150px" }} />
@@ -57,7 +57,7 @@ const Footer = () => {
             <p>0123456789</p>
           </Col>
         </Row>
-      </>
+      </Container>
     </footer>
   );
 };
