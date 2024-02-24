@@ -7,6 +7,7 @@ import {
 } from "react-bootstrap";
 import Logo from "../../assets/image/logo.png";
 import "../Header/Header.css";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Header = ({
   toggleOverview,
@@ -14,25 +15,31 @@ const Header = ({
   toggleService,
   toggleContact,
 }) => {
+  const navigate = useNavigate();
   return (
     <BootstrapNavbar expand="lg" className="main-nav">
       <Container>
-        <img className="logo-nav" alt="" src={Logo} />
+        <NavLink to="/">
+          <img className="logo-nav" alt="" src={Logo} />
+        </NavLink>
 
         <BootstrapNavbar.Toggle aria-controls="navbar" />
         <BootstrapNavbar.Collapse id="navbar">
           <Nav className="me-auto" style={{ marginLeft: "40%" }}>
             <Button className="button-header" onClick={toggleOverview}>
-              Toggle Overview
+              Overview
             </Button>
             <Button className="button-header" onClick={toggleDiscount}>
-              Toggle Discount
+              Discount
+            </Button>
+            <Button className="button-header" onClick={() => navigate("/food")}>
+              Food
             </Button>
             <Button className="button-header" onClick={toggleService}>
-              Toggle Service
+              Service
             </Button>
             <Button className="button-header" onClick={toggleContact}>
-              Toggle Contact
+              Contact
             </Button>
           </Nav>
         </BootstrapNavbar.Collapse>
