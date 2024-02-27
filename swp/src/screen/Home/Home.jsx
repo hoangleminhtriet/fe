@@ -12,7 +12,7 @@ const Home = () => {
             Booking <strong>Birthday</strong> For Kids.
             <Col>
               <Button className="mt-5" variant="primary">
-                Đặt tiệc ngay
+                Book Now!!
               </Button>
             </Col>
           </Col>
