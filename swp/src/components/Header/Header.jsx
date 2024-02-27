@@ -19,7 +19,7 @@ const Header = ({
   return (
     <BootstrapNavbar expand="lg" className="main-nav">
       <Container>
-        <NavLink to="/">
+        <NavLink className="button-header" to="/">
           <img className="logo-nav" alt="" src={Logo} />
         </NavLink>
 

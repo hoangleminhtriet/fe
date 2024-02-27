@@ -38,3 +38,9 @@ main {
 .text-booking strong {
   color: #11b7ec;
 }
+
+@media (max-width: 767px) {
+  body {
+    font-size: 0.8em;
+  }
+}
