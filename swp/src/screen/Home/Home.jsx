@@ -7,18 +7,15 @@ const Home = () => {
     <div>
       {/*Banner*/}
 
-      {}
-      <Row>
+      <Row className="home-banner">
         <Col className="text-booking">
           Booking <strong>Birthday</strong> For Kids.
           <Col>
-            <Button className="mt-5" variant="primary">
-              Book Now!!
-            </Button>
+            <Button className="mt-5">Book Now!!</Button>
           </Col>
         </Col>
         <Col>
-          <Image alt="Banner" fluid src={Banner} />
+          <Image alt="Banner" src={Banner} className="banner-img" />
         </Col>
       </Row>
 
@@ -106,7 +103,7 @@ const Home = () => {
               className="steps-img"
               src="https://thebigbox.ca/wp-content/uploads/2020/07/The-Big-Box-Stills_051-scaled-1000x600.jpg"
             />
-            <Card.Body className="">
+            <Card.Body className="steps-body">
               <Card.Title>SIGN A WAIVER ONLINE</Card.Title>
               <Card.Text className="steps-content">
                 You are all set! One last step is to get all your guests to sign
@@ -151,9 +148,7 @@ const Home = () => {
             </Card.Body>
           </Card>
         </Col>
-      </Row>
 
-      <Row className="m-3">
         <Col>
           <Card className="party-card" id="birthday-packages">
             <Card.Img
@@ -176,9 +171,7 @@ const Home = () => {
             </Card.Body>
           </Card>
         </Col>
-      </Row>
 
-      <Row className="m-3">
         <Col>
           <Card className="party-card" id="birthday-packages">
             <Card.Img
