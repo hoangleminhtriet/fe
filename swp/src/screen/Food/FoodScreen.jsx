@@ -20,12 +20,14 @@ export default function FoodScreen() {
                 <Card.Text>Pepperoni / Hawaiian / Beef / Chicken</Card.Text>
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">
-                    <Card.Title className="price-detail">Card Title</Card.Title>
-                    <Card.Text>123</Card.Text>
+                    <Card.Title className="price-detail">10"</Card.Title>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                   <Card className="food-price">
-                    <Card.Title className="price-detail">Card Title</Card.Title>
-                    <Card.Text>123</Card.Text>
+                    <Card.Title className="price-detail">12"</Card.Title>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                 </Row>
               </Card.Body>
@@ -44,12 +46,14 @@ export default function FoodScreen() {
                 <Card.Text>Vegetarian / Cheese</Card.Text>
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">
-                    <Card.Title className="price-detail">Card Title</Card.Title>
-                    <Card.Text>123</Card.Text>
+                    <Card.Title className="price-detail">10"</Card.Title>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                   <Card className="food-price">
-                    <Card.Title className="price-detail">Card Title</Card.Title>
-                    <Card.Text>123</Card.Text>
+                    <Card.Title className="price-detail">12"</Card.Title>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                 </Row>
               </Card.Body>
@@ -61,18 +65,18 @@ export default function FoodScreen() {
               <Card.Img
                 className="food-img"
                 variant="top"
-                src="https://thebigbox.ca/wp-content/uploads/2020/04/traditional-cheese-pizza.png"
+                src="https://thebigbox.ca/wp-content/uploads/2020/04/wings.png"
               />
               <Card.Body>
-                <Card.Title>Traditional Pizza</Card.Title>
+                <Card.Title>Chicken Wings</Card.Title>
                 <Card.Text>
                   8 pieces served with veggies & ranch Hot / Teriyaki / Honey
                   Garlic / Salt & Pepper / Plain
                 </Card.Text>
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">
-                    <Card.Title>Price</Card.Title>
-                    <Card.Text>12</Card.Text>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                 </Row>
               </Card.Body>
@@ -97,12 +101,18 @@ export default function FoodScreen() {
                 </Card.Text>
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">
-                    <Card.Title className="price-detail">Card Title</Card.Title>
-                    <Card.Text>123</Card.Text>
+                    <Card.Title className="price-detail">
+                      Tenders only
+                    </Card.Title>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                   <Card className="food-price">
-                    <Card.Title className="price-detail">Card Title</Card.Title>
-                    <Card.Text>123</Card.Text>
+                    <Card.Title className="price-detail">
+                      w/ Fries & Drink
+                    </Card.Title>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                 </Row>
               </Card.Body>
@@ -124,12 +134,18 @@ export default function FoodScreen() {
                 </Card.Text>
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">
-                    <Card.Title className="price-detail">Card Title</Card.Title>
-                    <Card.Text>123</Card.Text>
+                    <Card.Title className="price-detail">
+                      Hot dog only
+                    </Card.Title>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                   <Card className="food-price">
-                    <Card.Title className="price-detail">Card Title</Card.Title>
-                    <Card.Text>123</Card.Text>
+                    <Card.Title className="price-detail">
+                      w/ Fries & Drink
+                    </Card.Title>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                 </Row>
               </Card.Body>
@@ -145,15 +161,17 @@ export default function FoodScreen() {
               />
               <Card.Body>
                 <Card.Title>Nachos Platter</Card.Title>
+                <Card.Text>**THIS ITEM IS CURRENTLY UNAVAILABLE**</Card.Text>
                 <Card.Text>
-                  **THIS ITEM IS CURRENTLY UNAVAILABLE** Add a delicious meat
-                  topping. Options include Fajita Chicken or Beef.
+                  Add a delicious meat topping. Options include Fajita Chicken
+                  or Beef.
                 </Card.Text>
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">
-                    <Card.Title>Card Title</Card.Title>
+                    <Card.Text>N/A</Card.Text>
                   </Card>
                 </Row>
+                <Card.Text>$1.99 + GST per topping</Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -173,7 +191,8 @@ export default function FoodScreen() {
 
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">
-                    <Card.Title>Card Title</Card.Title>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                 </Row>
               </Card.Body>
@@ -192,7 +211,8 @@ export default function FoodScreen() {
 
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">
-                    <Card.Title>Card Title</Card.Title>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                 </Row>
               </Card.Body>
@@ -211,7 +231,8 @@ export default function FoodScreen() {
 
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">
-                    <Card.Title>Card Title</Card.Title>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                 </Row>
               </Card.Body>
@@ -230,7 +251,8 @@ export default function FoodScreen() {
 
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">
-                    <Card.Title>Card Title</Card.Title>
+                    <Card.Text className="mb-0">$15.95</Card.Text>
+                    <Card.Text>+ GST</Card.Text>
                   </Card>
                 </Row>
               </Card.Body>

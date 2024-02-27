@@ -44,7 +44,11 @@ const Home = () => {
                   for your needs. Consider upgrading to infinite pass on a
                   discounted price for unlimited fun extravaganza!
                 </Card.Text>
-                <Card.Link as="a" href="#birthday-packages">
+                <Card.Link
+                  className="link-name"
+                  as="a"
+                  href="#birthday-packages"
+                >
                   Let’s see the Packages!
                 </Card.Link>
               </Card.Body>
@@ -68,7 +72,11 @@ const Home = () => {
                   and Halal options for families with dietary/religious
                   restrictions.
                 </Card.Text>
-                <Card.Link as="a" href="#birthday-packages">
+                <Card.Link
+                  className="link-name"
+                  as="a"
+                  href="#birthday-packages"
+                >
                   Check Food Options Now!
                 </Card.Link>
               </Card.Body>
@@ -93,7 +101,11 @@ const Home = () => {
                   confirmation email will be sent to you with all the booking
                   details.
                 </Card.Text>
-                <Card.Link as="a" href="#birthday-packages">
+                <Card.Link
+                  className="link-name"
+                  as="a"
+                  href="#birthday-packages"
+                >
                   Book Now!
                 </Card.Link>
               </Card.Body>
@@ -117,7 +129,11 @@ const Home = () => {
                   check-in process. Please click the link below to sign the
                   waiver.
                 </Card.Text>
-                <Card.Link as="a" href="#birthday-packages">
+                <Card.Link
+                  className="link-name"
+                  as="a"
+                  href="#birthday-packages"
+                >
                   Sign Today!
                 </Card.Link>
               </Card.Body>
