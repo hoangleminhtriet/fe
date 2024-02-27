@@ -205,6 +205,156 @@ const Home = () => {
 
       {/*Topic*/}
 
+      {/* Party Pagkages */}
+      <Card.Title style={{ textAlign: "center", color: "yellow" }}>
+        Party Pagkages
+      </Card.Title>
+      <Row className="test1">
+        {/*Food1*/}
+        <Col className="m-1" style={{ textAlign: "center" }}>
+          <Card className="food-card">
+            <Card.Img
+              className="food-img"
+              variant="top"
+              src="https://thebigbox.ca/wp-content/uploads/2020/04/traditional-cheese-pizza.png"
+            />
+            <Card.Body>
+              <Card.Title className="title-food">Pizza Combo</Card.Title>
+              <Card.Text>
+                3‐12″ Pizza & 2 Jugs of Pop (Choice of Cheese, Pepperoni,
+                Hawaiian, Chicken, Beef or Veggie)
+              </Card.Text>
+              <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
+                <Card className="food-price">
+                  <Card.Text className="mb-0 price-title1">$15.95</Card.Text>
+                  <Card.Text className="price-title2">+ GST</Card.Text>
+                </Card>
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col className="m-1" style={{ textAlign: "center" }}>
+          <Card className="food-card">
+            <Card.Img
+              className="food-img"
+              variant="top"
+              src="https://thebigbox.ca/wp-content/uploads/2020/04/tender-fries.png"
+            />
+            <Card.Body>
+              <Card.Title className="title-food">
+                Chicken Tenders Combo
+              </Card.Title>
+              <Card.Text>
+                20 Chicken Tenders, 6 Trays of Fries & 2 Jugs of Pop/Juice.
+              </Card.Text>
+              <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
+                <Card className="food-price">
+                  <Card.Text className="mb-0 price-title1">$15.95</Card.Text>
+                  <Card.Text className="price-title2">+ GST</Card.Text>
+                </Card>
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col className="m-1" style={{ textAlign: "center" }}>
+          <Card className="food-card">
+            <Card.Img
+              className="food-img"
+              variant="top"
+              src="https://thebigbox.ca/wp-content/uploads/2020/04/sandwich-platter-400x400.png"
+            />
+            <Card.Body>
+              <Card.Title className="title-food">Sandwich Combo</Card.Title>
+              <Card.Text>
+                7 Sandwiches with options of Ham, Turkey, Chicken, Roast Beef &
+                Vegetarian. with 2 jugs of Pop also included.
+              </Card.Text>
+              <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
+                <Card className="food-price">
+                  <Card.Text className="mb-0 price-title1">$15.95</Card.Text>
+                  <Card.Text className="price-title2">+ GST</Card.Text>
+                </Card>
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col className="m-1" style={{ textAlign: "center" }}>
+          <Card className="food-card">
+            <Card.Img
+              className="food-img"
+              variant="top"
+              src="https://thebigbox.ca/wp-content/uploads/2020/04/fruit-platter.png"
+            />
+            <Card.Body>
+              <Card.Title className="title-food">Fruit Platter</Card.Title>
+              <Card.Text>
+                A variety of freshly cut seasonal fruits served in a family
+                platter.
+              </Card.Text>
+              <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
+                <Card className="food-price">
+                  <Card.Text className="mb-0 price-title1">$15.95</Card.Text>
+                  <Card.Text className="price-title2">+ GST</Card.Text>
+                </Card>
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col className="m-1" style={{ textAlign: "center" }}>
+          <Card className="food-card">
+            <Card.Img
+              className="food-img"
+              variant="top"
+              src="https://thebigbox.ca/wp-content/uploads/2020/04/veggie.png"
+            />
+            <Card.Body>
+              <Card.Title className="title-food">Veggie Platter</Card.Title>
+              <Card.Text>
+                A variety of freshly procured seasonal vegetables served in a
+                family platter.
+              </Card.Text>
+              <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
+                <Card className="food-price">
+                  <Card.Text className="mb-0 price-title1">$15.95</Card.Text>
+                  <Card.Text className="price-title2">+ GST</Card.Text>
+                </Card>
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col className="m-1" style={{ textAlign: "center" }}>
+          <Card className="food-card">
+            <Card.Img
+              className="food-img"
+              variant="top"
+              src="https://thebigbox.ca/wp-content/uploads/2020/04/cookie_platter-4-400x400.png "
+            />
+            <Card.Body>
+              <Card.Title className="title-food">Cookies Platter</Card.Title>
+              <Card.Text>
+                A delicious assortment of cookies. Flavors include Chocolate
+                Chip, Double Chocolate, Oatmeal & Oatmeal Raisin.
+              </Card.Text>
+              <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
+                <Card className="food-price">
+                  <Card.Text className="mb-0 price-title1">$15.95</Card.Text>
+                  <Card.Text className="price-title2">+ GST</Card.Text>
+                </Card>
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Card.Text style={{ textAlign: "center" }}>
+          *Other food options from The Bite Box Cafe can be made available upon
+          request (View our full menu)
+        </Card.Text>
+      </Row>
+
       <Image fluid />
     </div>
   );
