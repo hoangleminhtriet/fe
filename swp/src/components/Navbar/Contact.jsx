@@ -1,9 +1,18 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 
 const Contact = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
   return (
-    <Container className="content-container">
+    <Container
+      c
+      className={`content-container ${isVisible ? "fade-in" : "fade-out"}`}
+    >
       <div className="content-item" style={{ margin: "5%" }}>
         <h1>Thông tin liên hệ</h1>
         <h2>Địa chỉ: FPT University HCMC Saigon Hi-tech park district </h2>

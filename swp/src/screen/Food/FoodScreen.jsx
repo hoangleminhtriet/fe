@@ -1,8 +1,35 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row, Spinner } from "react-bootstrap";
 import "./FoodScreen.css";
+import { useEffect, useState } from "react";
 
 export default function FoodScreen() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate loading delay with useEffect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500); // Change the duration as needed
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Container>
+        <Row
+          className="justify-content-center align-items-center"
+          style={{ minHeight: "100%" }}
+        >
+          <Spinner className="loading" animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </Row>
+      </Container>
+    );
+  }
+
   return (
     <div>
       <Container>

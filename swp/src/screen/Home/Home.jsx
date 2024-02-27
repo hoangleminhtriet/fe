@@ -1,8 +1,43 @@
-import { Button, Card, Col, Image, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Image,
+  Row,
+  Spinner,
+} from "react-bootstrap";
 import Banner from "../../assets/image/home1.png";
 import "./Home.css";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate loading delay with useEffect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500); // Change the duration as needed
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Container>
+        <Row
+          className="justify-content-center align-items-center"
+          style={{ minHeight: "100%" }}
+        >
+          <Spinner className="loading" animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </Row>
+      </Container>
+    );
+  }
+
   return (
     <div>
       {/*Banner*/}
