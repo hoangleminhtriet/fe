@@ -41,7 +41,6 @@ const Home = () => {
   return (
     <div>
       {/*Banner*/}
-
       <Row className="home-banner">
         <Col className="text-booking">
           Booking <strong>Birthday</strong> For Kids.
@@ -237,7 +236,7 @@ const Home = () => {
       <Card.Title style={{ textAlign: "center", color: "yellow" }}>
         Party Pagkages
       </Card.Title>
-      <Row className="test1">
+      <Row>
         {/*Food1*/}
         <Col className="m-1" style={{ textAlign: "center" }}>
           <Card className="food-card">
