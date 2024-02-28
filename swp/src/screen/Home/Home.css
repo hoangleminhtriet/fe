@@ -41,6 +41,31 @@
 .link-name {
   color: yellow;
 }
+/* Food Card Party Pagkages */
+.food-card-home {
+  background-color: #00003e !important;
+  color: #fff !important;
+  border-radius: 25px !important;
+}
+.food-img-home {
+  border-radius: 25px !important;
+}
+.title-food-home {
+  font-weight: 700 !important;
+  font-size: 25px !important;
+}
+.food-price-home {
+  max-width: 10em !important;
+  background-color: #29295d !important;
+  color: #fff !important;
+  padding: 0 !important;
+  border-radius: 5px !important;
+}
+@media (max-width: 767px) {
+  .food-price-home {
+    max-width: 5em !important;
+  }
+}
 
 .home-banner {
   background: rgb(131, 58, 180);

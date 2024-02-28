@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import "./HomeBooking.css";
-import { Card, CardText, Container, Row, Spinner } from "react-bootstrap";
+import { Card, CardText, Container } from "react-bootstrap";
 import { FiCheckSquare } from "react-icons/fi";
 import ProgressBarComponent from "../../components/ProgressBar/ProgressBar";
+import Loading from "../../components/Loading";
 import SelectCategory from "./SelectCategory/SelectCategory";
 
 const HomeBooking = () => {
@@ -18,18 +19,7 @@ const HomeBooking = () => {
   }, []);
 
   if (isLoading) {
-    return (
-      <Container>
-        <Row
-          className="justify-content-center align-items-center"
-          style={{ minHeight: "100%" }}
-        >
-          <Spinner className="loading" animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        </Row>
-      </Container>
-    );
+    return <Loading />;
   }
 
   return (
