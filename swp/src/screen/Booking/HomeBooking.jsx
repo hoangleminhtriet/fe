@@ -4,6 +4,7 @@ import { Card, CardText, Container } from "react-bootstrap";
 import { FiCheckSquare } from "react-icons/fi";
 import ProgressBarComponent from "../../components/ProgressBar/ProgressBar";
 import Loading from "../../components/Loading";
+import SelectCategory from "./SelectCategory/SelectCategory";
 
 const HomeBooking = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +36,8 @@ const HomeBooking = () => {
         Next Step.
       </Card.Text>
       <Card.Text>* indicates a required field.</Card.Text>
-      <Card.Text>Select A Category *</Card.Text>
+      <Card.Text style={{fontWeight:"700"}}>Select A Category *</Card.Text>
+      <SelectCategory/>
     </Container>
   );
 };

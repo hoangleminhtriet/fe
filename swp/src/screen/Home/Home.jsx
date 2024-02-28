@@ -23,7 +23,6 @@ const Home = () => {
   return (
     <div>
       {/*Banner*/}
-
       <Row className="home-banner">
         <Col className="text-booking">
           Booking <strong>Birthday</strong> For Kids.
