@@ -136,12 +136,15 @@ const Home = () => {
       </Row>
 
       {/*Party*/}
-      <Row className="text-oder mt-3" style={{ textAlign: "center" }}>
+      <Row
+        className="text-oder mt-3"
+        style={{ textAlign: "center", fontSize: "400%" }}
+      >
         <Col>PARTY PACKAGES</Col>
       </Row>
 
       {/* Ultimate */}
-      <Row className="m-3">
+      <Row className="m-1">
         <Col>
           <Card className="party-card" id="birthday-packages">
             <Card.Img
@@ -149,11 +152,23 @@ const Home = () => {
               src="https://thebigbox.ca/wp-content/uploads/2020/03/birthday-party-with-friends.jpg"
             />
             <Card.Body>
-              <Card.Title>ULTIMATE</Card.Title>
+              <Card.Title
+                style={{ textAlign: "center", backgroundColor: "green" }}
+              >
+                ULTIMATE
+              </Card.Title>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
-                <Card className="food-price">
-                  <Card.Text className="mb-0 price-title1">$6.95</Card.Text>
-                  <Card.Text className="price-title2">+ GST</Card.Text>
+                <Card
+                  className="card-text-party"
+                  style={{ textAlign: "center", padding: "10px" }}
+                >
+                  <Card.Text className="text-party1">$649.99</Card.Text>
+                  <Card.Text className="text-party2">
+                    + GST for 10 participants
+                  </Card.Text>
+                  <Card.Text className="text-party2">
+                    $54.99 per additional participant
+                  </Card.Text>
                 </Card>
               </Row>
               <Card.Text className="party-content">
@@ -183,11 +198,23 @@ const Home = () => {
               src="https://thebigbox.ca/wp-content/uploads/2020/03/birthday-party-with-friends.jpg"
             />
             <Card.Body>
-              <Card.Title>ULTIMATE</Card.Title>
+              <Card.Title
+                style={{ textAlign: "center", backgroundColor: "violet" }}
+              >
+                FANTASTIC
+              </Card.Title>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
-                <Card className="food-price">
-                  <Card.Text className="mb-0 price-title1">$6.95</Card.Text>
-                  <Card.Text className="price-title2">+ GST</Card.Text>
+                <Card
+                  className="card-text-party"
+                  style={{ textAlign: "center", padding: "10px" }}
+                >
+                  <Card.Text className="text-party1">$399.99</Card.Text>
+                  <Card.Text className="text-party2">
+                    + GST for 10 participants
+                  </Card.Text>
+                  <Card.Text className="text-party2">
+                    $32.99 per additional participant
+                  </Card.Text>
                 </Card>
               </Row>
               <Card.Text className="party-content">
@@ -217,11 +244,23 @@ const Home = () => {
               src="https://thebigbox.ca/wp-content/uploads/2020/03/birthday-party-with-friends.jpg"
             />
             <Card.Body>
-              <Card.Title>ULTIMATE</Card.Title>
+              <Card.Title
+                style={{ textAlign: "center", backgroundColor: "red" }}
+              >
+                CLASSIC
+              </Card.Title>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
-                <Card className="food-price">
-                  <Card.Text className="mb-0 price-title1">$6.95</Card.Text>
-                  <Card.Text className="price-title2">+ GST</Card.Text>
+                <Card
+                  className="card-text-party"
+                  style={{ textAlign: "center", padding: "10px" }}
+                >
+                  <Card.Text className="text-party1">$299.99</Card.Text>
+                  <Card.Text className="text-party2">
+                    + GST for 10 participants
+                  </Card.Text>
+                  <Card.Text className="text-party2">
+                    $22.99 per additional participant
+                  </Card.Text>
                 </Card>
               </Row>
               <Card.Text className="party-content">

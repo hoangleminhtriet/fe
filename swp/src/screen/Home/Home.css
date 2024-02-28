@@ -72,6 +72,26 @@
 .food-home-body {
   height: 15em !important;
 }
+
+/* Party Packages */
+.card-text-party {
+  max-width: 17em !important;
+}
+.text-party1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+}
+.text-party2 {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0%;
+}
+.party-card {
+  background-color: silver !important  ;
+  color: #000000 !important;
+}
+
 @media (max-width: 767px) {
   .food-price-home {
     max-width: 5em !important;
