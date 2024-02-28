@@ -35,7 +35,7 @@ export default function FoodScreen() {
                 variant="top"
                 src="https://thebigbox.ca/wp-content/uploads/2020/04/traditional-cheese-pizza.png"
               />
-              <Card.Body>
+              <Card.Body className="food-card-body">
                 <Card.Title className="title-food">
                   Traditional Pizza
                 </Card.Title>
@@ -57,6 +57,9 @@ export default function FoodScreen() {
                     <Card.Text className="price-title2">+ GST</Card.Text>
                   </Card>
                 </Row>
+                <Card.Text className="mt-1">
+                  Gluten-friendly option available
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -68,7 +71,7 @@ export default function FoodScreen() {
                 variant="top"
                 src="https://thebigbox.ca/wp-content/uploads/2020/04/traditional-cheese-pizza-1.png"
               />
-              <Card.Body>
+              <Card.Body className="food-card-body">
                 <Card.Title className="title-food">
                   Traditional Pizza
                 </Card.Title>
@@ -85,6 +88,9 @@ export default function FoodScreen() {
                     <Card.Text className="price-title2">+ GST</Card.Text>
                   </Card>
                 </Row>
+                <Card.Text className="mt-1">
+                  Gluten-friendly option available
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -96,7 +102,7 @@ export default function FoodScreen() {
                 variant="top"
                 src="https://thebigbox.ca/wp-content/uploads/2020/04/wings.png"
               />
-              <Card.Body>
+              <Card.Body className="food-card-body">
                 <Card.Title className="title-food">Chicken Wings</Card.Title>
                 <Card.Text>
                   8 pieces served with veggies & ranch Hot / Teriyaki / Honey
@@ -108,6 +114,9 @@ export default function FoodScreen() {
                     <Card.Text className="price-title2">+ GST</Card.Text>
                   </Card>
                 </Row>
+                <Card.Text className="mt-1">
+                  Gluten-friendly option available
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -122,7 +131,7 @@ export default function FoodScreen() {
                 variant="top"
                 src="https://thebigbox.ca/wp-content/uploads/2020/04/tender-fries.png"
               />
-              <Card.Body>
+              <Card.Body className="food-card-body">
                 <Card.Title className="title-food">Chicken Tenders</Card.Title>
                 <Card.Text>
                   Sweet n’ Sour, Honey Mustard & BBQ Sauces available to choose
@@ -144,6 +153,9 @@ export default function FoodScreen() {
                     <Card.Text className="price-title2">+ GST</Card.Text>
                   </Card>
                 </Row>
+                <Card.Text className="mt-1">
+                  Gluten-friendly option available
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -155,7 +167,7 @@ export default function FoodScreen() {
                 variant="top"
                 src="https://thebigbox.ca/wp-content/uploads/2020/04/hot-dog.png"
               />
-              <Card.Body>
+              <Card.Body className="food-card-body">
                 <Card.Title className="title-food">Hot Dog</Card.Title>
                 <Card.Text>
                   Exotic Beef Hot Dog served in a slit of the partially sliced
@@ -188,7 +200,7 @@ export default function FoodScreen() {
                 variant="top"
                 src="https://thebigbox.ca/wp-content/uploads/2020/04/ultimate-nachos-01.png"
               />
-              <Card.Body>
+              <Card.Body className="food-card-body">
                 <Card.Title className="title-food">Nachos Platter</Card.Title>
                 <Card.Text>**THIS ITEM IS CURRENTLY UNAVAILABLE**</Card.Text>
                 <Card.Text>

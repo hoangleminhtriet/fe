@@ -151,6 +151,12 @@ const Home = () => {
             />
             <Card.Body>
               <Card.Title>ULTIMATE</Card.Title>
+              <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
+                <Card className="food-price">
+                  <Card.Text className="mb-0 price-title1">$6.95</Card.Text>
+                  <Card.Text className="price-title2">+ GST</Card.Text>
+                </Card>
+              </Row>
               <Card.Text className="party-content">
                 Includes 10 kids admissions to Leisure Lagoon Includes up to 20
                 adult admissions to Leisure Lagoon Private party space for 90
@@ -162,6 +168,11 @@ const Home = () => {
                 birthday child Goodie bag for each child Plates, cups, cutlery,
                 napkins & table cloth
               </Card.Text>
+              <Row style={{ justifyContent: "center" }}>
+                <Button style={{ maxWidth: "fit-content" }} className="mt-5">
+                  Book Now!!
+                </Button>
+              </Row>
             </Card.Body>
           </Card>
         </Col>
@@ -174,6 +185,12 @@ const Home = () => {
             />
             <Card.Body>
               <Card.Title>ULTIMATE</Card.Title>
+              <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
+                <Card className="food-price">
+                  <Card.Text className="mb-0 price-title1">$6.95</Card.Text>
+                  <Card.Text className="price-title2">+ GST</Card.Text>
+                </Card>
+              </Row>
               <Card.Text className="party-content">
                 Includes 10 kids admissions to Leisure Lagoon Includes up to 20
                 adult admissions to Leisure Lagoon Private party space for 90
@@ -185,6 +202,11 @@ const Home = () => {
                 birthday child Goodie bag for each child Plates, cups, cutlery,
                 napkins & table cloth
               </Card.Text>
+              <Row style={{ justifyContent: "center" }}>
+                <Button style={{ maxWidth: "fit-content" }} className="mt-5">
+                  Book Now!!
+                </Button>
+              </Row>
             </Card.Body>
           </Card>
         </Col>
@@ -197,6 +219,12 @@ const Home = () => {
             />
             <Card.Body>
               <Card.Title>ULTIMATE</Card.Title>
+              <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
+                <Card className="food-price">
+                  <Card.Text className="mb-0 price-title1">$6.95</Card.Text>
+                  <Card.Text className="price-title2">+ GST</Card.Text>
+                </Card>
+              </Row>
               <Card.Text className="party-content">
                 Includes 10 kids admissions to Leisure Lagoon Includes up to 20
                 adult admissions to Leisure Lagoon Private party space for 90
@@ -208,6 +236,11 @@ const Home = () => {
                 birthday child Goodie bag for each child Plates, cups, cutlery,
                 napkins & table cloth
               </Card.Text>
+              <Row style={{ justifyContent: "center" }}>
+                <Button style={{ maxWidth: "fit-content" }} className="mt-5">
+                  Book Now!!
+                </Button>
+              </Row>
             </Card.Body>
           </Card>
         </Col>
@@ -216,10 +249,13 @@ const Home = () => {
       {/*Topic*/}
 
       {/* Party Pagkages */}
-      <Card.Title style={{ textAlign: "center", color: "yellow" }}>
-        Party Pagkages
+      <Card.Title
+        className="m-5"
+        style={{ textAlign: "center", color: "#fff", fontSize: "450%" }}
+      >
+        PARTY PACKAGES
       </Card.Title>
-      <Row>
+      <Row className="m-4">
         {/* Food-card1 */}
         <Col className="m-1" style={{ textAlign: "center" }}>
           <Card className="food-card-home">
@@ -228,7 +264,7 @@ const Home = () => {
               variant="top"
               src="https://thebigbox.ca/wp-content/uploads/2020/04/traditional-cheese-pizza.png"
             />
-            <Card.Body>
+            <Card.Body className="food-home-body">
               <Card.Title className="title-food-home">Pizza Combo</Card.Title>
               <Card.Text>
                 3‐12″ Pizza & 2 Jugs of Pop (Choice of Cheese, Pepperoni,
@@ -254,7 +290,7 @@ const Home = () => {
               variant="top"
               src="https://thebigbox.ca/wp-content/uploads/2020/04/tender-fries.png"
             />
-            <Card.Body>
+            <Card.Body className="food-home-body">
               <Card.Title className="title-food-home">
                 Chicken Tenders Combo
               </Card.Title>
@@ -281,7 +317,7 @@ const Home = () => {
               variant="top"
               src="https://thebigbox.ca/wp-content/uploads/2020/04/sandwich-platter-400x400.png"
             />
-            <Card.Body>
+            <Card.Body className="food-home-body">
               <Card.Title className="title-food-home">
                 Sandwich Combo
               </Card.Title>
@@ -309,7 +345,7 @@ const Home = () => {
               variant="top"
               src="https://thebigbox.ca/wp-content/uploads/2020/04/fruit-platter.png"
             />
-            <Card.Body>
+            <Card.Body className="food-home-body">
               <Card.Title className="title-food-home">Fruit Platter</Card.Title>
               <Card.Text>
                 A variety of freshly cut seasonal fruits served in a family
@@ -335,7 +371,7 @@ const Home = () => {
               variant="top"
               src="https://thebigbox.ca/wp-content/uploads/2020/04/veggie.png"
             />
-            <Card.Body>
+            <Card.Body className="food-home-body">
               <Card.Title className="title-food-home">
                 Veggie Platter
               </Card.Title>
@@ -363,7 +399,7 @@ const Home = () => {
               variant="top"
               src="https://thebigbox.ca/wp-content/uploads/2020/04/cookie_platter-4-400x400.png"
             />
-            <Card.Body>
+            <Card.Body className="food-home-body">
               <Card.Title className="title-food-home">
                 Cookies Platter
               </Card.Title>
@@ -383,7 +419,7 @@ const Home = () => {
           </Card>
         </Col>
 
-        <Card.Text style={{ textAlign: "center" }}>
+        <Card.Text style={{ textAlign: "center", marginTop: "20px" }}>
           *Other food options from The Bite Box Cafe can be made available upon
           request (View our full menu)
         </Card.Text>
