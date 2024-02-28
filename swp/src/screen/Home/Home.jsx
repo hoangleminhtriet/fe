@@ -1,15 +1,8 @@
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Image,
-  Row,
-  Spinner,
-} from "react-bootstrap";
+import { Button, Card, Col, Image, Row } from "react-bootstrap";
 import Banner from "../../assets/image/home1.png";
 import "./Home.css";
 import { useEffect, useState } from "react";
+import Loading from "../../components/Loading";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,18 +17,7 @@ const Home = () => {
   }, []);
 
   if (isLoading) {
-    return (
-      <Container>
-        <Row
-          className="justify-content-center align-items-center"
-          style={{ minHeight: "100%" }}
-        >
-          <Spinner className="loading" animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        </Row>
-      </Container>
-    );
+    return <Loading />;
   }
 
   return (
@@ -237,146 +219,170 @@ const Home = () => {
       <Card.Title style={{ textAlign: "center", color: "yellow" }}>
         Party Pagkages
       </Card.Title>
-      <Row className="test1">
-        {/*Food1*/}
+      <Row>
+        {/* Food-card1 */}
         <Col className="m-1" style={{ textAlign: "center" }}>
-          <Card className="food-card">
+          <Card className="food-card-home">
             <Card.Img
-              className="food-img"
+              className="food-img-home"
               variant="top"
               src="https://thebigbox.ca/wp-content/uploads/2020/04/traditional-cheese-pizza.png"
             />
             <Card.Body>
-              <Card.Title className="title-food">Pizza Combo</Card.Title>
+              <Card.Title className="title-food-home">Pizza Combo</Card.Title>
               <Card.Text>
                 3‐12″ Pizza & 2 Jugs of Pop (Choice of Cheese, Pepperoni,
                 Hawaiian, Chicken, Beef or Veggie)
               </Card.Text>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
-                <Card className="food-price">
-                  <Card.Text className="mb-0 price-title1">$15.95</Card.Text>
-                  <Card.Text className="price-title2">+ GST</Card.Text>
+                <Card className="food-price-home">
+                  <Card.Text className="mb-0 price-title1-home">
+                    $15.95
+                  </Card.Text>
+                  <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
             </Card.Body>
           </Card>
         </Col>
 
+        {/* Food-card2 */}
         <Col className="m-1" style={{ textAlign: "center" }}>
-          <Card className="food-card">
+          <Card className="food-card-home">
             <Card.Img
-              className="food-img"
+              className="food-img-home"
               variant="top"
               src="https://thebigbox.ca/wp-content/uploads/2020/04/tender-fries.png"
             />
             <Card.Body>
-              <Card.Title className="title-food">
+              <Card.Title className="title-food-home">
                 Chicken Tenders Combo
               </Card.Title>
               <Card.Text>
                 20 Chicken Tenders, 6 Trays of Fries & 2 Jugs of Pop/Juice.
               </Card.Text>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
-                <Card className="food-price">
-                  <Card.Text className="mb-0 price-title1">$15.95</Card.Text>
-                  <Card.Text className="price-title2">+ GST</Card.Text>
+                <Card className="food-price-home">
+                  <Card.Text className="mb-0 price-title1-home">
+                    $69.99
+                  </Card.Text>
+                  <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
             </Card.Body>
           </Card>
         </Col>
 
+        {/* Food-card3 */}
         <Col className="m-1" style={{ textAlign: "center" }}>
-          <Card className="food-card">
+          <Card className="food-card-home">
             <Card.Img
-              className="food-img"
+              className="food-img-home"
               variant="top"
               src="https://thebigbox.ca/wp-content/uploads/2020/04/sandwich-platter-400x400.png"
             />
             <Card.Body>
-              <Card.Title className="title-food">Sandwich Combo</Card.Title>
+              <Card.Title className="title-food-home">
+                Sandwich Combo
+              </Card.Title>
               <Card.Text>
                 7 Sandwiches with options of Ham, Turkey, Chicken, Roast Beef &
                 Vegetarian. with 2 jugs of Pop also included.
               </Card.Text>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
-                <Card className="food-price">
-                  <Card.Text className="mb-0 price-title1">$15.95</Card.Text>
-                  <Card.Text className="price-title2">+ GST</Card.Text>
+                <Card className="food-price-home">
+                  <Card.Text className="mb-0 price-title1-home">
+                    $69.99
+                  </Card.Text>
+                  <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
             </Card.Body>
           </Card>
         </Col>
 
+        {/* Food-card4 */}
         <Col className="m-1" style={{ textAlign: "center" }}>
-          <Card className="food-card">
+          <Card className="food-card-home">
             <Card.Img
-              className="food-img"
+              className="food-img-home"
               variant="top"
               src="https://thebigbox.ca/wp-content/uploads/2020/04/fruit-platter.png"
             />
             <Card.Body>
-              <Card.Title className="title-food">Fruit Platter</Card.Title>
+              <Card.Title className="title-food-home">Fruit Platter</Card.Title>
               <Card.Text>
                 A variety of freshly cut seasonal fruits served in a family
                 platter.
               </Card.Text>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
-                <Card className="food-price">
-                  <Card.Text className="mb-0 price-title1">$15.95</Card.Text>
-                  <Card.Text className="price-title2">+ GST</Card.Text>
+                <Card className="food-price-home">
+                  <Card.Text className="mb-0 price-title1-home">
+                    $35.00
+                  </Card.Text>
+                  <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
             </Card.Body>
           </Card>
         </Col>
 
+        {/* Food-card5 */}
         <Col className="m-1" style={{ textAlign: "center" }}>
-          <Card className="food-card">
+          <Card className="food-card-home">
             <Card.Img
-              className="food-img"
+              className="food-img-home"
               variant="top"
               src="https://thebigbox.ca/wp-content/uploads/2020/04/veggie.png"
             />
             <Card.Body>
-              <Card.Title className="title-food">Veggie Platter</Card.Title>
+              <Card.Title className="title-food-home">
+                Veggie Platter
+              </Card.Title>
               <Card.Text>
                 A variety of freshly procured seasonal vegetables served in a
                 family platter.
               </Card.Text>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
-                <Card className="food-price">
-                  <Card.Text className="mb-0 price-title1">$15.95</Card.Text>
-                  <Card.Text className="price-title2">+ GST</Card.Text>
+                <Card className="food-price-home">
+                  <Card.Text className="mb-0 price-title1-home">
+                    $35.00
+                  </Card.Text>
+                  <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
             </Card.Body>
           </Card>
         </Col>
 
+        {/* Food-card6 */}
         <Col className="m-1" style={{ textAlign: "center" }}>
-          <Card className="food-card">
+          <Card className="food-card-home">
             <Card.Img
-              className="food-img"
+              className="food-img-home"
               variant="top"
-              src="https://thebigbox.ca/wp-content/uploads/2020/04/cookie_platter-4-400x400.png "
+              src="https://thebigbox.ca/wp-content/uploads/2020/04/cookie_platter-4-400x400.png"
             />
             <Card.Body>
-              <Card.Title className="title-food">Cookies Platter</Card.Title>
+              <Card.Title className="title-food-home">
+                Cookies Platter
+              </Card.Title>
               <Card.Text>
                 A delicious assortment of cookies. Flavors include Chocolate
                 Chip, Double Chocolate, Oatmeal & Oatmeal Raisin.
               </Card.Text>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
-                <Card className="food-price">
-                  <Card.Text className="mb-0 price-title1">$15.95</Card.Text>
-                  <Card.Text className="price-title2">+ GST</Card.Text>
+                <Card className="food-price-home">
+                  <Card.Text className="mb-0 price-title1-home">
+                    $40.00
+                  </Card.Text>
+                  <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
             </Card.Body>
           </Card>
         </Col>
+
         <Card.Text style={{ textAlign: "center" }}>
           *Other food options from The Bite Box Cafe can be made available upon
           request (View our full menu)
