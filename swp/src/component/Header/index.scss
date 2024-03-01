@@ -5,16 +5,22 @@
   text-decoration: none;
 }
 
+
 .main-nav {
   display: flex;
   justify-content: space-between;
-  border-bottom: #fff 1px solid;
-  margin-bottom: 5em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030; /* High z-index to ensure it stays on top */
+  background-color: #b994d7;; /* Or any color based on your design */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .logo-nav {
-  max-width: 25vw; /* Adjusted from 20svw to 20vw */
-  max-height: 20vh; /* Adjusted from 15svh to 15vh */
+  max-width: 20vw; /* Adjusted from 20svw to 20vw */
+  max-height: 15vh; /* Adjusted from 15svh to 15vh */
 }
 
 .nav-menu-main {

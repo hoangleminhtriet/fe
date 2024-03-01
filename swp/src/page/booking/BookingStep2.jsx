@@ -4,7 +4,7 @@ import { FiCheckSquare } from "react-icons/fi";
 
 const BookingStep2 = () => {
   return (
-    <Container>
+    <Container style={{ marginTop: "175px" }}>
       <Card.Title> Plan My Event</Card.Title>
       <Card.Text> Step #2 </Card.Text>
       <CardText>
