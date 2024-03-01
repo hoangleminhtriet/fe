@@ -15,6 +15,7 @@ import Service from "./components/Navbar/Service";
 import Contact from "./components/Navbar/Contact";
 import FoodScreen from "./screen/Food/FoodScreen";
 import HomeBooking from "./screen/Booking/HomeBooking";
+import BookingStep2 from "./screen/Booking/BookingStep2";
 
 function App() {
   const [showOverview, setShowOverview] = useState(false);
@@ -84,6 +85,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/food" element={<FoodScreen />} />
           <Route path="/booking" element={<HomeBooking />} />
+          <Route path="/bookingstep2" element={<BookingStep2 />} />
         </Routes>
         <Footer />
       </Router>

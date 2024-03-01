@@ -3,6 +3,7 @@ import Banner from "../../assets/image/home1.png";
 import "./Home.css";
 import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,7 +28,9 @@ const Home = () => {
         <Col className="text-booking">
           Booking <strong>Birthday</strong> For Kids.
           <Col>
-            <Button className="mt-5">Book Now!!</Button>
+            <Link to="/booking">
+              <Button className="mt-5">Book Now!!</Button>
+            </Link>
           </Col>
         </Col>
         <Col>
@@ -182,10 +185,12 @@ const Home = () => {
                 birthday child Goodie bag for each child Plates, cups, cutlery,
                 napkins & table cloth
               </Card.Text>
-              <Row style={{ justifyContent: "center" }}>
-                <Button style={{ maxWidth: "fit-content" }} className="mt-5">
-                  Book Now!!
-                </Button>
+              <Row style={{ justifyContent: "center", marginLeft: "37%" }}>
+                <Link to="/booking">
+                  <Button style={{ maxWidth: "fit-content" }} className="mt-5">
+                    Book Now!!
+                  </Button>
+                </Link>
               </Row>
             </Card.Body>
           </Card>
@@ -228,10 +233,12 @@ const Home = () => {
                 birthday child Goodie bag for each child Plates, cups, cutlery,
                 napkins & table cloth
               </Card.Text>
-              <Row style={{ justifyContent: "center" }}>
-                <Button style={{ maxWidth: "fit-content" }} className="mt-5">
-                  Book Now!!
-                </Button>
+              <Row style={{ justifyContent: "center", marginLeft: "37%" }}>
+                <Link to="/booking">
+                  <Button style={{ maxWidth: "fit-content" }} className="mt-5">
+                    Book Now!!
+                  </Button>
+                </Link>
               </Row>
             </Card.Body>
           </Card>
@@ -274,10 +281,12 @@ const Home = () => {
                 birthday child Goodie bag for each child Plates, cups, cutlery,
                 napkins & table cloth
               </Card.Text>
-              <Row style={{ justifyContent: "center" }}>
-                <Button style={{ maxWidth: "fit-content" }} className="mt-5">
-                  Book Now!!
-                </Button>
+              <Row style={{ justifyContent: "center", marginLeft: "37%" }}>
+                <Link to="/booking">
+                  <Button style={{ maxWidth: "fit-content" }} className="mt-5">
+                    Book Now!!
+                  </Button>
+                </Link>
               </Row>
             </Card.Body>
           </Card>

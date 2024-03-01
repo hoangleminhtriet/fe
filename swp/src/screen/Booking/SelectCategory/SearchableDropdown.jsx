@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import  { useState } from 'react';
-import { Button, Card, Dropdown, Image } from 'react-bootstrap';
-import Example from "../../../assets/image/uudai.png"
-
+import { useState } from "react";
+import { Button, Card, Dropdown, Image } from "react-bootstrap";
+import Example from "../../../assets/image/uudai.png";
+import { Link } from "react-router-dom";
 
 const SearchableDropdown = ({ items, onSelect, placeholder }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [filteredItems, setFilteredItems] = useState(items);
 
   const handleSearch = (event) => {
@@ -20,7 +20,7 @@ const SearchableDropdown = ({ items, onSelect, placeholder }) => {
 
   const handleSelect = (selectedItem) => {
     onSelect(selectedItem);
-    setSearchTerm('');
+    setSearchTerm("");
     setFilteredItems(items);
   };
 
@@ -32,7 +32,6 @@ const SearchableDropdown = ({ items, onSelect, placeholder }) => {
 
       <Dropdown.Menu>
         <input
-        
           type="text"
           placeholder="Search..."
           value={searchTerm}
@@ -50,22 +49,42 @@ const SearchableDropdown = ({ items, onSelect, placeholder }) => {
 };
 
 const RenderCard = ({ selectedItem }) => {
-    return (
-        <Card className="m-3"><Card className="m-3" style={{display:"flex", flexDirection:"row", border:"transparent"}}>
-        <div><Image style={{maxHeight:"8em", minWidth:"13em"}} alt='' src={Example}/></div>
-       
+  return (
+    <Card className="m-3">
+      <Card
+        className="m-3"
+        style={{ display: "flex", flexDirection: "row", border: "transparent" }}
+      >
+        <div>
+          <Image
+            style={{ maxHeight: "8em", minWidth: "13em" }}
+            alt=""
+            src={Example}
+          />
+        </div>
+
         <Card.Body>
-          <Card.Title className='mb-5'>Selected Item</Card.Title>
+          <Card.Title className="mb-5">Selected Item</Card.Title>
           <Card.Text>{selectedItem}</Card.Text>
         </Card.Body>
 
-        <Card.Title className='m-3'>Price</Card.Title>
-        
+        <Card.Title className="m-3">Price</Card.Title>
       </Card>
-      <Button variant='warning'size='lg' style={{marginLeft:"auto", marginRight:"1em", marginBottom:"2em",}}>Select</Button>
-      </Card>
-      
-    );
-  };
-  
-  export { SearchableDropdown, RenderCard };
+      <Link to="/bookingstep2">
+        <Button
+          variant="warning"
+          size="lg"
+          style={{
+            marginLeft: "auto",
+            marginRight: "1em",
+            marginBottom: "2em",
+          }}
+        >
+          Select
+        </Button>
+      </Link>
+    </Card>
+  );
+};
+
+export { SearchableDropdown, RenderCard };

@@ -36,8 +36,8 @@ const HomeBooking = () => {
         Next Step.
       </Card.Text>
       <Card.Text>* indicates a required field.</Card.Text>
-      <Card.Text style={{fontWeight:"700"}}>Select A Category *</Card.Text>
-      <SelectCategory/>
+      <Card.Text style={{ fontWeight: "700" }}>Select A Category *</Card.Text>
+      <SelectCategory />
     </Container>
   );
 };
