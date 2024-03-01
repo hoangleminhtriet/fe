@@ -41,6 +41,9 @@ const Header = ({
             <Button className="button-header" onClick={toggleContact}>
               Contact
             </Button>
+            <Link to="/login">
+              <Button className="button-header">Login</Button>
+            </Link>
           </Nav>
         </BootstrapNavbar.Collapse>
       </Container>
