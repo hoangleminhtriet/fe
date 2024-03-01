@@ -1,21 +1,29 @@
 import { useState } from "react";
-import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
 } from "react-router-dom";
-import Footer from "./components/Footer";
-import Home from "./screen/Home/Home";
-import Header from "./components/Header/Header";
-import Overview from "./components/Navbar/Overview";
-import Discount from "./components/Navbar/Discount";
-import Service from "./components/Navbar/Service";
-import Contact from "./components/Navbar/Contact";
-import FoodScreen from "./screen/Food/FoodScreen";
-import HomeBooking from "./screen/Booking/HomeBooking";
-import BookingStep2 from "./screen/Booking/BookingStep2";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Home from "./page/home";
+import Food from "./page/food";
+import Login from "./page/login";
+import Register from "./page/register";
+import Dashboard from "./component/dashboard";
+import Profile from "./page/profile";
+import Package from "./page/package";
+import Statistics from "./page/statistics";
+import Report from "./page/report";
+import Account from "./page/account";
+import Header from "./component/Header";
+import Footer from "./component/Footer";
+import Overview from "./component/Navbar/Overview";
+import Contact from "./component/Navbar/Contact";
+import Discount from "./component/Navbar/Discount";
+import Service from "./component/Navbar/Service";
+import Booking from "./page/booking";
+import BookingStep2 from "./page/booking/BookingStep2";
 
 function App() {
   const [showOverview, setShowOverview] = useState(false);
@@ -67,7 +75,7 @@ function App() {
   };
 
   return (
-    <div className="main">
+    <main className="main">
       <Router>
         <Header
           toggleOverview={toggleOverview}
@@ -82,14 +90,29 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/food" element={<Food />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/booking" element={<Booking />} />
+          <Route path="/booking2" element={<BookingStep2 />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="dashboard"
+            element={
+              <Dashboard>
+                <Route path="profile" element={<Profile />} />
+                <Route path="package" element={<Package />} />
+                <Route path="statistics" element={<Statistics />} />
+                <Route path="report" element={<Report />} />
+                <Route path="account" element={<Account />} />
+              </Dashboard>
+            }
+          />
           <Route path="*" element={<Navigate to="/" />} />
-          <Route path="/food" element={<FoodScreen />} />
-          <Route path="/booking" element={<HomeBooking />} />
-          <Route path="/bookingstep2" element={<BookingStep2 />} />
         </Routes>
+
         <Footer />
       </Router>
-    </div>
+    </main>
   );
 }
 

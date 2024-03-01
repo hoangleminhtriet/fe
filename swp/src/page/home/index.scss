@@ -1,0 +1,122 @@
+.steps-img {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .banner-img {
+    margin-left: 10vw;
+    max-width: 25em;
+    object-fit: cover !important;
+  }
+  
+  .text-booking {
+    margin-left: 10vw;
+  }
+  
+  .steps-card {
+    max-width: 25em;
+    background-color: #300058 !important;
+    color: #fff !important;
+    margin-bottom: 15px;
+  }
+  
+  .steps-body {
+    height: 25em;
+  }
+  
+  .steps-content {
+    height: 15em;
+    overflow: auto;
+  }
+  
+  .party-img {
+    max-width: 100%;
+    max-height: 10em;
+  }
+  
+  .party-content {
+    overflow: auto;
+    height: 250px;
+  }
+  .link-name {
+    color: yellow;
+  }
+  /* Food Card Party Pagkages */
+  .food-card-home {
+    background-color: #00003e !important;
+    color: #fff !important;
+    border-radius: 25px !important;
+  }
+  .food-img-home {
+    border-radius: 25px !important;
+  }
+  .title-food-home {
+    font-weight: 700 !important;
+    font-size: 25px !important;
+  }
+  .price-title1-home {
+    font-weight: bold !important;
+    font-size: 20px !important;
+  }
+  .price-title2-home {
+    font-weight: bold !important;
+    font-size: 15px !important;
+  }
+  .food-price-home {
+    max-width: 10em !important;
+    background-color: #29295d !important;
+    color: #fff !important;
+    padding: 0 !important;
+    border-radius: 5px !important;
+  }
+  .food-home-body {
+    height: 20em !important;
+  }
+  
+  /* Party Packages */
+  .card-text-party {
+    max-width: 17em !important;
+  }
+  .text-party1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+  }
+  .text-party2 {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0%;
+  }
+  .party-card {
+    background-color: silver !important  ;
+    color: #000000 !important;
+  }
+  
+  @media (max-width: 767px) {
+    .food-price-home {
+      max-width: 5em !important;
+    }
+  }
+  
+  .home-banner {
+    background: rgb(131, 58, 180);
+    background: linear-gradient(
+      90deg,
+      rgba(131, 58, 180, 1) 0%,
+      rgba(129, 67, 92, 1) 33%,
+      rgba(108, 79, 189, 1) 52%,
+      rgba(252, 176, 69, 1) 100%
+    );
+    align-items: center;
+    margin: 0% !important;
+  }
+  
+  @media (max-width: 767px) {
+    .text-booking {
+      font-size: xx-large !important;
+      margin-left: 0;
+    }
+    .banner-img {
+      margin-left: 0;
+    }
+  }
