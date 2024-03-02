@@ -37,7 +37,18 @@
   border-radius: 10px 10px 1px 1px;
 }
 
-@media (max-width: 767px) {
+@media only screen and (max-width: 768px){
+  .food-price {
+    max-width: 5em !important;
+  }
+
+  .price-detail {
+    font-size: 5px !important;
+    border-radius: 10px 5px 0px 0px;
+  }
+}
+
+@media only screen and (min-width: 768px){
   .food-price {
     max-width: 5em !important;
   }
