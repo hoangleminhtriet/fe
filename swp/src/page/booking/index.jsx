@@ -5,7 +5,7 @@ import SelectCategory from "./SelectCategory/SelectCategory";
 
 const Booking = () => {
   return (
-    <Container style={{ marginTop: "175px" }}>
+    <Container>
       <Card.Title> Plan My Event</Card.Title>
       <Card.Text> Step #1 </Card.Text>
       <CardText>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div style={{ marginTop: "175px" }}>
+    <div>
       {/*Banner*/}
       <Row className="home-banner">
         <Col className="text-booking">
@@ -22,7 +22,10 @@ const Home = () => {
       </Row>
 
       {/*Steps*/}
-      <Row className="text-oder mt-3" style={{ textAlign: "center" }}>
+      <Row
+        className="text-oder mt-3"
+        style={{ textAlign: "center", color: "#8d188d" }}
+      >
         <Col>STEPS TO BOOK BIRTHDAY PARTY</Col>
       </Row>
 
@@ -126,7 +129,7 @@ const Home = () => {
         className="text-oder mt-3"
         style={{ textAlign: "center", fontSize: "400%" }}
       >
-        <Col>PARTY PACKAGES</Col>
+        <Col style={{ color: "#8d188d" }}>PARTY PACKAGES</Col>
       </Row>
 
       {/* Ultimate */}
@@ -281,7 +284,7 @@ const Home = () => {
       {/* Party Pagkages */}
       <Card.Title
         className="m-5"
-        style={{ textAlign: "center", color: "#fff", fontSize: "450%" }}
+        style={{ textAlign: "center", color: "#8d188d", fontSize: "450%" }}
       >
         PARTY PACKAGES
       </Card.Title>
@@ -449,7 +452,9 @@ const Home = () => {
           </Card>
         </Col>
 
-        <Card.Text style={{ textAlign: "center", marginTop: "20px" }}>
+        <Card.Text
+          style={{ textAlign: "center", marginTop: "20px", color: "#8d188d" }}
+        >
           *Other food options from The Bite Box Cafe can be made available upon
           request (View our full menu)
         </Card.Text>

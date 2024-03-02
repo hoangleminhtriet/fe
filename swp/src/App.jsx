@@ -83,10 +83,13 @@ function App() {
           toggleService={toggleService}
           toggleContact={toggleContact}
         />
-        {showOverview && <Overview />}
-        {showDiscount && <Discount />}
-        {showService && <Service />}
-        {showContact && <Contact />}
+        <div className="d-flex">
+          {" "}
+          {showOverview && <Overview />}
+          {showDiscount && <Discount />}
+          {showService && <Service />}
+          {showContact && <Contact />}
+        </div>
 
         <Routes>
           <Route path="/" element={<Home />} />

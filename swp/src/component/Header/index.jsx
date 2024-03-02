@@ -23,17 +23,24 @@ const Header = ({
         </NavLink>
 
         <BootstrapNavbar.Toggle aria-controls="navbar" />
-        <BootstrapNavbar.Collapse id="navbar">
-          <Nav className="me-auto" style={{ marginLeft: "40%" }}>
+        <BootstrapNavbar.Collapse className="nav-header nav-mobile" id="navbar">
+          <Nav>
             <Button className="button-header" onClick={toggleOverview}>
               Overview
             </Button>
             <Button className="button-header" onClick={toggleDiscount}>
               Discount
             </Button>
-            <Link to="/food">
-              <Button className="button-header">Food</Button>
-            </Link>
+
+            <Button className="button-header">
+              <Link
+                style={{ textDecoration: "none" }}
+                className="button-header"
+                to="/food"
+              >
+                Food
+              </Link>
+            </Button>
 
             <Button className="button-header" onClick={toggleService}>
               Service
@@ -41,9 +48,15 @@ const Header = ({
             <Button className="button-header" onClick={toggleContact}>
               Contact
             </Button>
-            <Link to="/login">
-              <Button className="button-header">Login</Button>
-            </Link>
+            <Button className="button-header">
+              <Link
+                style={{ textDecoration: "none" }}
+                className="button-header"
+                to="/login"
+              >
+                Login
+              </Link>
+            </Button>
           </Nav>
         </BootstrapNavbar.Collapse>
       </Container>
