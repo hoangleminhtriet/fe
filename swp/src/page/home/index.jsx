@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div>
+    <div style={{ marginTop: "175px" }}>
       {/*Banner*/}
       <Row className="home-banner">
         <Col className="text-booking">

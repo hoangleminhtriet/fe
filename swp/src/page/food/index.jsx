@@ -4,7 +4,7 @@ import "./index.scss";
 
 export default function Food() {
   return (
-    <div>
+    <div style={{ marginTop: "175px" }}>
       <Container>
         <h1 style={{ textAlign: "center", color: "#8d188d" }}>
           FPTBOOKING MENU
