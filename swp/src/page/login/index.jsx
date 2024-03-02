@@ -99,54 +99,56 @@ const Login = () => {
             <Input.Password />
           </Form.Item>
 
-          <Form.Item
-            name="remember"
-            valuePropName="checked"
-            wrapperCol={{
-              offset: 8,
-              span: 16,
-            }}
-          >
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
-          <Form.Item
-            wrapperCol={{
-              offset: 8,
-              span: 16,
-            }}
-          >
-            <p>
-              Don't have account? <Link to={"/register"}>sign up</Link>
-            </p>
-            <Button type="primary" htmlType="submit">
-              Sign in
-            </Button>
-          </Form.Item>
-          <Form.Item
-            wrapperCol={{
-              offset: 8,
-              span: 16,
-            }}
-          >
-            <Button onClick={loginGoogle}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  gap: 10,
-                }}
-              >
-                <img
-                  width={20}
-                  src="https://th.bing.com/th/id/OIP.lsGmVmOX789951j9Km8RagHaHa?rs=1&pid=ImgDetMain"
-                  alt=""
-                />
-                Login with google
-              </div>
-            </Button>
-          </Form.Item>
+          <div>
+            {" "}
+            <Form.Item
+              name="remember"
+              valuePropName="checked"
+              wrapperCol={{
+                offset: 8,
+                span: 16,
+              }}
+            >
+              <Checkbox>Remember me</Checkbox>
+            </Form.Item>
+            <Form.Item
+              wrapperCol={{
+                offset: 8,
+                span: 16,
+              }}
+            >
+              <p>
+                Don't have account? <Link to={"/register"}>sign up</Link>
+              </p>
+              <Button type="primary" htmlType="submit">
+                Sign in
+              </Button>
+            </Form.Item>
+            <Form.Item
+              wrapperCol={{
+                offset: 8,
+                span: 16,
+              }}
+            >
+              <Button onClick={loginGoogle}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    gap: 10,
+                  }}
+                >
+                  <img
+                    width={20}
+                    src="https://th.bing.com/th/id/OIP.lsGmVmOX789951j9Km8RagHaHa?rs=1&pid=ImgDetMain"
+                    alt=""
+                  />
+                  Login with google
+                </div>
+              </Button>
+            </Form.Item>
+          </div>
         </Form>
       </div>
     </div>

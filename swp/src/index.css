@@ -21,23 +21,17 @@ main {
 }
 
 .content-container {
-  position: fixed; /* Fixed to viewport, not scrolling with the page */
-  top: 100px; /* Adjust this value based on the actual height of your header */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%; /* Adjust based on your design preferences */
+
+
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  
   max-width: 600px; /* Or whatever maximum width you prefer */
-  z-index: 1031; /* Just below the header to avoid overlapping */
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Adjust alpha for more transparency */
+  
   border-radius: 8px; /* Optional, for styled appearance */
   padding: 20px; /* Adjust as needed */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional, for depth */
-  /* display: none; Initially hidden */
+
 }
 
 .content-item {
@@ -98,6 +92,13 @@ main {
 
 @media (max-width: 767px) {
   body {
-    font-size: 0.8em;
+    font-size: 0.6em;
+  }
+  .main-nav {
+    max-height: 100%;
+  }
+  .nav-mobile {
+    display: flex;
+    flex-direction: column;
   }
 }
