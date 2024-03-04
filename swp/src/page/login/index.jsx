@@ -1,9 +1,9 @@
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Flex, Form, Input } from "antd";
 import "./index.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../config/axios";
-import { useDispatch } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { login } from "../../redux/features/userSlice";
 import { getAuth, signInWithPopup } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
@@ -21,41 +21,39 @@ const Login = () => {
       dispatch(login(response.data));
       toast.success("Login successfully");
       navigate("/dashboard");
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem('token', response.data.token)
     } catch (e) {
       console.log(e);
-      toast.error("Login fail");
+      toast.error(e.response.data);
     }
   };
 
   const loginGoogle = () => {
+
     const auth = getAuth();
     signInWithPopup(auth, provider)
-      .then(async (result) => {
-        const token = await result.user.getIdToken();
-        const response = await api.post("/authentication/logingg", {
-          token: token,
-        });
+      .then(async(result) => {
+        const token = await result.user.getIdToken()
+        const response = await api.post('/authentication/logingg', {
+          token: token
+        })
         dispatch(login(response.data));
         toast.success("Login successfully");
         navigate("/dashboard");
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem('token', response.data.token)
       })
       .catch((error) => {
         console.log(error);
       });
   };
   return (
-    <div className="background">
-      <div className="background-left">
-        <img
-          src="https://images.unsplash.com/photo-1577998474517-7eeeed4e448a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt=""
-        />
-      </div>
-      <div className="background-right">
-        <h1 style={{ color: "black" }}>Sign in</h1>
-
+      <div className="backgound">
+        <div className="backgound-img">
+        <img src="https://images.unsplash.com/photo-1517398741578-fc1e1a3c6c1b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+        </div>
+        
+<div className="form-box">
+        <h1>Sign in</h1>
         <Form
           name="basic"
           labelCol={{
@@ -65,7 +63,7 @@ const Login = () => {
             span: 24,
           }}
           style={{
-            maxWidth: 600,
+            //maxWidth: 600,
           }}
           initialValues={{
             remember: true,
@@ -99,59 +97,63 @@ const Login = () => {
             <Input.Password />
           </Form.Item>
 
-          <div>
-            {" "}
-            <Form.Item
-              name="remember"
-              valuePropName="checked"
-              wrapperCol={{
-                offset: 8,
-                span: 16,
-              }}
+            
+            <Form.Item 
+            name="remember"
+            valuePropName="checked"
+            wrapperCol={{
+              offset: 8,
+              span: 16,
+            }}
+          >
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+
+          <Form.Item 
+            wrapperCol={{
+              offset: 8,
+              span: 16,
+            }}
+          >
+            <p>
+              Don't have account? <Link to={"/register"}>sign up</Link>
+            </p>
+            <Button type="primary" htmlType="submit">
+              Sign in
+            </Button>
+          </Form.Item>
+          <Form.Item 
+            wrapperCol={{
+              offset: 8,
+              span: 16,
+            }}
+          >
+            <Button
+            
+              onClick={loginGoogle}
             >
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-            <Form.Item
-              wrapperCol={{
-                offset: 8,
-                span: 16,
-              }}
-            >
-              <p>
-                Don't have account? <Link to={"/register"}>sign up</Link>
-              </p>
-              <Button type="primary" htmlType="submit">
-                Sign in
-              </Button>
-            </Form.Item>
-            <Form.Item
-              wrapperCol={{
-                offset: 8,
-                span: 16,
-              }}
-            >
-              <Button onClick={loginGoogle}>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    gap: 10,
-                  }}
-                >
-                  <img
-                    width={20}
-                    src="https://th.bing.com/th/id/OIP.lsGmVmOX789951j9Km8RagHaHa?rs=1&pid=ImgDetMain"
-                    alt=""
-                  />
-                  Login with google
-                </div>
-              </Button>
-            </Form.Item>
-          </div>
+              <div   style={{
+                display: 'flex',
+                justifyContent: "space-between",
+                alignItems: "center",
+                gap:10
+              }}>
+                <img
+                  width={20}
+                  src="https://th.bing.com/th/id/OIP.lsGmVmOX789951j9Km8RagHaHa?rs=1&pid=ImgDetMain"
+                  alt=""
+                />
+                Login with google
+              </div>
+            </Button>
+          </Form.Item>
+            
+
         </Form>
       </div>
-    </div>
+      </div>
+      
+    // </div>
   );
 };
 export default Login;

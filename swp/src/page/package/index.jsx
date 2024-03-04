@@ -3,12 +3,9 @@
 // import 'bootstrap/dist/css/bootstrap.css';
 // import { Chart } from '../../component/chart';
 
-
 // const text = `
 //   Service
 // `;
-
-
 
 // const Service = () => {
 
@@ -26,7 +23,7 @@
 //           action: '10 Downing Street',
 //         },
 //       ];
-      
+
 //       const columns = [
 //         {
 //           title: 'Picture',
@@ -47,13 +44,13 @@
 
 //     return <div>
 //         <Table dataSource={dataSource} columns={columns} />
-  
+
 //     </div>
 // }
 // const items = [
 //   {
 //     key: '1',
-//     label: 'Package 1', 
+//     label: 'Package 1',
 //     children:     <Service/>,
 //   },
 //   {
@@ -74,13 +71,35 @@
 //   return <Collapse items={items} defaultActiveKey={['1']} onChange={onChange} />;
 // };
 
-
 // export default Package;
 
-
-import React, { useState } from 'react';
-import { Collapse, Table, Button, Space, Modal, Form, Input } from 'antd';
-import 'bootstrap/dist/css/bootstrap.css';
+import React, { useEffect, useState } from "react";
+import { PlusOutlined } from "@ant-design/icons";
+import {
+  Collapse,
+  Table,
+  Button,
+  Space,
+  Modal,
+  Form,
+  Input,
+  InputNumber,
+  Select,
+  Cascader,
+  TreeSelect,
+  DatePicker,
+  Row,
+  Col,
+  Upload,
+  Image,
+  Descriptions,
+} from "antd";
+import "bootstrap/dist/css/bootstrap.css";
+import TextArea from "antd/es/input/TextArea";
+import { useForm } from "antd/es/form/Form";
+import api from "../../config/axios";
+import uploadFile from "../../utils/upload";
+import { toast } from "react-toastify";
 
 const { Panel } = Collapse;
 
@@ -95,18 +114,19 @@ const ActionButtons = ({ onEdit, onDelete }) => (
   </Space>
 );
 
-const Service = () => {
+const Service = ({ data, fetchPackage }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [form] = useForm();
 
   const handleEdit = () => {
     // Logic to edit the action
-    console.log('Edit button clicked');
+    console.log("Edit button clicked");
     setModalVisible(true);
   };
 
   const handleDelete = () => {
     // Logic to delete the action
-    console.log('Delete button clicked');
+    console.log("Delete button clicked");
   };
 
   const handleModalCancel = () => {
@@ -115,104 +135,295 @@ const Service = () => {
 
   const handleModalOk = () => {
     // Logic to handle modal OK button click (save changes)
-    console.log('Modal OK button clicked');
+    console.log("Modal OK button clicked");
     setModalVisible(false);
   };
 
-  const dataSource = [
-    {
-      key: '1',
-      service: 'Sườn',
-      discription:'sườn nướng',
-      picture: 'acb',
-      action: '10 Downing Street',
-    },
-    {
-      key: '2',
-      service: 'Bì',
-      discription:'Bì luộc',
-      picture: 'bcd',
-      action: '10 Downing Street',
-    },
-    {
-      key: '3',
-      service: 'Chả',
-      discription:'Chả chiên',
-      picture: 'bcd',
-      action: '10 Downing Street',
-    },
-  ];
+  // const dataSource = [
+  //   {
+  //     key: '1',
+  //     service: 'Sườn',
+  //     discription:'sườn nướng',
+  //     picture: 'acb',
+  //     action: '10 Downing Street',
+  //   },
+  //   {
+  //     key: '2',
+  //     service: 'Bì',
+  //     discription:'Bì luộc',
+  //     picture: 'bcd',
+  //     action: '10 Downing Street',
+  //   },
+  //   {
+  //     key: '3',
+  //     service: 'Chả',
+  //     discription:'Chả chiên',
+  //     picture: 'bcd',
+  //     action: '10 Downing Street',
+  //   },
+  // ];
 
   const columns = [
     {
-      title: 'Service',
-      dataIndex: 'service',
-      key: 'service',
+      title: "Service",
+      dataIndex: "serviceName",
+      key: "serviceName",
     },
     {
-      title: 'Discription',
-      dataIndex: 'discription',
-      key: 'discription',
+      title: "Price",
+      dataIndex: "price",
+      key: "price",
     },
     {
-      title: 'Picture',
-      dataIndex: 'picture',
-      key: 'picture',
+      title: "Category",
+      dataIndex: "category",
+      key: "category",
     },
     {
-      title: 'Action',
-      dataIndex: 'action',
-      key: 'action',
+      title: "Picture",
+      dataIndex: "picture",
+      key: "picture",
+      render: (value) => {
+        return <Image src={value} width={100} />;
+      },
+    },
+    {
+      title: "Capacity",
+      dataIndex: "capacity",
+      key: "capacity",
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
       render: (_, record) => (
         <>
-          <ActionButtons
-            onEdit={() => handleEdit(record.key)}
-            onDelete={() => handleDelete(record.key)}
-          />
+          <ActionButtons onEdit={() => handleEdit(record.key)} onDelete={() => handleDelete(record.key)} />
         </>
       ),
     },
   ];
 
+  const handleSubmmitService = async (values) => {
+    console.log(values);
+    if (values.picture.file) {
+      const url = await uploadFile(values.picture.file.originFileObj);
+      values.picture = url;
+    }
+    values.packageId = data.id;
+    const response = await api.post("/service/createService", values);
+    form.resetFields();
+    setModalVisible(false);
+    toast.success("Successfully create new service");
+    fetchPackage();
+  };
+
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+  const [previewTitle, setPreviewTitle] = useState("");
+  const [fileList, setFileList] = useState([]);
+  const handleCancel = () => setPreviewOpen(false);
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    setPreviewImage(file.url || file.preview);
+    setPreviewOpen(true);
+    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf("/") + 1));
+  };
+  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+  const uploadButton = (
+    <button
+      style={{
+        border: 0,
+        background: "none",
+      }}
+      type="button"
+    >
+      <PlusOutlined />
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </button>
+  );
+
   return (
     <div>
-      <Table dataSource={dataSource} columns={columns} />
-      <Modal
-        title="Edit Action"
-        visible={modalVisible}
-        onOk={handleModalOk}
-        onCancel={handleModalCancel}
+      <Descriptions title="Package Info" size="2">
+        <Descriptions.Item label={"picture"}>
+          <Image src={data.picture} width={100} />
+        </Descriptions.Item>
+        <Descriptions.Item label={"capacity"}>{data.capacity}</Descriptions.Item>
+        <Descriptions.Item label={"category"}>{data.category}</Descriptions.Item>
+        <Descriptions.Item label={"Description"}>{data.description}</Descriptions.Item>
+      </Descriptions>
+      <Button
+        onClick={() => {
+          setModalVisible(true);
+        }}
       >
+        Add new Service
+      </Button>
+      <Table columns={columns} dataSource={data.services} />
+      <Modal title="Edit Action" visible={modalVisible} onOk={() => form.submit()} onCancel={handleModalCancel}>
         {/* Form fields for editing action details */}
-        <Form>
-          <Form.Item label="Action Name">
+        <Form
+          form={form}
+          labelCol={{
+            span: 24,
+          }}
+          onFinish={handleSubmmitService}
+        >
+          <Form.Item
+            label="Service Name"
+            name={"serviceName"}
+            rules={[
+              {
+                required: true,
+                message: "Input name!",
+              },
+            ]}
+          >
             <Input />
+          </Form.Item>
+          <Row gutter={12}>
+            <Col span={8}>
+              {" "}
+              <Form.Item
+                label="Price"
+                name={"price"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Input name!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              {" "}
+              <Form.Item
+                label="Quantity"
+                name={"quantity"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Input name!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item
+                label="Category"
+                name={"category"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Input category!",
+                  },
+                ]}
+              >
+                <Select
+                  style={{ width: "100%" }}
+                  placeholder="Select category"
+                  options={[
+                    {
+                      label: "Food",
+                      value: "FOOD",
+                    },
+                    {
+                      label: "Game",
+                      value: "GAME",
+                    },
+                  ]}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Form.Item name={"picture"} label="Picture">
+            <Upload
+              action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+              listType="picture-card"
+              fileList={fileList}
+              onPreview={handlePreview}
+              onChange={handleChange}
+              maxCount={1}
+            >
+              {fileList.length >= 8 ? null : uploadButton}
+            </Upload>
           </Form.Item>
           {/* Add more form fields as needed */}
         </Form>
+      </Modal>
+
+      <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
+        <img alt="example" style={{ width: "100%" }} src={previewImage} />
       </Modal>
     </div>
   );
 };
 
+// const AddPackage = () => {
+//   return  <>
+//       <div>
+
+//       </div>
+//     </>
+// };
+const PackageDetail = () => {
+  return (
+    <>
+      <strong>Name</strong>
+    </>
+  );
+};
+
 const Package = () => {
   const [modalVisible, setModalVisible] = useState(false);
-
-  const handleAdd = () => {
-    // Logic to add a new package
-    console.log('Add button clicked');
-    setModalVisible(true);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+  const [previewTitle, setPreviewTitle] = useState("");
+  const [fileList, setFileList] = useState([]);
+  const [packages, setPackages] = useState([]);
+  const handleCancel = () => setPreviewOpen(false);
+  const [form] = useForm();
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    setPreviewImage(file.url || file.preview);
+    setPreviewOpen(true);
+    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf("/") + 1));
   };
-
-  const handleEditPackage = () => {
-    // Logic to edit the selected package
-    console.log('Edit Package button clicked');
-  };
-
-  const handleDeletePackage = () => {
-    // Logic to delete the selected package
-    console.log('Delete Package button clicked');
-  };
+  const handleChangeImage = ({ fileList: newFileList }) => setFileList(newFileList);
+  const uploadButton = (
+    <button
+      style={{
+        border: 0,
+        background: "none",
+      }}
+      type="button"
+    >
+      <PlusOutlined />
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </button>
+  );
 
   const handleModalCancel = () => {
     setModalVisible(false);
@@ -220,7 +431,7 @@ const Package = () => {
 
   const handleModalOk = () => {
     // Logic to handle modal OK button click (save changes)
-    console.log('Modal OK button clicked');
+    console.log("Modal OK button clicked");
     setModalVisible(false);
   };
 
@@ -228,53 +439,156 @@ const Package = () => {
     console.log(key);
   };
 
-  const items = [
-    {
-      key: '1',
-      label: 'Package 1',
-      children: <Service />,
-    },
-    {
-      key: '2',
-      label: 'Package 2',
-      children: <Service />,
-    },
-    {
-      key: '3',
-      label: 'Package 3',
-      children: <Service />,
-    },
-  ];
+  const getBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  const handleAddPackage = async (values) => {
+    console.log(values);
+    if (values.picture.file) {
+      const url = await uploadFile(values.picture.file.originFileObj);
+      values.picture = url;
+    }
+    const response = await api.post("/package/postNewPackage", values);
+    toast.success("Successfully create new package");
+    form.resetFields();
+    setModalVisible(false);
+    fetchPackage();
+  };
+
+  const fetchPackage = async () => {
+    const response = await api.get("/package/getPackages");
+    setPackages(response.data);
+  };
+
+  useEffect(() => {
+    fetchPackage();
+  }, []);
 
   return (
     <div>
-      <Space>
-        <Button type="primary" onClick={handleAdd}>
-          Add
-        </Button>
-        <Button type="primary" onClick={handleEditPackage}>
-          Edit
-        </Button>
-        <Button type="danger" onClick={handleDeletePackage}>
-          Delete
-        </Button>
-      </Space>
+      <Button type="primary" onClick={() => setModalVisible(true)}>
+        Add Package{" "}
+      </Button>
 
-      <Collapse items={items} defaultActiveKey={['1']} onChange={handleChange} />
+      <Collapse
+        items={packages.map((item) => {
+          return {
+            key: item.id,
+            label: item.description,
+            children: <Service data={item} fetchPackage={fetchPackage} />,
+          };
+        })}
+        defaultActiveKey={["1"]}
+        onChange={handleChange}
+      />
 
-      <Modal
-        title="Edit Package"
-        visible={modalVisible}
-        onOk={handleModalOk}
-        onCancel={handleModalCancel}
-      >
+      <Modal title="Add Package" visible={modalVisible} onOk={() => form.submit()} onCancel={handleModalCancel}>
         {/* Form fields for editing package details */}
-        <Form>
-          <Form.Item label="Package Name">
+        <Form
+          form={form}
+          labelCol={{
+            span: 24,
+          }}
+          onFinish={handleAddPackage}
+        >
+          <Form.Item
+            label="Package Name"
+            name={"name"}
+            rules={[
+              {
+                required: true,
+                message: "Input name!",
+              },
+            ]}
+          >
             <Input />
           </Form.Item>
+
+          <Form.Item
+            label="Description"
+            name={"description"}
+            rules={[
+              {
+                required: true,
+                message: "Input description!",
+              },
+            ]}
+          >
+            <TextArea />
+          </Form.Item>
+          <Row gutter={12}>
+            <Col span={12}>
+              <Form.Item
+                label="Capacity"
+                name={"capacity"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Input capacity!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="Category"
+                name={"category"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Input category!",
+                  },
+                ]}
+              >
+                <Select
+                  style={{ width: "100%" }}
+                  placeholder="Select category"
+                  options={[
+                    {
+                      label: "Food",
+                      value: "FOOD",
+                    },
+                    {
+                      label: "Game",
+                      value: "GAMEsss",
+                    },
+                  ]}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Form.Item name={"picture"} label={"Picture"}>
+            <Upload
+              action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+              listType="picture-card"
+              fileList={fileList}
+              onPreview={handlePreview}
+              onChange={handleChangeImage}
+              maxCount={1}
+            >
+              {fileList.length >= 8 ? null : uploadButton}
+            </Upload>
+          </Form.Item>
+
           {/* Add more form fields as needed */}
         </Form>
+      </Modal>
+      <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
+        <img
+          alt="example"
+          style={{
+            width: "100%",
+          }}
+          src={previewImage}
+        />
       </Modal>
     </div>
   );
