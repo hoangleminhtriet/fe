@@ -1,10 +1,17 @@
+import { DatePicker } from "antd";
 import "./index.scss";
 import { Card, CardText, Container, ProgressBar } from "react-bootstrap";
 import { FiCheckSquare } from "react-icons/fi";
+import { useState } from "react";
 
 const BookingStep2 = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
   return (
-    <Container>
+    <Container style={{ marginTop: "5em", color: "black" }}>
       <Card.Title> Plan My Event</Card.Title>
       <Card.Text> Step #2 </Card.Text>
       <CardText>
@@ -20,9 +27,20 @@ const BookingStep2 = () => {
       <Card.Text>Select Event Date *</Card.Text>
 
       <CardText>Choice Date</CardText>
+      <DatePicker onChange={handleDateChange} />
+
+      {selectedDate && (
+        <Card className="mt-3">
+          <Card.Body>
+            <Card.Title>Selected Date</Card.Title>
+            <Card.Text>{selectedDate.toString()}</Card.Text>
+            {/* Add more details or components as needed */}
+          </Card.Body>
+        </Card>
+      )}
 
       <CardText className="mt-5">Select an item </CardText>
-      <CardText style={{ backgroundColor: "blue" }}>
+      <CardText style={{ backgroundColor: "silver", maxWidth: "max-content" }}>
         Pick an available time that you want to reserve next to the desired
         item, then click Next Step.
       </CardText>
