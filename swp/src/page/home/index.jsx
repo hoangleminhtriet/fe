@@ -1,11 +1,76 @@
-import { Button, Card, Col, Image, Row } from "react-bootstrap";
+import { Button, Card, CardLink, Col, Image, Row } from "react-bootstrap";
 import Banner from "../../assets/image/home1.png";
 import "./index.scss";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import Header from "../../component/Header";
+import Overview from "../../component/Navbar/Overview";
+import Discount from "../../component/Navbar/Discount";
+import Service from "../../component/Navbar/Service";
+import Contact from "../../component/Navbar/Contact";
+import Footer from "../../component/Footer";
 
 const Home = () => {
+  const [showOverview, setShowOverview] = useState(false);
+  const [showDiscount, setShowDiscount] = useState(false);
+  const [showService, setShowService] = useState(false);
+  const [showContact, setShowContact] = useState(false);
+
+  const hideAll = () => {
+    setShowOverview(false);
+    setShowDiscount(false);
+    setShowService(false);
+    setShowContact(false);
+  };
+
+  const toggleOverview = () => {
+    if (showOverview) {
+      hideAll();
+    } else {
+      hideAll();
+      setShowOverview(true);
+    }
+  };
+
+  const toggleDiscount = () => {
+    if (showDiscount) {
+      hideAll();
+    } else {
+      hideAll();
+      setShowDiscount(true);
+    }
+  };
+
+  const toggleService = () => {
+    if (showService) {
+      hideAll();
+    } else {
+      hideAll();
+      setShowService(true);
+    }
+  };
+
+  const toggleContact = () => {
+    if (showContact) {
+      hideAll();
+    } else {
+      hideAll();
+      setShowContact(true);
+    }
+  };
+
   return (
     <div>
+      <Header
+        toggleOverview={toggleOverview}
+        toggleDiscount={toggleDiscount}
+        toggleService={toggleService}
+        toggleContact={toggleContact}
+      />
+      {showOverview && <Overview />}
+      {showDiscount && <Discount />}
+      {showService && <Service />}
+      {showContact && <Contact />}
       {/*Banner*/}
       <Row className="home-banner">
         <Col className="text-booking">
@@ -30,7 +95,7 @@ const Home = () => {
       </Row>
 
       {/* Package */}
-      <Row className="m-3">
+      <Row className="m-5">
         <Col>
           <Card className="steps-card">
             <Card.Img
@@ -69,7 +134,11 @@ const Home = () => {
                 and Halal options for families with dietary/religious
                 restrictions.
               </Card.Text>
-              <Card.Link className="link-name" as="a" href="#birthday-packages">
+              <Card.Link
+                className="link-name"
+                as="a"
+                href="#check-food-options"
+              >
                 Check Food Options Now!
               </Card.Link>
             </Card.Body>
@@ -93,7 +162,7 @@ const Home = () => {
                 confirmation email will be sent to you with all the booking
                 details.
               </Card.Text>
-              <Card.Link className="link-name" as="a" href="#birthday-packages">
+              <Card.Link className="link-name" as="a" href="/booking">
                 Book Now!
               </Card.Link>
             </Card.Body>
@@ -102,7 +171,7 @@ const Home = () => {
 
         {/* Waiver */}
 
-        <Col>
+        {/* <Col>
           <Card className="steps-card">
             <Card.Img
               className="steps-img"
@@ -121,7 +190,7 @@ const Home = () => {
               </Card.Link>
             </Card.Body>
           </Card>
-        </Col>
+        </Col> */}
       </Row>
 
       {/*Party*/}
@@ -161,15 +230,23 @@ const Home = () => {
                 </Card>
               </Row>
               <Card.Text className="party-content">
-                Includes 10 kids admissions to Leisure Lagoon Includes up to 20
-                adult admissions to Leisure Lagoon Private party space for 90
-                minutes Unlimited Play time before & after the party time 1000
-                E-tickets for the birthday child to redeem Prizes 40 arcade
-                credits for each child 1 bumper car ride for each child 1
-                Virtual box ride for each child 1 On-the-fly ropes course for
-                each child 1 Grip socks for each child Buddy shirt for the
-                birthday child Goodie bag for each child Plates, cups, cutlery,
-                napkins & table cloth
+                <ul>
+                  <li>Includes 10 kids admissions to Leisure Lagoon</li>
+                  <li>Includes up to 20 adult admissions to Leisure Lagoon</li>
+                  <li>Private party space for 90 minutes</li>
+                  <li>Unlimited Play time before & after the party time</li>
+                  <li>
+                    1000 E-tickets for the birthday child to redeem Prizes
+                  </li>
+                  <li>40 arcade credits for each child</li>
+                  <li>1 bumper car ride for each child</li>
+                  <li>1 Virtual box ride for each child</li>
+                  <li>1 On-the-fly ropes course for each child</li>
+                  <li>Grip socks for each child</li>
+                  <li>Buddy shirt for the birthday child</li>
+                  <li>Goodie bag for each child</li>
+                  <li>Plates, cups, cutlery, napkins & table cloth</li>
+                </ul>
               </Card.Text>
               <Row style={{ justifyContent: "center", marginLeft: "37%" }}>
                 <Link to="/booking">
@@ -186,7 +263,7 @@ const Home = () => {
           <Card className="party-card" id="birthday-packages">
             <Card.Img
               className="party-img"
-              src="https://thebigbox.ca/wp-content/uploads/2020/03/birthday-party-with-friends.jpg"
+              src="https://thebigbox.ca/wp-content/uploads/2020/03/the-happy-bumper-car.jpg"
             />
             <Card.Body>
               <Card.Title
@@ -209,15 +286,18 @@ const Home = () => {
                 </Card>
               </Row>
               <Card.Text className="party-content">
-                Includes 10 kids admissions to Leisure Lagoon Includes up to 20
-                adult admissions to Leisure Lagoon Private party space for 90
-                minutes Unlimited Play time before & after the party time 1000
-                E-tickets for the birthday child to redeem Prizes 40 arcade
-                credits for each child 1 bumper car ride for each child 1
-                Virtual box ride for each child 1 On-the-fly ropes course for
-                each child 1 Grip socks for each child Buddy shirt for the
-                birthday child Goodie bag for each child Plates, cups, cutlery,
-                napkins & table cloth
+                <ul>
+                  <li>Includes 10 kids admissions to Leisure Lagoon</li>
+                  <li>Includes up to 20 adult admissions to Leisure Lagoon</li>
+                  <li>Private party space for 90 minutes</li>
+                  <li>Unlimited Play time before & after the party time</li>
+                  <li>500 E-tickets for the birthday child to redeem Prizes</li>
+                  <li>30 arcade credits for each child</li>
+                  <li>1 bumper car ride for each child</li>
+                  <li>1 1 Grip socks for each child</li>
+                  <li>Buddy shirt for the birthday child</li>
+                  <li>Plates, cups, cutlery, napkins & table cloth</li>
+                </ul>
               </Card.Text>
               <Row style={{ justifyContent: "center", marginLeft: "37%" }}>
                 <Link to="/booking">
@@ -234,7 +314,7 @@ const Home = () => {
           <Card className="party-card" id="birthday-packages">
             <Card.Img
               className="party-img"
-              src="https://thebigbox.ca/wp-content/uploads/2020/03/birthday-party-with-friends.jpg"
+              src="https://thebigbox.ca/wp-content/uploads/2020/07/The-Big-Box-Stills_097-scaled-1000x600.jpg"
             />
             <Card.Body>
               <Card.Title
@@ -257,15 +337,15 @@ const Home = () => {
                 </Card>
               </Row>
               <Card.Text className="party-content">
-                Includes 10 kids admissions to Leisure Lagoon Includes up to 20
-                adult admissions to Leisure Lagoon Private party space for 90
-                minutes Unlimited Play time before & after the party time 1000
-                E-tickets for the birthday child to redeem Prizes 40 arcade
-                credits for each child 1 bumper car ride for each child 1
-                Virtual box ride for each child 1 On-the-fly ropes course for
-                each child 1 Grip socks for each child Buddy shirt for the
-                birthday child Goodie bag for each child Plates, cups, cutlery,
-                napkins & table cloth
+                <ul>
+                  <li>Includes 10 kids admissions to Leisure Lagoon</li>
+                  <li>Includes up to 20 adult admissions to Leisure Lagoon</li>
+                  <li>Private party space for 90 minutes</li>
+                  <li>Unlimited Play time before & after the party time</li>
+                  <li>100 E-tickets for the birthday child to redeem Prizes</li>
+                  <li>20 arcade credits for each child</li>
+                  <li>Plates, cups, cutlery, napkins & table cloth</li>
+                </ul>
               </Card.Text>
               <Row style={{ justifyContent: "center", marginLeft: "37%" }}>
                 <Link to="/booking">
@@ -288,7 +368,7 @@ const Home = () => {
       >
         PARTY PACKAGES
       </Card.Title>
-      <Row className="m-4">
+      <Row className="m-4" id="check-food-options">
         {/* Food-card1 */}
         <Col className="m-1" style={{ textAlign: "center" }}>
           <Card className="food-card-home">
@@ -456,11 +536,11 @@ const Home = () => {
           style={{ textAlign: "center", marginTop: "20px", color: "#8d188d" }}
         >
           *Other food options from The Bite Box Cafe can be made available upon
-          request (View our full menu)
+          request<CardLink href="/food"> (View our full menu)</CardLink>
         </Card.Text>
       </Row>
 
-      <Image fluid />
+      <Footer />
     </div>
   );
 };

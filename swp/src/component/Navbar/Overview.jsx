@@ -13,7 +13,7 @@ const Overview = () => {
     <Container
       className={`content-container ${isVisible ? "fade-in" : "fade-out"}`}
     >
-      <div className="content-item" style={{ margin: "5%" }}>
+      <div className="content-item overview-content" style={{ margin: "5%" }}>
         <h1>-- Giới Thiệu --</h1>
         Chào mừng đến với dự án "FPTBooking" - nơi tận hưởng niềm vui tuyệt vời
         của bữa tiệc sinh nhật cho trẻ em! Chúng tôi tự hào cung cấp dịch vụ đặt

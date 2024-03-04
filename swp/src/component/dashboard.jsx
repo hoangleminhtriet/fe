@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DesktopOutlined,
   FileOutlined,
@@ -26,17 +26,14 @@ function getItem(label, key, icon, children) {
     key,
     icon,
     children,
-    label: <Link to ={key}>{label}</Link>,
+    label: <Link to={key}>{label}</Link>,
   };
 }
 
-
 const Dashboard = () => {
-
   const itemsHost = [
-    getItem("Package", "/dashboard/package", <PieChartOutlined />,),
+    getItem("Package", "/dashboard/package", <PieChartOutlined />),
     getItem("Statistics", "/dashboard/statistics", <DesktopOutlined />),
-    
   ];
 
   const itemsAdmin = [
@@ -56,22 +53,25 @@ const Dashboard = () => {
   const menu = [
     {
       key: "1",
-      label: <Link to={"/dashboard/profile"}>Profile</Link>,
+      label: (
+        <div>
+          <Link to={"/dashboard/profile"}>Profile</Link>
+        </div>
+      ),
     },
 
     {
       key: "2",
       label: (
-        <p
+        <div
           onClick={() => {
             dispatch(logout());
           }}
         >
           Log out
-        </p>
+        </div>
       ),
     },
-
   ];
 
   useEffect(() => {
@@ -96,7 +96,7 @@ const Dashboard = () => {
           theme="dark"
           defaultSelectedKeys={["1"]}
           mode="inline"
-          items={user?.role == "HOST"?itemsHost:itemsAdmin}
+          items={user?.role == "HOST" ? itemsHost : itemsAdmin}
         />
       </Sider>
       <Layout>
@@ -123,13 +123,13 @@ const Dashboard = () => {
                   size={40}
                   src={user?.avatar}
                 />
-                <p
+                <div
                   style={{
                     fontSize: 18,
                   }}
                 >
                   {user?.fullname}
-                </p>
+                </div>
               </Row>
             </Dropdown>
           </Row>

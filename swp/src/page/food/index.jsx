@@ -1,11 +1,75 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Card, Col, Container, Row } from "react-bootstrap";
 import "./index.scss";
+import { useState } from "react";
+import Header from "../../component/Header";
+import Overview from "../../component/Navbar/Overview";
+import Discount from "../../component/Navbar/Discount";
+import Service from "../../component/Navbar/Service";
+import Contact from "../../component/Navbar/Contact";
+import Footer from "../../component/Footer";
 
-export default function Food() {
+const Food = () => {
+  const [showOverview, setShowOverview] = useState(false);
+  const [showDiscount, setShowDiscount] = useState(false);
+  const [showService, setShowService] = useState(false);
+  const [showContact, setShowContact] = useState(false);
+
+  const hideAll = () => {
+    setShowOverview(false);
+    setShowDiscount(false);
+    setShowService(false);
+    setShowContact(false);
+  };
+
+  const toggleOverview = () => {
+    if (showOverview) {
+      hideAll();
+    } else {
+      hideAll();
+      setShowOverview(true);
+    }
+  };
+
+  const toggleDiscount = () => {
+    if (showDiscount) {
+      hideAll();
+    } else {
+      hideAll();
+      setShowDiscount(true);
+    }
+  };
+
+  const toggleService = () => {
+    if (showService) {
+      hideAll();
+    } else {
+      hideAll();
+      setShowService(true);
+    }
+  };
+
+  const toggleContact = () => {
+    if (showContact) {
+      hideAll();
+    } else {
+      hideAll();
+      setShowContact(true);
+    }
+  };
   return (
     <div>
-      <Container>
+      <Header
+        toggleOverview={toggleOverview}
+        toggleDiscount={toggleDiscount}
+        toggleService={toggleService}
+        toggleContact={toggleContact}
+      />
+      {showOverview && <Overview />}
+      {showDiscount && <Discount />}
+      {showService && <Service />}
+      {showContact && <Contact />}
+      <Container className="mt-3">
         <h1 style={{ textAlign: "center", color: "#8d188d" }}>
           FPTBOOKING MENU
         </h1>
@@ -288,6 +352,9 @@ export default function Food() {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </div>
   );
-}
+};
+
+export default Food;
