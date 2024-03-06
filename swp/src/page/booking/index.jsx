@@ -1,27 +1,87 @@
-import "./index.scss";
-import { Card, CardText, Container, ProgressBar } from "react-bootstrap";
-import { FiCheckSquare } from "react-icons/fi";
-import SelectCategory from "./SelectCategory/SelectCategory";
+import React, { useState, useContext } from "react";
+import { Button, message, Steps, ConfigProvider, Form, Input } from "antd";
 
-const Booking = () => {
+import "./checkout.css";
+import Checkout from "./Checkout";
+import Payment from "./payment";
+import FillInformation from "./fill-information";
+import ChoosePackage from "./choose-package";
+import ChooseServices from "./choose-services";
+
+const { Step } = Steps;
+const { Item } = Form;
+
+const StepProgress = () => {
+  const [current, setCurrent] = useState(0);
+  const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
+  const prefixCls = getPrefixCls("steps", "ant-steps");
+  const [form] = Form.useForm();
+
+  const steps = [
+    {
+      title: "Package",
+      content: <ChoosePackage />,
+    },
+    {
+      title: "Services",
+      content: <ChooseServices />,
+    },
+    {
+      title: "Fill information",
+      content: <FillInformation form={form} setCurrent={setCurrent} current={current} />,
+    },
+    {
+      title: "Checkout",
+      content: <Checkout />,
+    },
+    {
+      title: "Payment",
+      content: <Payment />,
+    },
+  ];
+  const next = () => {
+    if (current === 2) {
+      form.submit();
+    } else {
+      setCurrent(current + 1);
+    }
+  };
+
+  const prev = () => {
+    setCurrent(current - 1);
+  };
+
   return (
-    <Container style={{ marginTop: "5em", color: "black" }}>
-      <Card.Title> Plan My Event</Card.Title>
-      <Card.Text> Step #1 </Card.Text>
-      <CardText>
-        <FiCheckSquare /> Select A Category
-      </CardText>
-      <Card.Text> Step 1 or 7 </Card.Text>
-      <ProgressBar now={15} />
-      <Card.Text className="mt-3">
-        Select an available category from the dropdown below, and then click
-        Next Step.
-      </Card.Text>
-      <Card.Text>* indicates a required field.</Card.Text>
-      <Card.Text style={{ fontWeight: "700" }}>Select A Category *</Card.Text>
-      <SelectCategory />
-    </Container>
+    <div>
+      <div className="container container-progress">
+        <Steps current={current} className={prefixCls}>
+          {steps.map((item) => (
+            <Step key={item.title} title={item.title} />
+          ))}
+        </Steps>
+        <div className={`${prefixCls}-content`}>
+          {typeof steps[current].content === "function" ? steps[current].content() : steps[current].content}
+        </div>
+        <div style={{ marginTop: 24 }}>
+          {current < steps.length - 1 && (
+            <Button type="primary" onClick={() => next()}>
+              Next
+            </Button>
+          )}
+          {current === steps.length - 1 && (
+            <Button type="primary" onClick={() => message.success("Processing complete!")}>
+              Done
+            </Button>
+          )}
+          {current > 0 && (
+            <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
+              Previous
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default Booking;
+export default StepProgress;

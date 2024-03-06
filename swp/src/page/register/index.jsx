@@ -114,6 +114,9 @@ const Register = () => {
         <h1>Sign up</h1>
         <Form
           {...formItemLayout}
+
+
+          
           variant="filled"
           style={{
             width: "100%",

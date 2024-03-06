@@ -139,30 +139,6 @@ const Service = ({ data, fetchPackage }) => {
     setModalVisible(false);
   };
 
-  // const dataSource = [
-  //   {
-  //     key: '1',
-  //     service: 'Sườn',
-  //     discription:'sườn nướng',
-  //     picture: 'acb',
-  //     action: '10 Downing Street',
-  //   },
-  //   {
-  //     key: '2',
-  //     service: 'Bì',
-  //     discription:'Bì luộc',
-  //     picture: 'bcd',
-  //     action: '10 Downing Street',
-  //   },
-  //   {
-  //     key: '3',
-  //     service: 'Chả',
-  //     discription:'Chả chiên',
-  //     picture: 'bcd',
-  //     action: '10 Downing Street',
-  //   },
-  // ];
-
   const columns = [
     {
       title: "Service",
@@ -188,9 +164,9 @@ const Service = ({ data, fetchPackage }) => {
       },
     },
     {
-      title: "Capacity",
-      dataIndex: "capacity",
-      key: "capacity",
+      title: "Quantity",
+      dataIndex: "quantity",
+      key: "quantity",
     },
     {
       title: "Action",
@@ -257,6 +233,7 @@ const Service = ({ data, fetchPackage }) => {
         <Descriptions.Item label={"picture"}>
           <Image src={data.picture} width={100} />
         </Descriptions.Item>
+        <Descriptions.Item label={"name"}>{data.name}</Descriptions.Item>
         <Descriptions.Item label={"capacity"}>{data.capacity}</Descriptions.Item>
         <Descriptions.Item label={"category"}>{data.category}</Descriptions.Item>
         <Descriptions.Item label={"Description"}>{data.description}</Descriptions.Item>
@@ -284,7 +261,7 @@ const Service = ({ data, fetchPackage }) => {
             rules={[
               {
                 required: true,
-                message: "Input name!",
+                message: "Input serviceName!",
               },
             ]}
           >
@@ -299,7 +276,7 @@ const Service = ({ data, fetchPackage }) => {
                 rules={[
                   {
                     required: true,
-                    message: "Input name!",
+                    message: "Input price!",
                   },
                 ]}
               >
@@ -314,7 +291,7 @@ const Service = ({ data, fetchPackage }) => {
                 rules={[
                   {
                     required: true,
-                    message: "Input name!",
+                    message: "Input quantity!",
                   },
                 ]}
               >
@@ -557,7 +534,7 @@ const Package = () => {
                     },
                     {
                       label: "Game",
-                      value: "GAMEsss",
+                      value: "GAME",
                     },
                   ]}
                 />

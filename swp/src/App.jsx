@@ -10,9 +10,8 @@ import Package from "./page/package";
 import Statistics from "./page/statistics";
 import Report from "./page/report";
 import Account from "./page/account";
-import Booking from "./page/booking";
-import BookingStep2 from "./page/booking/BookingStep2";
-
+import StepProgress from "./page/booking";
+import { ChakraProvider } from "@chakra-ui/react";
 function App() {
   const router = createBrowserRouter([
     {
@@ -24,16 +23,12 @@ function App() {
       element: <Food />,
     },
     {
-      path: "/booking",
-      element: <Booking />,
-    },
-    {
-      path: "/booking2",
-      element: <BookingStep2 />,
-    },
-    {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/booking",
+      element: <StepProgress />,
     },
     {
       path: "/register",
@@ -69,7 +64,9 @@ function App() {
 
   return (
     <main className="main">
-      <RouterProvider router={router} />
+      <ChakraProvider>
+        <RouterProvider router={router} />
+      </ChakraProvider>
     </main>
   );
 }
