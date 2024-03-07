@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import api from "../../config/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateInformation } from "../../redux/features/bookingSlice";
+import { useParams } from "react-router-dom";
 
 export const FillInformation = ({ form, setCurrent, current }) => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -12,8 +13,9 @@ export const FillInformation = ({ form, setCurrent, current }) => {
   const dispatch = useDispatch();
   const { token } = theme.useToken();
   const info = useSelector((store) => store.booking.information);
+  const params = useParams();
   const fetchSchedule = async () => {
-    const response = await api.get(`/schedule/getSchduleByHost/1`);
+    const response = await api.get(`/schedule/getSchduleByHost/${params.id}`);
     setSchedule(
       response.data.map((item) => {
         return {

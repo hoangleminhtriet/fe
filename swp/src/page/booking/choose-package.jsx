@@ -4,13 +4,15 @@ import "./package.css";
 import api from "../../config/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePackage } from "../../redux/features/bookingSlice";
+import { useParams } from "react-router-dom";
 
 export const ChoosePackage = () => {
+  const params = useParams();
   const [packages, setPackages] = useState([]);
   const selectedPackages = useSelector((store) => store?.booking?.package);
 
   const fetchPackages = async () => {
-    const response = await api.get(`/package/getPackages/6`);
+    const response = await api.get(`/package/getPackages/${params.id}`);
     setPackages(response.data);
   };
 

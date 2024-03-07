@@ -4,12 +4,14 @@ import { Col, Image, Row } from "antd";
 import "./package.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectService } from "../../redux/features/bookingSlice";
+import { useParams } from "react-router-dom";
 export const ChooseServices = () => {
+  const params = useParams();
   const [services, setServices] = useState([]);
   const dispatch = useDispatch();
   const selectedServices = useSelector((store) => store.booking.services);
   const fetchServices = async () => {
-    const response = await api.get(`/service/getService/6`);
+    const response = await api.get(`/service/getService/host/${params.id}`);
     setServices(response.data);
     console.log(response);
   };
