@@ -95,9 +95,9 @@ const Home = () => {
       </Row>
 
       {/* Package */}
-      <Row className="m-5">
-        <Col>
-          <Card className="steps-card">
+      <Row style={{ alignItems: "center" }} className="m-5">
+        <Col className="steps-col">
+          <Card className="steps-card ">
             <Card.Img
               className="steps-img"
               src="https://thebigbox.ca/wp-content/uploads/2020/07/birthday1-scaled-1000x600.jpg"
@@ -120,7 +120,7 @@ const Home = () => {
 
         {/* Combo */}
 
-        <Col>
+        <Col className="steps-col">
           <Card className="steps-card">
             <Card.Img
               className="steps-img"
@@ -147,7 +147,7 @@ const Home = () => {
 
         {/* Spot */}
 
-        <Col>
+        <Col className="steps-col">
           <Card className="steps-card">
             <Card.Img
               className="steps-img"
@@ -211,7 +211,12 @@ const Home = () => {
             />
             <Card.Body>
               <Card.Title
-                style={{ textAlign: "center", backgroundColor: "green" }}
+                style={{
+                  textAlign: "center",
+                  backgroundColor: "green",
+                  fontSize: "200%",
+                  borderRadius: "20px",
+                }}
               >
                 ULTIMATE
               </Card.Title>
@@ -267,7 +272,12 @@ const Home = () => {
             />
             <Card.Body>
               <Card.Title
-                style={{ textAlign: "center", backgroundColor: "violet" }}
+                style={{
+                  textAlign: "center",
+                  backgroundColor: "violet",
+                  fontSize: "200%",
+                  borderRadius: "20px",
+                }}
               >
                 FANTASTIC
               </Card.Title>
@@ -318,7 +328,12 @@ const Home = () => {
             />
             <Card.Body>
               <Card.Title
-                style={{ textAlign: "center", backgroundColor: "red" }}
+                style={{
+                  textAlign: "center",
+                  backgroundColor: "red",
+                  fontSize: "200%",
+                  borderRadius: "20px",
+                }}
               >
                 CLASSIC
               </Card.Title>

@@ -12,6 +12,11 @@
   .text-booking {
     margin-left: 10vw;
   }
+
+  .steps-col{
+    display: flex;
+    justify-content: center;
+  }
   
   .steps-card {
     max-width: 25em;
@@ -46,6 +51,7 @@
     background-color: #00003e !important;
     color: #fff !important;
     border-radius: 25px !important;
+    
   }
   .food-img-home {
     border-radius: 25px !important;
@@ -90,6 +96,17 @@
   .party-card {
     background-color: silver !important  ;
     color: #000000 !important;
+    margin: 4em !important;
+  }
+  .card-text-title4 {
+    
+    background-size: 30px 30px !important;
+    width: 100% !important;
+    height: 30px !important;
+    position: absolute !important;
+    content: "";
+    background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="1,0 1,1 0,1"/></svg>');
+    z-index: 2 !important;
   }
   
   @media (max-width: 767px) {
