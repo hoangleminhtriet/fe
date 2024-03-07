@@ -12,6 +12,7 @@ import Report from "./page/report";
 import Account from "./page/account";
 import StepProgress from "./page/booking";
 import { ChakraProvider } from "@chakra-ui/react";
+import Schedule from "./page/schedule";
 function App() {
   const router = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ function App() {
         {
           path: "statistics",
           element: <Statistics />,
+        },
+        {
+          path: "schedule",
+          element: <Schedule />,
         },
         {
           path: "report",

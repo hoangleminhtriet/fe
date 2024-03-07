@@ -1,22 +1,6 @@
 import { useEffect, useState } from "react";
-import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import {
-  Avatar,
-  Breadcrumb,
-  Button,
-  Dropdown,
-  Flex,
-  Layout,
-  Menu,
-  Row,
-  theme,
-} from "antd";
+import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { Avatar, Breadcrumb, Button, Dropdown, Flex, Layout, Menu, Row, theme } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { logout } from "../redux/features/userSlice";
@@ -34,6 +18,7 @@ const Dashboard = () => {
   const itemsHost = [
     getItem("Package", "/dashboard/package", <PieChartOutlined />),
     getItem("Statistics", "/dashboard/statistics", <DesktopOutlined />),
+    getItem("Schedule", "/dashboard/schedule", <DesktopOutlined />),
   ];
 
   const itemsAdmin = [
@@ -86,11 +71,7 @@ const Dashboard = () => {
         minHeight: "100vh",
       }}
     >
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-      >
+      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
         <Menu
           theme="dark"

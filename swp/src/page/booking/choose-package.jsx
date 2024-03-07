@@ -10,7 +10,7 @@ export const ChoosePackage = () => {
   const selectedPackages = useSelector((store) => store?.booking?.package);
 
   const fetchPackages = async () => {
-    const response = await api.get(`/package/getPackages/1`);
+    const response = await api.get(`/package/getPackages/6`);
     setPackages(response.data);
   };
 
