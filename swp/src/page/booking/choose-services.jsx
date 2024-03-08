@@ -5,6 +5,7 @@ import "./package.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectService } from "../../redux/features/bookingSlice";
 import { useParams } from "react-router-dom";
+import { color } from "@chakra-ui/react";
 export const ChooseServices = () => {
   const params = useParams();
   const [services, setServices] = useState([]);
@@ -46,8 +47,9 @@ const Service = ({ isSelected, data }) => {
   return (
     <div className={`service-item-order ${isSelected ? "select" : ""}`}>
       <img src={data.picture} />
+      <p>{data.serviceName}</p>
       <p>
-        {data.serviceName}({data.price})
+        <strong style={{ color: "red" }}>${data.price}</strong>
       </p>
     </div>
   );

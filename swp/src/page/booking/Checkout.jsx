@@ -153,7 +153,7 @@ const Checkout = () => {
         services.map((item) => {
           return {
             id: 1,
-            name: item.name,
+            name: item.serviceName,
             imageURL: item.picture,
             quantity: 1,
             price: item.price,

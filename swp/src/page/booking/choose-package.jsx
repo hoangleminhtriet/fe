@@ -52,6 +52,17 @@ const Package = ({ isSelected, data }) => {
             ))}
           </ul>
         </Col>
+        <Col span={24}>
+          <h1>
+            <strong
+              style={{
+                color: "red",
+              }}
+            >
+              ${data.price}
+            </strong>
+          </h1>
+        </Col>
       </Row>
     </div>
   );
