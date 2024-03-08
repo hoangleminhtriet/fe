@@ -79,7 +79,9 @@ const Register = () => {
     }
     setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
-    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf("/") + 1));
+    setPreviewTitle(
+      file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
+    );
   };
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   const onFinish = async (values) => {
@@ -114,9 +116,6 @@ const Register = () => {
         <h1>Sign up</h1>
         <Form
           {...formItemLayout}
-
-
-          
           variant="filled"
           style={{
             width: "100%",
@@ -270,7 +269,12 @@ const Register = () => {
           </Form.Item>
         </Form>
       </div>
-      <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
+      <Modal
+        open={previewOpen}
+        title={previewTitle}
+        footer={null}
+        onCancel={handleCancel}
+      >
         <img
           alt="example"
           style={{

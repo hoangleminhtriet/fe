@@ -109,9 +109,7 @@ const Login = () => {
               span: 16,
             }}
           >
-            <Checkbox style={{ justifyContent: "center" }}>
-              Remember me
-            </Checkbox>
+            <Checkbox className="p1">Remember me</Checkbox>
           </Form.Item>
 
           <Form.Item
@@ -120,12 +118,14 @@ const Login = () => {
               span: 16,
             }}
           >
-            <p>
-              Don't have account? <Link to={"/register"}>sign up</Link>
+            <p className="p1">
+              Don't have account? <Link to={"/register"}>Sign up</Link>
             </p>
-            <Button type="primary" htmlType="submit">
-              Sign in
-            </Button>
+            <div className="p1">
+              <Button type="primary" htmlType="submit">
+                Sign in
+              </Button>
+            </div>
           </Form.Item>
           <Form.Item
             wrapperCol={{
@@ -133,23 +133,25 @@ const Login = () => {
               span: 16,
             }}
           >
-            <Button onClick={loginGoogle}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  gap: 10,
-                }}
-              >
-                <img
-                  width={20}
-                  src="https://th.bing.com/th/id/OIP.lsGmVmOX789951j9Km8RagHaHa?rs=1&pid=ImgDetMain"
-                  alt=""
-                />
-                Login with google
-              </div>
-            </Button>
+            <div style={{ marginRight: "50%", width: "11em" }}>
+              <Button onClick={loginGoogle}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 10,
+                  }}
+                >
+                  <img
+                    width={20}
+                    src="https://th.bing.com/th/id/OIP.lsGmVmOX789951j9Km8RagHaHa?rs=1&pid=ImgDetMain"
+                    alt=""
+                  />
+                  Login with google
+                </div>
+              </Button>
+            </div>
           </Form.Item>
         </Form>
       </div>

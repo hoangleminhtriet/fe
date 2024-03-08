@@ -14,6 +14,8 @@ import StepProgress from "./page/booking";
 import { ChakraProvider } from "@chakra-ui/react";
 import Schedule from "./page/schedule";
 import Host from "./page/host";
+import Policy from "./page/register/policy";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -35,6 +37,10 @@ function App() {
     {
       path: "/host",
       element: <Host />,
+    },
+    {
+      path: "/policy",
+      element: <Policy />,
     },
     {
       path: "/register",
