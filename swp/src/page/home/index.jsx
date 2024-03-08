@@ -76,7 +76,7 @@ const Home = () => {
         <Col className="text-booking">
           Booking <strong>Birthday</strong> For Kids.
           <Col>
-            <Link to="/booking">
+            <Link to="/host">
               <Button className="mt-5">Book Now!!</Button>
             </Link>
           </Col>
@@ -162,7 +162,7 @@ const Home = () => {
                 confirmation email will be sent to you with all the booking
                 details.
               </Card.Text>
-              <Card.Link className="link-name" as="a" href="/booking">
+              <Card.Link className="link-name" as="a" href="/host">
                 Book Now!
               </Card.Link>
             </Card.Body>
@@ -254,7 +254,7 @@ const Home = () => {
                 </ul>
               </Card.Text>
               <Row style={{ justifyContent: "center", marginLeft: "37%" }}>
-                <Link to="/booking">
+                <Link to="/host">
                   <Button style={{ maxWidth: "fit-content" }} className="mt-5">
                     Book Now!!
                   </Button>
@@ -310,7 +310,7 @@ const Home = () => {
                 </ul>
               </Card.Text>
               <Row style={{ justifyContent: "center", marginLeft: "37%" }}>
-                <Link to="/booking">
+                <Link to="/host">
                   <Button style={{ maxWidth: "fit-content" }} className="mt-5">
                     Book Now!!
                   </Button>
@@ -363,7 +363,7 @@ const Home = () => {
                 </ul>
               </Card.Text>
               <Row style={{ justifyContent: "center", marginLeft: "37%" }}>
-                <Link to="/booking">
+                <Link to="/host">
                   <Button style={{ maxWidth: "fit-content" }} className="mt-5">
                     Book Now!!
                   </Button>

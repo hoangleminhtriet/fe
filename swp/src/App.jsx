@@ -13,7 +13,7 @@ import Account from "./page/account";
 import StepProgress from "./page/booking";
 import { ChakraProvider } from "@chakra-ui/react";
 import Schedule from "./page/schedule";
-// import Host from "./page/host";
+import Host from "./page/host";
 function App() {
   const router = createBrowserRouter([
     {
@@ -32,10 +32,10 @@ function App() {
       path: "/booking/:id",
       element: <StepProgress />,
     },
-    // {
-    //   path: "/host",
-    //   element: <Host />,
-    // },
+    {
+      path: "/host",
+      element: <Host />,
+    },
     {
       path: "/register",
       element: <Register />,

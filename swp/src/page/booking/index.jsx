@@ -28,7 +28,13 @@ const StepProgress = () => {
     },
     {
       title: "Fill information",
-      content: <FillInformation form={form} setCurrent={setCurrent} current={current} />,
+      content: (
+        <FillInformation
+          form={form}
+          setCurrent={setCurrent}
+          current={current}
+        />
+      ),
     },
     {
       title: "Checkout",
@@ -51,6 +57,18 @@ const StepProgress = () => {
     setCurrent(current - 1);
   };
 
+  const handlePayment = async () => {
+    const response = await api.post("api/oders/create-payment", {
+      totalPrice: calcTotal(),
+      nameReceiver: booking?.information?.name,
+      phone: booking?.information?.phone,
+      email: booking?.information?.email,
+      slot: booking?.information?.slot,
+      additionalNotes: booking?.information?.note,
+    });
+    console.log();
+    window.open(response.data);
+  };
   return (
     <div>
       <div className="container container-progress">
@@ -60,7 +78,9 @@ const StepProgress = () => {
           ))}
         </Steps>
         <div className={`${prefixCls}-content`}>
-          {typeof steps[current].content === "function" ? steps[current].content() : steps[current].content}
+          {typeof steps[current].content === "function"
+            ? steps[current].content()
+            : steps[current].content}
         </div>
         <div style={{ marginTop: 24 }}>
           {current < steps.length - 1 && (
@@ -69,10 +89,11 @@ const StepProgress = () => {
             </Button>
           )}
           {current === steps.length - 1 && (
-            <Button type="primary" onClick={() => message.success("Processing complete!")}>
+            <Button type="primary" onClick={handlePayment}>
               Done
             </Button>
           )}
+
           {current > 0 && (
             <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
               Previous
