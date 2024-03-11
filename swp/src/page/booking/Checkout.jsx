@@ -89,7 +89,7 @@ const cartItemsData = [
   },
 ];
 
-const Checkout = () => {
+const Checkout = ({ setCartItemsIndex }) => {
   const booking = useSelector((store) => store.booking);
   const [cartItems, setCartItems] = useState(cartItemsData);
   const handleDeleteItem = (index) => {
@@ -112,6 +112,9 @@ const Checkout = () => {
     //   });
     // });
   };
+  useEffect(() => {
+    setCartItemsIndex(cartItems);
+  }, [cartItems]);
   const handleDecrease = (index) => {
     const quantity = cartItems[index].quantity;
     if (quantity > 1) {

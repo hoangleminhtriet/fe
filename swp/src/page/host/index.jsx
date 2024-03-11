@@ -1,55 +1,50 @@
+import { Col, Image, Row } from "antd";
 import React, { useEffect, useState } from "react";
-import { Avatar, List, message } from "antd";
-import VirtualList from "rc-virtual-list";
-const fakeDataUrl =
-  "https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo";
-const ContainerHeight = 1000;
-const Host = () => {
-  const [data, setData] = useState([]);
-  const appendData = () => {
-    fetch(fakeDataUrl)
-      .then((res) => res.json())
-      .then((body) => {
-        setData(data.concat(body.results));
-        message.success(`${body.results.length} more items loaded!`);
-      });
+import api from "../../config/axios";
+import { useDispatch, useSelector } from "react-redux";
+
+export const ChooseProfile = () => {
+  const [profile, setProfile] = useState([]);
+  const selectedProfile = useSelector((store) => store?.user?.id);
+
+  const fetchProfile = async () => {
+    const response = await api.get(`profile/getProfile`);
+    setProfile(response.data);
   };
+
   useEffect(() => {
-    appendData();
+    fetchProfile();
   }, []);
-  const onScroll = (e) => {
-    // Refer to: https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight#problems_and_solutions
-    if (
-      Math.abs(
-        e.currentTarget.scrollHeight -
-          e.currentTarget.scrollTop -
-          ContainerHeight
-      ) <= 1
-    ) {
-      appendData();
-    }
-  };
+
   return (
-    <List>
-      <VirtualList
-        data={data}
-        height={ContainerHeight}
-        itemHeight={47}
-        itemKey="email"
-        onScroll={onScroll}
-      >
-        {(item) => (
-          <List.Item key={item.email}>
-            <List.Item.Meta
-              avatar={<Avatar src={item.picture.large} />}
-              title={<a href="https://ant.design">{item.name.last}</a>}
-              description={item.email}
-            />
-            <div>Content</div>
-          </List.Item>
-        )}
-      </VirtualList>
-    </List>
+    <>
+      {profile.map((packages) => (
+        <Profile data={packages} isSelected={packages.id === selectedProfile?.id} dispatch={dispatch} />
+      ))}
+    </>
   );
 };
-export default Host;
+
+const Profile = ({ isSelected, data }) => {
+  const dispatch = useDispatch();
+
+  const handleSelectProfle = () => {
+    dispatch(updateProfle(data));
+  };
+
+  return (
+    <div className={`profle ${isSelected ? "select" : ""}`} onClick={handleSelectProfle}>
+      <Row>
+        <Col span={5}>
+          <Image width={200} src={data.avatar} />
+        </Col>
+        <Col span={19}>
+          <h1>{data.id}</h1>
+          <p>{data.fullname}</p>
+        </Col>
+      </Row>
+    </div>
+  );
+};
+
+export default ChooseProfile;

@@ -7,6 +7,8 @@ import Payment from "./payment";
 import FillInformation from "./fill-information";
 import ChoosePackage from "./choose-package";
 import ChooseServices from "./choose-services";
+import api from "../../config/axios";
+import { useSelector } from "react-redux";
 
 const { Step } = Steps;
 const { Item } = Form;
@@ -16,10 +18,12 @@ const StepProgress = () => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = getPrefixCls("steps", "ant-steps");
   const [form] = Form.useForm();
+  const [cartItems, setCartItems] = useState([]);
+  const booking = useSelector((store) => store.booking);
 
   const steps = [
     {
-      title: "Package",
+      title: "Packages",
       content: <ChoosePackage />,
     },
     {
@@ -28,17 +32,11 @@ const StepProgress = () => {
     },
     {
       title: "Fill information",
-      content: (
-        <FillInformation
-          form={form}
-          setCurrent={setCurrent}
-          current={current}
-        />
-      ),
+      content: <FillInformation form={form} setCurrent={setCurrent} current={current} />,
     },
     {
       title: "Checkout",
-      content: <Checkout />,
+      content: <Checkout setCartItemsIndex={setCartItems} />,
     },
     {
       title: "Payment",
@@ -57,16 +55,39 @@ const StepProgress = () => {
     setCurrent(current - 1);
   };
 
-  const handlePayment = async () => {
-    const response = await api.post("api/oders/create-payment", {
-      totalPrice: calcTotal(),
-      nameReceiver: booking?.information?.name,
-      phone: booking?.information?.phone,
-      email: booking?.information?.email,
-      slot: booking?.information?.slot,
-      additionalNotes: booking?.information?.note,
+  const calcTotal = () => {
+    var subtotal = 0;
+    cartItems.forEach((item) => {
+      subtotal += item.price * item.quantity;
     });
-    console.log();
+
+    return subtotal;
+  };
+
+  const handlePayment = async () => {
+    console.log(booking);
+    console.log({
+      totalPrice: calcTotal(),
+      packageId: booking.package.id,
+      nameReceiver: booking?.information?.username,
+      phone: booking?.information?.phoneNumber,
+      email: booking?.information?.email,
+      venue: booking?.information?.venue,
+      additionalNotes: booking?.information?.note,
+      schedule: booking?.information?.scheduleId,
+    });
+    const response = await api.post("/api/order/create-payment", {
+      totalPrice: calcTotal() * 25000,
+      packageId: booking.package.id,
+      nameReceiver: booking?.information?.username,
+      phone: booking?.information?.phoneNumber,
+      email: booking?.information?.email,
+      venue: booking?.information?.venue,
+      additionalNotes: booking?.information?.note,
+      scheduleId: booking?.information?.scheduleId,
+      orderDetailDTOList: booking.services.map((item) => item.id),
+    });
+    console.log(response);
     window.open(response.data);
   };
   return (
@@ -78,9 +99,7 @@ const StepProgress = () => {
           ))}
         </Steps>
         <div className={`${prefixCls}-content`}>
-          {typeof steps[current].content === "function"
-            ? steps[current].content()
-            : steps[current].content}
+          {typeof steps[current].content === "function" ? steps[current].content() : steps[current].content}
         </div>
         <div style={{ marginTop: 24 }}>
           {current < steps.length - 1 && (
