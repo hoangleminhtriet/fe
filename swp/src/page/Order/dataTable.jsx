@@ -30,11 +30,6 @@ const DataTable = () => {
     },
 
     {
-      title: "Quantity",
-      dataIndex: "quantity",
-      key: "quantity",
-    },
-    {
       title: "Total price",
       dataIndex: "totalPrice",
       key: "totalPrice",
@@ -100,7 +95,6 @@ const DataTable = () => {
             Customer: item.account.fullName,
             phone: item.account.phoneNumber,
             //package: item.packageEntity.name,
-            quantity: item.quantity,
             totalPrice: item.total,
             orderDate: format(item.createAt, "dd/MM/yyyy"),
             status: item.status,

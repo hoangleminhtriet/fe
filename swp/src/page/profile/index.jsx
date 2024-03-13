@@ -21,7 +21,7 @@ import uploadFile from "../../utils/upload";
 import api from "../../config/axios";
 import { toast } from "react-toastify";
 import { useForm } from "antd/es/form/Form";
-import { changeAvatar} from "../../redux/features/userSlice";
+import { changeAvatar } from "../../redux/features/userSlice";
 import { useDispatch } from "react-redux";
 const { RangePicker } = DatePicker;
 const formItemLayout = {
@@ -48,7 +48,7 @@ const Profile = () => {
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
   const [fileList, setFileList] = useState([]);
-  const [form] = useForm()
+  const [form] = useForm();
   const dispatch = useDispatch();
   const getBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -83,22 +83,19 @@ const Profile = () => {
     }
     setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
-    setPreviewTitle(
-      file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
-    );
+    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf("/") + 1));
   };
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   const onFinish = async (values) => {
     console.log(values);
     const url = values.avatar.file ? await uploadFile(values.avatar.file.originFileObj) : values.avatar;
     try {
-      const response = await api.put("/profile", {
+      const response = await api.put("profile/updateProfile", {
         ...values,
         avatar: url,
-        
       });
       toast.success("Update profile sucessfully");
-      dispatch(changeAvatar(url))
+      dispatch(changeAvatar(url));
     } catch (error) {
       let message = "";
       if (error.response.data.includes(values.userName)) {
@@ -110,21 +107,23 @@ const Profile = () => {
     }
   };
 
-  async function fetchProfile(){
-   const response = await api.get('profile')
+  async function fetchProfile() {
+    const response = await api.get("profile/getCurrentProfile");
     console.log(response.data);
-    form.setFieldsValue(response.data)
-    setFileList([ {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url: response.data.avatar,
-    },])
+    form.setFieldsValue(response.data);
+    setFileList([
+      {
+        uid: "-1",
+        name: "image.png",
+        status: "done",
+        url: response.data.avatar,
+      },
+    ]);
   }
 
-useEffect(()=> {
-  fetchProfile();
-},[])
+  useEffect(() => {
+    fetchProfile();
+  }, []);
 
   return (
     <div className="profile">
@@ -149,7 +148,7 @@ useEffect(()=> {
             span: 24,
           }}
           onFinish={onFinish}
-          form = {form}
+          form={form}
         >
           <Form.Item
             label="Avatar"
@@ -185,7 +184,8 @@ useEffect(()=> {
                   },
                 ]}
               >
-                <Select disabled
+                <Select
+                  disabled
                   style={{ width: "100%" }}
                   options={[
                     { value: "CUSTOMER", label: "Customer" },
@@ -225,12 +225,10 @@ useEffect(()=> {
                 message: "Please input usernname!",
               },
             ]}
-            
           >
-            <Input disabled/>
+            <Input disabled />
           </Form.Item>
 
-          
           <Form.Item
             label="Full name"
             name="fullName"
@@ -271,7 +269,6 @@ useEffect(()=> {
           </Form.Item>
 
           <Form.Item>
-        
             <Row justify={"center"}>
               <Button type="primary" htmlType="update">
                 Update
@@ -280,12 +277,7 @@ useEffect(()=> {
           </Form.Item>
         </Form>
       </div>
-      <Modal
-        open={previewOpen}
-        title={previewTitle}
-        footer={null}
-        onCancel={handleCancel}
-      >
+      <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
         <img
           alt="example"
           style={{
