@@ -1,20 +1,10 @@
 /* eslint-disable react/prop-types */
-import {
-  Navbar as BootstrapNavbar,
-  Container,
-  Nav,
-  Button,
-} from "react-bootstrap";
+import { Navbar as BootstrapNavbar, Container, Nav, Button } from "react-bootstrap";
 import Logo from "../../assets/image/logo.png";
 import "./index.scss";
 import { Link, NavLink } from "react-router-dom";
 
-const Header = ({
-  toggleOverview,
-  toggleDiscount,
-  toggleService,
-  toggleContact,
-}) => {
+const Header = ({ toggleOverview, toggleDiscount, toggleService, toggleContact }) => {
   return (
     <BootstrapNavbar expand="lg" className="main-nav">
       <Container>
@@ -33,11 +23,7 @@ const Header = ({
             </Button>
 
             <Button className="button-header">
-              <Link
-                style={{ textDecoration: "none" }}
-                className="button-header"
-                to="/food"
-              >
+              <Link style={{ textDecoration: "none" }} className="button-header" to="/food">
                 Food
               </Link>
             </Button>
@@ -49,11 +35,7 @@ const Header = ({
               Contact
             </Button>
             <Button className="button-header">
-              <Link
-                style={{ textDecoration: "none" }}
-                className="button-header"
-                to="/login"
-              >
+              <Link style={{ textDecoration: "none" }} className="button-header" to="/login">
                 Login
               </Link>
             </Button>

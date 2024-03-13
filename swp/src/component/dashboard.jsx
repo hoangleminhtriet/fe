@@ -19,6 +19,8 @@ const Dashboard = () => {
     getItem("Package", "/dashboard/package", <PieChartOutlined />),
     getItem("Statistics", "/dashboard/statistics", <DesktopOutlined />),
     getItem("Schedule", "/dashboard/schedule", <DesktopOutlined />),
+    getItem("Wallet", "/dashboard/wallet", <DesktopOutlined />),
+    getItem("Order", "/dashboard/order", <DesktopOutlined />),
   ];
 
   const itemsAdmin = [

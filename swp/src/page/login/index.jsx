@@ -21,7 +21,7 @@ const Login = () => {
       dispatch(login(response.data));
       toast.success("Login successfully");
       if (response.data.role == "CUSTOMER") {
-        navigate("/");
+        navigate("/customer");
       } else if (response.data.role == "HOST") {
         navigate("/dashboard");
       }
@@ -42,7 +42,11 @@ const Login = () => {
         });
         dispatch(login(response.data));
         toast.success("Login successfully");
-        navigate("/dashboard");
+        if (response.data.role == "CUSTOMER") {
+          navigate("/customer");
+        } else if (response.data.role == "HOST") {
+          navigate("/dashboard");
+        }
         localStorage.setItem("token", response.data.token);
       })
       .catch((error) => {

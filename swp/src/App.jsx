@@ -16,12 +16,19 @@ import Schedule from "./page/schedule";
 import Policy from "./page/register/policy";
 import SuccessPage from "./page/success/success";
 import ChooseProfile from "./page/host";
+import Wallet from "./page/wallet";
+import Order from "./page/Order";
+import HomeLogin from "./page/homeLogin";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Home />,
+    },
+    {
+      path: "/customer",
+      element: <HomeLogin />,
     },
     {
       path: "/food",
@@ -51,6 +58,7 @@ function App() {
       path: "/register",
       element: <Register />,
     },
+
     {
       path: "dashboard",
       element: <Dashboard />,
@@ -78,6 +86,14 @@ function App() {
         {
           path: "account",
           element: <Account />,
+        },
+        {
+          path: "wallet",
+          element: <Wallet />,
+        },
+        {
+          path: "order",
+          element: <Order />,
         },
       ],
     },

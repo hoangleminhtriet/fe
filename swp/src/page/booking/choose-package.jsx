@@ -48,20 +48,14 @@ const Package = ({ isSelected, data }) => {
 
           <ul>
             {data.services.map((item) => (
-              <li>{item.serviceName}</li>
+              <li>
+                <strong> {item.serviceName} </strong>- Price: ${item.price}
+                <Col span={8}>
+                  <Image width={150} height={150} src={item.picture} />
+                </Col>
+              </li>
             ))}
           </ul>
-        </Col>
-        <Col span={24}>
-          <h1>
-            <strong
-              style={{
-                color: "red",
-              }}
-            >
-              ${data.price}
-            </strong>
-          </h1>
         </Col>
       </Row>
     </div>
