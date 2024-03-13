@@ -20,7 +20,11 @@ const Login = () => {
       console.log(response);
       dispatch(login(response.data));
       toast.success("Login successfully");
-      navigate("/dashboard");
+      if (response.data.role == "CUSTOMER") {
+        navigate("/");
+      } else if (response.data.role == "HOST") {
+        navigate("/dashboard");
+      }
       localStorage.setItem("token", response.data.token);
     } catch (e) {
       console.log(e);

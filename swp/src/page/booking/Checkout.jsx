@@ -17,11 +17,12 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import api from "../../config/axios";
 import "./checkout.css";
 import { Image } from "antd";
+import { removeService, updateService } from "../../redux/features/bookingSlice";
 
 const cartItemsData = [
   {
@@ -92,9 +93,11 @@ const cartItemsData = [
 const Checkout = ({ setCartItemsIndex }) => {
   const booking = useSelector((store) => store.booking);
   const [cartItems, setCartItems] = useState(cartItemsData);
+  const dispatch = useDispatch();
   const handleDeleteItem = (index) => {
+    alert(index);
     cartItems.splice(index, 1);
-
+    dispatch(removeService(index));
     setCartItems([...cartItems]);
   };
   const handleIncrease = (index) => {
@@ -121,6 +124,7 @@ const Checkout = ({ setCartItemsIndex }) => {
       cartItems[index].quantity -= 1;
       setCartItems([...cartItems]);
     } else {
+      alert(index);
       handleDeleteItem(index);
     }
     // setCartItems((prev) => {
@@ -196,7 +200,7 @@ const Checkout = ({ setCartItemsIndex }) => {
             </Thead>
             <Tbody>
               {cartItems.map((item, index) => {
-                console.log(item);
+                console.log(index);
                 return (
                   <Tr
                     key={`cart-item-${index} `}
@@ -297,7 +301,7 @@ const Checkout = ({ setCartItemsIndex }) => {
           <FormLabel fontSize="15px">Date</FormLabel>
           <Input
             disabled
-            value="2003-10-20"
+            value={booking.information.date}
             fontSize="15px"
             p={8}
             border="1px solid black"

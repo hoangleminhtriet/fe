@@ -1,10 +1,11 @@
-import { Button, Calendar, Form, Input, Select, theme } from "antd";
+import { Button, Calendar, DatePicker, Form, Input, Select, theme } from "antd";
 import Item from "antd/es/list/Item";
 import React, { useEffect, useState } from "react";
 import api from "../../config/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateInformation } from "../../redux/features/bookingSlice";
 import { useParams } from "react-router-dom";
+import dayjs from "dayjs";
 
 export const FillInformation = ({ form, setCurrent, current }) => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -28,8 +29,11 @@ export const FillInformation = ({ form, setCurrent, current }) => {
 
   useEffect(() => {
     fetchSchedule();
+    if (info && typeof info.date === "string") {
+      info.date = info.date ? dayjs(info.date) : null;
+    }
     form.setFieldsValue(info);
-  }, []);
+  }, [info]);
 
   const onFinish = (values) => {
     console.log(schedule.filter((item) => item.value === values.scheduleId)[0].label);
@@ -66,7 +70,10 @@ export const FillInformation = ({ form, setCurrent, current }) => {
         <Form.Item label="Note" name="note" rules={[{ required: true, message: "Please input your Note" }]}>
           <Input.TextArea />
         </Form.Item>
-        <Form.Item label="time" name={"scheduleId"} rules={[{ required: true, message: "Please input your date" }]}>
+        <Form.Item label="Date" name="date" rules={[{ required: true, message: "Please input your date" }]}>
+          <DatePicker />
+        </Form.Item>
+        <Form.Item label="time" name={"scheduleId"} rules={[{ required: true, message: "Please input your schedule" }]}>
           {/* <Calendar
             onChange={(value) => {
               console.log(value);

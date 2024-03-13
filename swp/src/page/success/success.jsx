@@ -1,16 +1,26 @@
-import React from 'react';
-import { Button, Result } from 'antd';
-const SuccessPage = () => (
-  <Result
-    status="success"
-    title="Successfully Purchased Cloud Server ECS!"
-    subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
-    extra={[
-      <Button type="primary" key="console">
-        Go Console
-      </Button>,
-      <Button key="buy">Buy Again</Button>,
-    ]}
-  />
-);
+import React, { useEffect, useState } from "react";
+import { Button, Result } from "antd";
+import api from "../../config/axios";
+import { Link } from "react-router-dom";
+const SuccessPage = () => {
+  const [order, setOrder] = useState();
+  const fetchOrder = async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get("vnp_TxnRef");
+    const response = await api.get(`/api/order/update-order?orderId=${orderId}`);
+    console.log(response);
+    setOrder(response.data);
+  };
+  useEffect(() => {
+    fetchOrder();
+  }, []);
+  return (
+    <Result
+      status="success"
+      title="Successfully Purchased Cloud Server ECS!"
+      subTitle={`Order number: ${order?.id} Cloud server configuration takes 1-5 minutes, please wait.`}
+      extra={[<Link to={"/"}>Back to home</Link>]}
+    />
+  );
+};
 export default SuccessPage;

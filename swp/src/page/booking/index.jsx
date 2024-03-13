@@ -8,7 +8,8 @@ import FillInformation from "./fill-information";
 import ChoosePackage from "./choose-package";
 import ChooseServices from "./choose-services";
 import api from "../../config/axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { reset } from "../../redux/features/bookingSlice";
 
 const { Step } = Steps;
 const { Item } = Form;
@@ -20,7 +21,7 @@ const StepProgress = () => {
   const [form] = Form.useForm();
   const [cartItems, setCartItems] = useState([]);
   const booking = useSelector((store) => store.booking);
-
+  const dispatch = useDispatch();
   const steps = [
     {
       title: "Packages",
@@ -60,6 +61,7 @@ const StepProgress = () => {
     cartItems.forEach((item) => {
       subtotal += item.price * item.quantity;
     });
+    alert(subtotal);
 
     return subtotal;
   };
@@ -77,18 +79,24 @@ const StepProgress = () => {
       schedule: booking?.information?.scheduleId,
     });
     const response = await api.post("/api/order/create-payment", {
-      totalPrice: calcTotal() * 25000,
-      packageId: booking.package.id,
-      nameReceiver: booking?.information?.username,
-      phone: booking?.information?.phoneNumber,
-      email: booking?.information?.email,
-      venue: booking?.information?.venue,
-      additionalNotes: booking?.information?.note,
+      // totalPrice: calcTotal() * 25000,
+      // packageId: booking.package.id,
+      // nameReceiver: booking?.information?.username,
+      // phone: booking?.information?.phoneNumber,
+      // email: booking?.information?.email,
+      // venue: booking?.information?.venue,
+      // additionalNotes: booking?.information?.note,
+      // scheduleId: booking?.information?.scheduleId,
+      // orderDetailDTOList: booking.services.map((item) => item.id),
+      packageList: [booking.package.id],
+      serviceList: booking.services.map((item) => item.id),
+      total: calcTotal() * 25000,
       scheduleId: booking?.information?.scheduleId,
-      orderDetailDTOList: booking.services.map((item) => item.id),
+      dateBook: booking?.information?.date,
     });
     console.log(response);
-    window.open(response.data);
+    dispatch(reset());
+    window.open(response.data, "_self");
   };
   return (
     <div>

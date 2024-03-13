@@ -1,49 +1,72 @@
-import { Col, Image, Row } from "antd";
 import React, { useEffect, useState } from "react";
+import { Avatar, List } from "antd";
+import { Link } from "react-router-dom"; // Import Link for navigation
 import api from "../../config/axios";
-import { useDispatch, useSelector } from "react-redux";
+import { Link as RouterLink } from "react-router-dom";
 
-export const ChooseProfile = () => {
-  const [profile, setProfile] = useState([]);
-  const selectedProfile = useSelector((store) => store?.user?.id);
+const ChooseProfile = () => {
+  const [profiles, setProfiles] = useState([]);
+  const [selectedProfile, setSelectedProfile] = useState(null); // New state to store selected profile
 
-  const fetchProfile = async () => {
-    const response = await api.get(`profile/getProfile`);
-    setProfile(response.data);
+  const fetchProfiles = async () => {
+    try {
+      const response = await api.get(`/profile/getHost`);
+      setProfiles(response.data);
+    } catch (error) {
+      console.error("Error fetching profiles:", error);
+    }
   };
 
   useEffect(() => {
-    fetchProfile();
+    fetchProfiles();
   }, []);
 
-  return (
-    <>
-      {profile.map((packages) => (
-        <Profile data={packages} isSelected={packages.id === selectedProfile?.id} dispatch={dispatch} />
-      ))}
-    </>
-  );
-};
-
-const Profile = ({ isSelected, data }) => {
-  const dispatch = useDispatch();
-
-  const handleSelectProfle = () => {
-    dispatch(updateProfle(data));
+  const handleProfileSelect = (profile) => {
+    setSelectedProfile(profile); // Set the selected profile
   };
 
   return (
-    <div className={`profle ${isSelected ? "select" : ""}`} onClick={handleSelectProfle}>
-      <Row>
-        <Col span={5}>
-          <Image width={200} src={data.avatar} />
-        </Col>
-        <Col span={19}>
-          <h1>{data.id}</h1>
-          <p>{data.fullname}</p>
-        </Col>
-      </Row>
-    </div>
+    <>
+      <h1
+        style={{
+          textAlign: "center",
+          color: "black",
+          fontSize: 50,
+          fontWeight: 1000,
+        }}
+      >
+        List Party Host
+      </h1>
+
+      <Link
+        as={RouterLink}
+        to="/"
+        style={{
+          color: "red",
+          fontSize: 15,
+          fontWeight: 1000,
+          padding: 30,
+        }}
+      >
+        Back to home &gt;
+      </Link>
+
+      <List
+        itemLayout="horizontal"
+        dataSource={profiles}
+        renderItem={(profile, index) => (
+          <Link to={`/booking/${profile.id}`}>
+            <List.Item onClick={() => handleProfileSelect(profile)}>
+              <List.Item.Meta
+                avatar={<Avatar src={profile.avatar} />}
+                title={<a>{profile.fullName}</a>}
+                description={<a>{profile.email}</a>}
+              />
+            </List.Item>
+          </Link>
+        )}
+      />
+    </>
   );
 };
 

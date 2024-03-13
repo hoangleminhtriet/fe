@@ -25,6 +25,14 @@ export const bookingSlice = createSlice({
 
       return state;
     },
+    updateService: (state, action) => {
+      state.services = action.payload;
+      return state;
+    },
+    removeService: (state, action) => {
+      state.services.splice(action.payload, 1);
+      return state;
+    },
     updateInformation: (state, action) => {
       state.information = action.payload;
       return state;
@@ -36,6 +44,7 @@ export const bookingSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { updatePackage, reset, selectService, updateInformation } = bookingSlice.actions;
+export const { updatePackage, reset, selectService, updateInformation, updateService, removeService } =
+  bookingSlice.actions;
 
 export default bookingSlice.reducer;
