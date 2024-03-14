@@ -1,5 +1,5 @@
 import { Breadcrumb, Button } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HomeOutlined, MoreOutlined, CheckOutlined } from "@ant-design/icons";
 import { Box, Flex, Input, Text, useDisclosure } from "@chakra-ui/react";
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer } from "@chakra-ui/react";
@@ -18,6 +18,7 @@ import { toast } from "react-toastify";
 import { format } from "date-fns";
 import date from "date-and-time";
 import api from "../../config/axios";
+import { useSelector } from "react-redux";
 const schedulesData = [
   {
     id: 1,
@@ -47,20 +48,28 @@ const schedulesData = [
 ];
 
 const Schedule = () => {
+  const currentUser = useSelector((store) => store.user);
   const [schedules, setSchedules] = useState(schedulesData);
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (confirm("Do you want to delete this schedule?")) {
+      const response = await api.delete(`/schedule/deleteSchedule/${id}`);
+      console.log(response);
       setSchedules((prev) => {
         return prev.filter((schedule) => schedule.id != id);
       });
       toast.success("Delete schedule successfully!");
     }
   };
-  const handleAdd = async (time, date) => {
-    if (schedules.find((item) => item.time === time && item.date === date)) {
+
+  const handleAdd = async (time) => {
+    if (schedules.find((item) => item.time === time)) {
       toast.error("Schedule already exist!");
     } else {
+      const response = await api.post(`/schedule/createSchedule`, {
+        time: `${time}:00`,
+      });
+      console.log(response.data);
       setSchedules((prev) => {
         return [
           ...prev,
@@ -74,16 +83,25 @@ const Schedule = () => {
       toast.success("Add new schedule successfully!");
     }
   };
+
   const handleAddPackage = async (values) => {
     console.log(values);
     const response = await api.post("/schedule/createSchedule", values);
     toast.success("Successfully create new package");
     console.log(response.data);
   };
-  const handleEdit = (id, time, date) => {
-    if (schedules.find((item) => item.time === time && item.date === date)) {
+
+  const handleEdit = async (id, time) => {
+    if (schedules.find((item) => item.time === time)) {
       toast.error("Schedule already exist!");
     } else {
+      console.log(time);
+      const response = await api.put(`/schedule/updateSchedule/${id}`, {
+        time: `${time}:00`,
+      });
+
+      console.log(response);
+
       setSchedules((prev) => {
         return prev.map((item) => {
           if (item.id === id) {
@@ -103,34 +121,13 @@ const Schedule = () => {
   const Row = ({ id, time, date }) => {
     const [isEdit, setisEdit] = useState(false);
     const [currentTime, setCurrentTime] = useState(time);
-    const [currentDate, setCurrentDate] = useState(date);
     console.log(currentTime);
     const handleSave = () => {
-      handleEdit(id, currentTime, currentDate);
+      handleEdit(id, currentTime);
       setisEdit(false);
     };
     return (
       <Tr>
-        <Td>
-          {isEdit ? (
-            <Input
-              type="date"
-              value={currentDate}
-              w="120px"
-              h="40px"
-              fontSize="lg"
-              onChange={(e) => {
-                if (date.subtract(new Date(), new Date(e.target.value)).toDays() > 0) {
-                  toast.error("Noooooooooooooooooooooooooooo");
-                } else {
-                  setCurrentDate(e.target.value);
-                }
-              }}
-            />
-          ) : (
-            format(date, "dd/MM/yyyy")
-          )}
-        </Td>
         <Td>
           {isEdit ? (
             <Input
@@ -231,6 +228,15 @@ const Schedule = () => {
     );
   };
 
+  const fetchSchedule = async () => {
+    const response = await api.get(`/schedule/getSchduleByHost/${currentUser.id}`);
+    setSchedules(response.data);
+  };
+
+  useEffect(() => {
+    fetchSchedule();
+  }, []);
+
   return (
     <div>
       <Flex justifyContent="space-between">
@@ -252,9 +258,14 @@ const Schedule = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {schedules.map((schedule, index) => {
-              return <Row key={`schedule-${index}`} time={schedule.time} id={schedule.id} date={schedule.date} />;
-            })}
+            {schedules
+              .filter((item) => !item.deleted)
+              .sort((item1, item2) => {
+                return new Date(`01/01/2024 ${item1.time}`) - new Date(`01/01/2024 ${item2.time}`);
+              })
+              .map((schedule, index) => {
+                return <Row key={`schedule-${index}`} time={schedule.time} id={schedule.id} date={schedule.date} />;
+              })}
           </Tbody>
         </Table>
       </TableContainer>
