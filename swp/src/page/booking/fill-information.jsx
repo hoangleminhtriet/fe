@@ -47,9 +47,9 @@ export const FillInformation = ({ form, setCurrent, current }) => {
     <>
       <Form form={form} onFinish={onFinish} layout="vertical">
         <Form.Item
-          label="Username"
+          label="User Name"
           name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          rules={[{ required: true, message: "Please input your user name!" }]}
         >
           <Input />
         </Form.Item>

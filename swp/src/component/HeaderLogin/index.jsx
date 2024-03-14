@@ -15,7 +15,7 @@ const HeaderLogin = ({ toggleOverview, toggleDiscount, toggleService, toggleCont
       key: "1",
       label: (
         <div>
-          <Link to={"/dashboard/profile"}>Profile</Link>
+          <Link to={"/profileCus"}>Profile</Link>
         </div>
       ),
     },

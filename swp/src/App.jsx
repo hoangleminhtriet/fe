@@ -19,6 +19,7 @@ import ChooseProfile from "./page/host";
 import Wallet from "./page/wallet";
 import Order from "./page/Order";
 import HomeLogin from "./page/homeLogin";
+import ProfileCus from "./page/profileForCustomer";
 
 function App() {
   const router = createBrowserRouter([
@@ -57,6 +58,11 @@ function App() {
     {
       path: "/register",
       element: <Register />,
+    },
+
+    {
+      path: "/profileCus",
+      element: <ProfileCus />,
     },
 
     {
