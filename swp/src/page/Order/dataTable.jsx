@@ -70,7 +70,7 @@ const DataTable = () => {
             }}
           >
             accept
-          </Button>
+          </Button>     
           <Button
             onClick={() => {
               handleRefuse(record.id);

@@ -1,9 +1,9 @@
 import { Breadcrumb, Button } from "antd";
 import React, { useEffect, useState } from "react";
-import { HomeOutlined, MoreOutlined, CheckOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import { Box, Flex, Input, Text, useDisclosure } from "@chakra-ui/react";
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer } from "@chakra-ui/react";
-import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+``;
 import {
   Modal,
   ModalOverlay,
@@ -14,36 +14,28 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { toast } from "react-toastify";
-
-import { format } from "date-fns";
-import date from "date-and-time";
 import api from "../../config/axios";
 import { useSelector } from "react-redux";
 const schedulesData = [
   {
     id: 1,
     time: "05:30",
-    date: "2024-03-09",
   },
   {
     id: 2,
     time: "08:00",
-    date: "2024-03-09",
   },
   {
     id: 3,
     time: "12:30",
-    date: "2024-03-09",
   },
   {
     id: 4,
     time: "13:15",
-    date: "2024-03-09",
   },
   {
     id: 5,
     time: "15:30",
-    date: "2024-03-09",
   },
 ];
 
@@ -76,7 +68,6 @@ const Schedule = () => {
           {
             id: prev.length + 1,
             time: time,
-            date: date,
           },
         ];
       });
@@ -108,7 +99,6 @@ const Schedule = () => {
             return {
               ...item,
               time: time,
-              date: date,
             };
           }
           return item;
@@ -118,14 +108,15 @@ const Schedule = () => {
     }
   };
 
-  const Row = ({ id, time, date }) => {
-    const [isEdit, setisEdit] = useState(false);
+  const Row = ({ id, time }) => {
+    const [isEdit, setIsEdit] = useState(false);
     const [currentTime, setCurrentTime] = useState(time);
-    console.log(currentTime);
+
     const handleSave = () => {
       handleEdit(id, currentTime);
-      setisEdit(false);
+      setIsEdit(false);
     };
+
     return (
       <Tr>
         <Td>
@@ -136,9 +127,7 @@ const Schedule = () => {
               w="120px"
               h="40px"
               fontSize="lg"
-              onChange={(e) => {
-                setCurrentTime(e.target.value);
-              }}
+              onChange={(e) => setCurrentTime(e.target.value)}
             />
           ) : (
             time
@@ -146,25 +135,23 @@ const Schedule = () => {
         </Td>
         <Td textAlign="right">
           {isEdit ? (
-            <Button shape="circle" onClick={handleSave}>
-              <CheckOutlined />
-            </Button>
+            <>
+              <Button shape="circle" onClick={handleSave} mr={2}>
+                <CheckOutlined />
+              </Button>
+              <Button shape="circle" color="red" onClick={() => setIsEdit(false)}>
+                <CloseOutlined />
+              </Button>
+            </>
           ) : (
-            <Menu>
-              <MenuButton as="span" cursor="pointer">
-                <Button shape="circle">
-                  <MoreOutlined />
-                </Button>
-              </MenuButton>
-              <MenuList p={0}>
-                <MenuItem p={5} onClick={() => setisEdit(!isEdit)}>
-                  Edit
-                </MenuItem>
-                <MenuItem p={5} color="red" onClick={() => handleDelete(id)}>
-                  Delete
-                </MenuItem>
-              </MenuList>
-            </Menu>
+            <>
+              <Button shape="circle" onClick={() => setIsEdit(true)} mr={2}>
+                <EditOutlined />
+              </Button>
+              <Button shape="circle" color="red" onClick={() => handleDelete(id)}>
+                <DeleteOutlined />
+              </Button>
+            </>
           )}
         </Td>
       </Tr>
@@ -174,7 +161,6 @@ const Schedule = () => {
   const AddButton = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [newTime, setNewTime] = useState("12:00");
-    const [newDate, setNewDate] = useState(format(new Date(), "yyyy-MM-dd"));
     return (
       <>
         <Button type="primary" onClick={onOpen}>
@@ -187,21 +173,6 @@ const Schedule = () => {
             <ModalCloseButton />
             <ModalBody>
               <Flex justifyContent="center" mt={10} flexDir="column" alignItems="center" gap={5}>
-                <Input
-                  placeholder="Select date"
-                  type="date"
-                  w="120px"
-                  h="40px"
-                  fontSize="lg"
-                  value={newDate}
-                  onChange={(e) => {
-                    if (date.subtract(new Date(), new Date(e.target.value)).toDays() > 0) {
-                      toast.error("Noooooooooooooooooooooooooooo");
-                    } else {
-                      setNewDate(e.target.value);
-                    }
-                  }}
-                />
                 <Input
                   placeholder="Select time"
                   type="time"
@@ -252,7 +223,6 @@ const Schedule = () => {
         <Table variant="simple" size="lg">
           <Thead>
             <Tr>
-              <Th>Date</Th>
               <Th>Time</Th>
               <Th textAlign="right">Action</Th>
             </Tr>
@@ -264,7 +234,7 @@ const Schedule = () => {
                 return new Date(`01/01/2024 ${item1.time}`) - new Date(`01/01/2024 ${item2.time}`);
               })
               .map((schedule, index) => {
-                return <Row key={`schedule-${index}`} time={schedule.time} id={schedule.id} date={schedule.date} />;
+                return <Row key={`schedule-${index}`} time={schedule.time} id={schedule.id} />;
               })}
           </Tbody>
         </Table>
