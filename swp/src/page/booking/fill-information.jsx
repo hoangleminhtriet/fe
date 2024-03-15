@@ -36,7 +36,7 @@ export const FillInformation = ({ form, setCurrent, current }) => {
   }, [info]);
 
   const onFinish = (values) => {
-    console.log(schedule.filter((item) => item.value === values.scheduleId)[0].label);
+    console.log(schedule.filter((item) => item.value === values.scheduleId)[0]?.label);
     values.time = schedule.filter((item) => item.value === values.scheduleId)[0]?.label;
     console.log("Received values of form:", values);
     dispatch(updateInformation(values));

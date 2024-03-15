@@ -3,7 +3,7 @@ import { Space, Table, Tag } from "antd";
 import { Button } from "@chakra-ui/react";
 import { useState } from "react";
 
-import { format } from "date-fns";
+import { format, formatDistance } from "date-fns";
 import api from "../../config/axios";
 
 const DataTable = () => {
@@ -70,7 +70,7 @@ const DataTable = () => {
             }}
           >
             accept
-          </Button>     
+          </Button>
           <Button
             onClick={() => {
               handleRefuse(record.id);
@@ -89,17 +89,20 @@ const DataTable = () => {
       console.table(response.data);
       const responseData = response.data;
       setData(
-        responseData.map((item) => {
-          return {
-            id: item.id,
-            Customer: item.account.fullName,
-            phone: item.account.phoneNumber,
-            //package: item.packageEntity.name,
-            totalPrice: item.total,
-            orderDate: format(item.createAt, "dd/MM/yyyy"),
-            status: item.status,
-          };
-        })
+        responseData
+          .sort((item1, item2) => new Date(item2.createAt) - new Date(item1.createAt))
+          .map((item) => {
+            console.log(item.orderDate);
+            return {
+              id: item.id,
+              Customer: item.account.fullName,
+              phone: item.account.phoneNumber,
+              //package: item.packageEntity.name,
+              totalPrice: item.total,
+              orderDate: formatDistance(new Date(item.createAt), new Date(), { addSuffix: true }),
+              status: item.status,
+            };
+          })
       );
     };
     fetchData();

@@ -75,13 +75,6 @@ const Schedule = () => {
     }
   };
 
-  const handleAddPackage = async (values) => {
-    console.log(values);
-    const response = await api.post("/schedule/createSchedule", values);
-    toast.success("Successfully create new package");
-    console.log(response.data);
-  };
-
   const handleEdit = async (id, time) => {
     if (schedules.find((item) => item.time === time)) {
       toast.error("Schedule already exist!");
@@ -189,7 +182,7 @@ const Schedule = () => {
               <Button type="primary" danger onClick={onClose}>
                 Cancel
               </Button>
-              <Button type="primary" onClick={() => handleAdd(newTime, new Date(newDate))}>
+              <Button type="primary" onClick={() => handleAdd(newTime)}>
                 Add
               </Button>
             </ModalFooter>

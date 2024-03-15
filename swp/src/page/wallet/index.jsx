@@ -1,20 +1,10 @@
-import React, { useState } from "react";
-import { Button, Table } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Table, Tag } from "antd";
 import "./index.scss";
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-  },
-  {
-    title: "Age",
-    dataIndex: "age",
-  },
-  {
-    title: "Address",
-    dataIndex: "address",
-  },
-];
+import api from "../../config/axios";
+import { formatDistance } from "date-fns";
+import { useSelector } from "react-redux";
+
 const data = [];
 for (let i = 0; i < 46; i++) {
   data.push({
@@ -26,57 +16,74 @@ for (let i = 0; i < 46; i++) {
 }
 const Wallet = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const onSelectChange = (newSelectedRowKeys) => {
-    console.log("selectedRowKeys changed: ", newSelectedRowKeys);
-    setSelectedRowKeys(newSelectedRowKeys);
-  };
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange,
-    selections: [
-      Table.SELECTION_ALL,
-      Table.SELECTION_INVERT,
-      Table.SELECTION_NONE,
-      {
-        key: "odd",
-        text: "Select Odd Row",
-        onSelect: (changeableRowKeys) => {
-          let newSelectedRowKeys = [];
-          newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
-            if (index % 2 !== 0) {
-              return false;
-            }
-            return true;
-          });
-          setSelectedRowKeys(newSelectedRowKeys);
-        },
+  const [wallet, setWallet] = useState();
+  const [transaction, setTransaction] = useState([]);
+  const user = useSelector((store) => store.user);
+  function formatCurrency(number) {
+    // Check if the input is not a number or not a finite number
+    if (isNaN(number) || !isFinite(number)) {
+      return "Invalid input";
+    }
+
+    // Convert the number to a string and split it by thousands separator
+    const parts = number.toString().split(".");
+
+    // Extract the integer part and format it with commas
+    const formattedInteger = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+    // Concatenate the integer part with the 'VND' suffix
+    return formattedInteger + " VND";
+  }
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+    },
+    {
+      title: "createAt",
+      dataIndex: "createAt",
+      render: (value) => formatDistance(new Date(value), new Date(), { addSuffix: true }),
+    },
+    {
+      title: "Total",
+      dataIndex: "money",
+      render: (value, record) => {
+        if (record.to.account.id == user.id) {
+          return <Tag color="green">{`+${formatCurrency(value)}$`}</Tag>;
+        } else {
+          return <Tag color="red">{`-${formatCurrency(value)}$`}</Tag>;
+        }
       },
-      {
-        key: "even",
-        text: "Select Even Row",
-        onSelect: (changeableRowKeys) => {
-          let newSelectedRowKeys = [];
-          newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
-            if (index % 2 !== 0) {
-              return true;
-            }
-            return false;
-          });
-          setSelectedRowKeys(newSelectedRowKeys);
-        },
-      },
-    ],
+    },
+  ];
+
+  const fetchWallet = async () => {
+    const response = await api.get("/wallet");
+    setWallet(response.data);
   };
+  const fetchTransaction = async () => {
+    const response = await api.get("/transaction");
+    setTransaction(response.data);
+  };
+
+  useEffect(() => {
+    fetchWallet();
+    fetchTransaction();
+  }, []);
+
   return (
     <>
       <div className="transaction">
         <div className="transaction-left">
           <h1>Balance Alerts</h1>
-          <h2>500$</h2>
+          <h2>{formatCurrency(wallet?.total)}$</h2>
         </div>
         <Button>Add money to wallet</Button>
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+      <Table
+        columns={columns}
+        dataSource={transaction.sort((item1, item2) => new Date(item2.createAt) - new Date(item1.createAt))}
+      />
     </>
   );
 };

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import {
@@ -29,20 +28,11 @@ import { toast } from "react-toastify";
 
 const { Panel } = Collapse;
 
-const ActionButtons = ({ onEdit, handleDelete }) => (
-  <Space>
-    <Button type="primary" onClick={onEdit}>
-      Edit
-    </Button>
-    <Button type="danger" onClick={handleDelete}>
-      Delete
-    </Button>
-  </Space>
-);
-
 const Service = ({ data, fetchPackage }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [dataSource, setDataSource] = useState([]);
   const [form] = useForm();
+  const [updateRecord, setUpdateRecord] = useState();
 
   const handleEdit = () => {
     // Logic to edit the action
@@ -50,13 +40,14 @@ const Service = ({ data, fetchPackage }) => {
     setModalVisible(true);
   };
 
-  const handleDelete = async (record) => {
+  const handleDelete = async (id) => {
     try {
-      const response = await api.delete(`/service/deleteService/${record.id}`);
+      const response = await api.delete(`/service/deleteService/${id}`);
       console.log(response.data);
 
-      const newData = dataSource.filter((item) => item.id !== record.id);
+      const newData = dataSource.filter((service) => service.id != id);
       setDataSource(newData);
+      fetchPackage();
       message.success("Deleted successfully");
     } catch (error) {
       console.error("Error deleting packageID:", error);
@@ -69,6 +60,9 @@ const Service = ({ data, fetchPackage }) => {
 
   const handleModalCancel = () => {
     setModalVisible(false);
+    form.resetFields();
+    setFileList([]);
+    setUpdateRecord(null);
   };
 
   const handleModalOk = () => {
@@ -112,7 +106,29 @@ const Service = ({ data, fetchPackage }) => {
       key: "action",
       render: (_, record) => (
         <>
-          <ActionButtons onEdit={() => handleEdit(record.key)} onDelete={() => handleDelete(record.key)} />
+          <Space>
+            <Button
+              type="primary"
+              onClick={() => {
+                setModalVisible(true);
+                form.setFieldsValue(record);
+                setUpdateRecord(record);
+                if (record.picture) {
+                  setFileList([
+                    {
+                      uid: "-4",
+                      name: "image.png",
+                      status: "done",
+                      url: record.picture,
+                    },
+                  ]);
+                }
+              }}
+            >
+              Edit
+            </Button>
+            <Button onClick={() => handleDelete(record.id)}>Delete</Button>
+          </Space>
         </>
       ),
     },
@@ -125,9 +141,15 @@ const Service = ({ data, fetchPackage }) => {
       values.picture = url;
     }
     values.packageId = data.id;
-    const response = await api.post("/service/createService", values);
+    if (updateRecord) {
+      const response = await api.put(`/service/updateService/${updateRecord.id}`, values);
+    } else {
+      const response = await api.post("/service/createService", values);
+    }
     form.resetFields();
     setModalVisible(false);
+    setFileList([]);
+    setUpdateRecord(null);
     toast.success("Successfully create new service");
     fetchPackage();
   };
@@ -183,7 +205,7 @@ const Service = ({ data, fetchPackage }) => {
       >
         Add new Service
       </Button>
-      <Table columns={columns} dataSource={data.services} />
+      <Table columns={columns} dataSource={data.services.filter((item) => !item.isDeleted)} />
       <Modal title="Edit Action" visible={modalVisible} onOk={() => form.submit()} onCancel={handleModalCancel}>
         {/* Form fields for editing action details */}
         <Form
@@ -295,13 +317,6 @@ const Service = ({ data, fetchPackage }) => {
 //       </div>
 //     </>
 // };
-const PackageDetail = () => {
-  return (
-    <>
-      <strong>Name</strong>
-    </>
-  );
-};
 
 const Package = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -311,6 +326,7 @@ const Package = () => {
   const [fileList, setFileList] = useState([]);
   const [packages, setPackages] = useState([]);
   const handleCancel = () => setPreviewOpen(false);
+  const [currentPackage, setCurrentPackage] = useState();
   const [form] = useForm();
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -368,11 +384,17 @@ const Package = () => {
       const url = await uploadFile(values.picture.file.originFileObj);
       values.picture = url;
     }
-    const response = await api.post("/package/postNewPackage", values);
+    if (currentPackage) {
+      const response = await api.put(`/package/updatePackage/${currentPackage.id}`, values);
+    } else {
+      const response = await api.post("/package/postNewPackage", values);
+    }
     toast.success("Successfully create new package");
     form.resetFields();
     setModalVisible(false);
+    setFileList([]);
     fetchPackage();
+    setCurrentPackage(null);
   };
 
   const fetchPackage = async () => {
@@ -391,13 +413,53 @@ const Package = () => {
       </Button>
 
       <Collapse
-        items={packages.map((item) => {
-          return {
-            key: item.id,
-            label: item.description,
-            children: <Service data={item} fetchPackage={fetchPackage} />,
-          };
-        })}
+        items={packages
+          .filter((item) => !item.deleted)
+          .map((item) => {
+            return {
+              key: item.id,
+              label: (
+                <Row>
+                  <Col span={22}>
+                    <strong>{item.name}</strong>
+                  </Col>
+                  <Col span={2}>
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        setModalVisible(true);
+                        form.setFieldsValue(item);
+                        setCurrentPackage(item);
+                        if (item.picture) {
+                          setFileList([
+                            {
+                              uid: "-4",
+                              name: "image.png",
+                              status: "done",
+                              url: item.picture,
+                            },
+                          ]);
+                        }
+                      }}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      type="primary"
+                      danger
+                      onClick={async () => {
+                        await api.delete(`/package/deletePackage/${item.id}`);
+                        fetchPackage();
+                      }}
+                    >
+                      Delete
+                    </Button>
+                  </Col>
+                </Row>
+              ),
+              children: <Service data={item} fetchPackage={fetchPackage} />,
+            };
+          })}
         defaultActiveKey={["1"]}
         onChange={handleChange}
       />
