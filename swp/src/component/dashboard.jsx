@@ -26,6 +26,8 @@ const Dashboard = () => {
   const itemsAdmin = [
     getItem("Report", "/dashboard/report", <PieChartOutlined />),
     getItem("Account", "/dashboard/account", <UserOutlined />),
+    getItem("Wallet", "/dashboard/wallet", <DesktopOutlined />),
+    getItem("Order", "/dashboard/order", <DesktopOutlined />),
   ];
 
   const [collapsed, setCollapsed] = useState(false);
