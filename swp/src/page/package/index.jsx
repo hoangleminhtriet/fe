@@ -389,7 +389,7 @@ const Package = () => {
     } else {
       const response = await api.post("/package/postNewPackage", values);
     }
-    toast.success("Successfully create new package");
+    toast.success("Successfully!!");
     form.resetFields();
     setModalVisible(false);
     setFileList([]);

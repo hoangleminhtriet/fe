@@ -27,12 +27,20 @@ export const FillInformation = ({ form, setCurrent, current }) => {
     );
   };
 
+  // useEffect(() => {
+  //   fetchSchedule();
+  //   if (info && typeof info.date === "string") {
+  //     info.date = info.date ? dayjs(info.date) : null;
+  //   }
+  //   form.setFieldsValue(info);
+  // }, [info]);
+
   useEffect(() => {
     fetchSchedule();
     if (info && typeof info.date === "string") {
-      info.date = info.date ? dayjs(info.date) : null;
+      const updatedInfo = { ...info, date: info.date ? dayjs(info.date) : null };
+      form.setFieldsValue(updatedInfo);
     }
-    form.setFieldsValue(info);
   }, [info]);
 
   const onFinish = (values) => {

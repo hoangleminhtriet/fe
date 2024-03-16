@@ -24,7 +24,10 @@ const Login = () => {
         navigate("/customer");
       } else if (response.data.role == "HOST") {
         navigate("/dashboard");
+      } else if (response.data.role == "ADMIN") {
+        navigate("/dashboard");
       }
+
       localStorage.setItem("token", response.data.token);
     } catch (e) {
       console.log(e);
@@ -45,6 +48,8 @@ const Login = () => {
         if (response.data.role == "CUSTOMER") {
           navigate("/customer");
         } else if (response.data.role == "HOST") {
+          navigate("/dashboard");
+        } else if (response.data.role == "ADMIN") {
           navigate("/dashboard");
         }
         localStorage.setItem("token", response.data.token);

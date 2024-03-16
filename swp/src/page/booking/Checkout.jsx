@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import api from "../../config/axios";
 import "./checkout.css";
-import { Image } from "antd";
+import { DatePicker, Image } from "antd";
 import { removeService, updateService } from "../../redux/features/bookingSlice";
 
 const cartItemsData = [
@@ -299,15 +299,16 @@ const Checkout = ({ setCartItemsIndex }) => {
             mb={10}
           />
           <FormLabel fontSize="15px">Date</FormLabel>
-          <Input
+          <DatePicker
             disabled
             value={booking.information.date}
-            fontSize="15px"
-            p={8}
-            border="1px solid black"
-            w="200px"
-            mb={10}
-            type="date"
+            style={{
+              fontSize: "15px",
+              padding: "8px",
+              border: "1px solid black",
+              width: "200px",
+              marginBottom: "10px",
+            }}
           />
           <FormLabel fontSize="15px">Time</FormLabel>
           <Input
