@@ -36,10 +36,6 @@ const Wallet = () => {
   }
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-    },
-    {
       title: "createAt",
       dataIndex: "createAt",
       render: (value) => formatDistance(new Date(value), new Date(), { addSuffix: true }),

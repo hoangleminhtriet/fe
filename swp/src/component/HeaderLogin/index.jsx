@@ -2,14 +2,16 @@
 import { Navbar as BootstrapNavbar, Container, Nav, Button } from "react-bootstrap";
 import Logo from "../../assets/image/logo.png";
 import "./index.scss";
-import { Link, NavLink, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/features/userSlice";
 import { useEffect } from "react";
 import { Avatar, Dropdown, Row } from "antd";
 
 const HeaderLogin = ({ toggleOverview, toggleDiscount, toggleService, toggleContact }) => {
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); // Use useNavigate hook
   const menu = [
     {
       key: "1",
@@ -36,9 +38,9 @@ const HeaderLogin = ({ toggleOverview, toggleDiscount, toggleService, toggleCont
 
   useEffect(() => {
     if (!user) {
-      Navigate("/login");
+      navigate("/"); // Use navigate function for navigation
     }
-  }, [user]);
+  }, [user, navigate]);
   return (
     <BootstrapNavbar expand="lg" className="main-nav">
       <Container>
