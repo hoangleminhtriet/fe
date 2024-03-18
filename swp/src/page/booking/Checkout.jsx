@@ -183,7 +183,7 @@ const Checkout = ({ setCartItemsIndex }) => {
       <Box w="full">
         <Flex justifyContent="space-between" w="full" fontWeight="bold">
           <Text fontSize="20px">Bill</Text>
-          <Link as={RouterLink} to="/">
+          <Link as={RouterLink} to="/customer">
             Continue Oder &gt;
           </Link>
         </Flex>
@@ -279,6 +279,7 @@ const Checkout = ({ setCartItemsIndex }) => {
             mb={10}
           />
 
+          <FormLabel fontSize="15px">Full name</FormLabel>
           <Input
             disabled
             value={booking.information.username}

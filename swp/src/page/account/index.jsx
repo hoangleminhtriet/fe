@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Table, Breadcrumb, Space, message, Tag, Avatar } from "antd";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import api from "../../config/axios";
+import { toast } from "react-toastify";
 const { Column } = Table;
 
 const data = [
@@ -55,7 +56,6 @@ const data = [
 const Account = () => {
   const [all, setAll] = useState([]);
   const [dataSource, setDataSource] = useState([]);
-  const [filter, setFilter] = useState("ALL");
 
   const fetchAccount = async () => {
     const reponse = await api.get("profile/getAllAccount");
@@ -67,75 +67,25 @@ const Account = () => {
     fetchAccount();
   }, []);
 
-  const handleFilterChange = (role) => {
-    setFilter(role);
-    let filteredData = [];
-    if (role === "ALL") {
-      filteredData = all;
-    } else {
-      if (role === "CUSTOMER") {
-        filteredData = all.filter((item) => item.role === "Customer");
-      }
-
-      if (role === "HOST") {
-        filteredData = all.filter((item) => {
-          console.log(item.role);
-          return item.role === "Host";
-        });
-      }
-    }
-    setDataSource(filteredData);
-  };
-
   const handleDelete = async (record) => {
     try {
       const response = await api.delete(`profile/deleteProfile/${record.id}`);
       console.log(response.data);
-      const newData = dataSource.filter((item) => item.accountID !== record.accountID);
+      const newData = dataSource.filter((item) => !item.deleted);
       setDataSource(newData);
-      message.success("Deleted successfully");
+      toast.success("Delete successfully");
+      fetchAccount();
     } catch (error) {
       console.error("Error deleting account:", error);
       message.error("Failed to delete account");
     }
   };
-  useEffect(() => {
-    fetchAccount();
-  }, []);
-
-  const handleAccept = async (record) => {
-    const response = await api.post(`verify/${record.email}`);
-    console.log(response.data);
-    console.log("Accepting record:", record);
-    fetchAccount();
-    const newData = dataSource.map((item) => {
-      if (item.key === record.key) {
-        return { ...item, accepted: true };
-      }
-      return item;
-    });
-
-    // console.log("New data after accept:", newData);
-    // setDataSource(newData.filter((item) => !item.refused));
-    message.success(`Host account "${record.email}" has been accepted`);
-  };
-
-  // const handleRefuse = async (record) => {
-  //   const reponse = await api.delete(`/auth/refuse/${record.accountID}`);
-  //   console.log(reponse.data);
-
-  //   const newData = dataSource.filter((item) => item.key !== record.key);
-  //   setDataSource(newData);
-  //   fetchAccount();
-
-  //   message.error(`Host account "${record.fullname}" has been denied`);
-  // };
 
   return (
     <>
       <h1>List Accounts</h1>
 
-      <Table dataSource={dataSource}>
+      <Table dataSource={dataSource.filter((item) => !item.deleted)}>
         <Column title="Name" dataIndex="fullName" key="fullName" />
         <Column title="Email" dataIndex="email" key="email" />
         <Column title="Role" dataIndex="role" key="role" />
@@ -155,28 +105,11 @@ const Account = () => {
               )}
               {record.role === "HOST" && (
                 <>
-                  {record.status === "Inactivated" && (
-                    <Space>
-                      <Button
-                        style={{
-                          backgroundColor: "#7FFF00",
-                          borderColor: "#7FFF00",
-                          color: "white",
-                        }}
-                        onClick={() => handleAccept(record)}
-                      >
-                        Accept
-                      </Button>
-                      <Button type="primary" danger onClick={() => handleRefuse(record)}>
-                        Refuse
-                      </Button>
-                    </Space>
-                  )}
-                  {record.status === "Activated" && (
+                  {
                     <Button type="primary" danger onClick={() => handleDelete(record)}>
                       Delete
                     </Button>
-                  )}
+                  }
                 </>
               )}
             </>

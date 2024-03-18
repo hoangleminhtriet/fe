@@ -1,5 +1,4 @@
-import { Button, Calendar, DatePicker, Form, Input, Select, theme } from "antd";
-import Item from "antd/es/list/Item";
+import { Button, Calendar, DatePicker, Form, Input, Row, Select, theme } from "antd";
 import React, { useEffect, useState } from "react";
 import api from "../../config/axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -55,9 +54,9 @@ export const FillInformation = ({ form, setCurrent, current }) => {
     <>
       <Form form={form} onFinish={onFinish} layout="vertical">
         <Form.Item
-          label="User Name"
+          label="Full Name"
           name="username"
-          rules={[{ required: true, message: "Please input your user name!" }]}
+          rules={[{ required: true, message: "Please input your Full name!" }]}
         >
           <Input />
         </Form.Item>
@@ -70,18 +69,31 @@ export const FillInformation = ({ form, setCurrent, current }) => {
           name="phoneNumber"
           rules={[{ required: true, message: "Please input your password!" }]}
         >
-          <Input />
+          <Input type="number" />
         </Form.Item>
-        <Form.Item label="Venue" name="venue" rules={[{ required: true, message: "Please input your Venue" }]}>
+        <Form.Item label="Address" name="venue" rules={[{ required: true, message: "Please input your Location" }]}>
           <Input />
         </Form.Item>
         <Form.Item label="Note" name="note" rules={[{ required: true, message: "Please input your Note" }]}>
           <Input.TextArea />
         </Form.Item>
-        <Form.Item label="Date" name="date" rules={[{ required: true, message: "Please input your date" }]}>
-          <DatePicker />
-        </Form.Item>
-        <Form.Item label="time" name={"scheduleId"} rules={[{ required: true, message: "Please input your schedule" }]}>
+        <Row>
+          <Form.Item label="Date" name="date" rules={[{ required: true, message: "Please input your date" }]}>
+            <DatePicker />
+          </Form.Item>
+          <Form.Item
+            style={{
+              marginLeft: 10,
+            }}
+            label="Total Guest"
+            name="TotalGuest"
+            rules={[{ required: true, message: "Please input your TotalGuest" }]}
+          >
+            <Input type="number" />
+          </Form.Item>
+        </Row>
+
+        <Form.Item label="Time" name={"scheduleId"} rules={[{ required: true, message: "Please input your schedule" }]}>
           {/* <Calendar
             onChange={(value) => {
               console.log(value);

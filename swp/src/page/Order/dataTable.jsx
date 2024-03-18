@@ -69,7 +69,7 @@ const DataTable = () => {
               handleAccept(record.id);
             }}
           >
-            accept
+            Finish
           </Button>
           <Button
             onClick={() => {
@@ -82,6 +82,18 @@ const DataTable = () => {
       ),
     },
   ];
+
+  const handleRefuse = async () => {
+    const response = await api.get("/api/order/refuse");
+    console.table(response.data);
+    fetchData();
+  };
+
+  const handleAccept = async () => {
+    const response = await api.get("/api/order/accept");
+    console.table(response.data);
+    fetchData();
+  };
 
   useEffect(() => {
     const fetchData = async () => {

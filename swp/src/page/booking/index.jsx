@@ -90,7 +90,7 @@ const StepProgress = () => {
       // orderDetailDTOList: booking.services.map((item) => item.id),
       packageList: [booking.package.id],
       serviceList: booking.services.map((item) => item.id),
-      total: calcTotal() * 25000,
+      total: calcTotal(),
       scheduleId: booking?.information?.scheduleId,
       dateBook: booking?.information?.date,
     });

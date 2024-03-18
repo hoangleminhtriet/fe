@@ -45,11 +45,10 @@ const Package = ({ isSelected, data }) => {
         <Col span={19}>
           <h1>{data.name}</h1>
           <p>{data.description}</p>
-
           <ul>
             {data.services.map((item) => (
               <li>
-                <strong> {item.serviceName} </strong>- Price: ${item.price}
+                <strong> {item.serviceName} </strong>- Price: {item.price}VND
                 <Col span={8}>
                   <Image width={150} height={150} src={item.picture} />
                 </Col>
