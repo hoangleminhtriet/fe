@@ -22,7 +22,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: "Chart of revenue and customer statistics by month",
+      text: "Chart of order and revenue statistics by month",
     },
   },
 };
@@ -35,11 +35,11 @@ const labels = [
   "May",
   "June",
   "July",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 export function Chart() {
@@ -48,13 +48,13 @@ export function Chart() {
     labels,
     datasets: [
       {
-        label: "revenue",
+        label: "order",
         data: labels.map(() => Math.floor(Math.random() * 1000) + 1),
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
-        label: " customers",
+        label: " revenue",
         data: labels.map(() => Math.floor(Math.random() * 100) + 1),
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
@@ -69,13 +69,13 @@ export function Chart() {
       labels,
       datasets: [
         {
-          label: "revenue",
+          label: "order",
           data: response.data.monthlyOrder,
           borderColor: "rgb(255, 99, 132)",
           backgroundColor: "rgba(255, 99, 132, 0.5)",
         },
         {
-          label: " customers",
+          label: " revenue",
           data: response.data.monthlyRevenue,
           borderColor: "rgb(53, 162, 235)",
           backgroundColor: "rgba(53, 162, 235, 0.5)",

@@ -64,60 +64,62 @@ const DataTable = () => {
       key: "action",
       render: (_, record) => (
         <Space size="middle">
-          <Button
-            type="primary"
-            onClick={() => {
-              handleAccept(record.id);
-            }}
-          >
-            Finish
-          </Button>
-          <Button
-            onClick={() => {
-              handleRefuse(record.id);
-            }}
-          >
-            Refuse
-          </Button>
+          {record.status !== "ACCEPT" && record.status !== "REFUSE" && (
+            <Button
+              type="primary"
+              onClick={() => {
+                handleAccept(record);
+              }}
+            >
+              Finish
+            </Button>
+          )}
+          {record.status !== "REFUSE" && record.status !== "ACCEPT" && (
+            <Button
+              onClick={() => {
+                handleRefuse(record);
+              }}
+            >
+              Refuse
+            </Button>
+          )}
         </Space>
       ),
     },
   ];
 
-  const handleRefuse = async () => {
-    const response = await api.patch("/api/order/refuse");
+  const handleRefuse = async (record) => {
+    const response = await api.patch(`/api/order/refuse?orderId=${record.id}`);
     console.table(response.data);
     fetchData();
   };
-
-  const handleAccept = async () => {
-    const response = await api.patch("/api/order/accept");
+  const handleAccept = async (record) => {
+    const response = await api.patch(`/api/order/accept?orderId=${record.id}`);
     console.table(response.data);
     fetchData();
   };
-
+  const fetchData = async () => {
+    const response = await api.get("/api/order/orders");
+    console.table(response.data);
+    const responseData = response.data;
+    setData(
+      responseData
+        .sort((item1, item2) => new Date(item2.createAt) - new Date(item1.createAt))
+        .map((item) => {
+          console.log(item.orderDate);
+          return {
+            id: item.id,
+            Customer: item.account.fullName,
+            phone: item.account.phoneNumber,
+            //package: item.packageEntity.name,
+            totalPrice: item.total,
+            orderDate: formatDistance(new Date(item.createAt), new Date(), { addSuffix: true }),
+            status: item.status,
+          };
+        })
+    );
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await api.get("/api/order/orders");
-      console.table(response.data);
-      const responseData = response.data;
-      setData(
-        responseData
-          .sort((item1, item2) => new Date(item2.createAt) - new Date(item1.createAt))
-          .map((item) => {
-            console.log(item.orderDate);
-            return {
-              id: item.id,
-              Customer: item.account.fullName,
-              phone: item.account.phoneNumber,
-              //package: item.packageEntity.name,
-              totalPrice: item.total,
-              orderDate: formatDistance(new Date(item.createAt), new Date(), { addSuffix: true }),
-              status: item.status,
-            };
-          })
-      );
-    };
     fetchData();
   }, [rerenderKey, setRerenderKey]);
   return <Table columns={columns} dataSource={data} />;
