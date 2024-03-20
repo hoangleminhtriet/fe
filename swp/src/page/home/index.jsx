@@ -2,15 +2,18 @@ import { Button, Card, CardLink, Col, Image, Row } from "react-bootstrap";
 import Banner from "../../assets/image/home1.png";
 import "./index.scss";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../component/Header";
 import Overview from "../../component/Navbar/Overview";
 import Discount from "../../component/Navbar/Discount";
 import Service from "../../component/Navbar/Service";
 import Contact from "../../component/Navbar/Contact";
 import Footer from "../../component/Footer";
+import api from "../../config/axios";
 
 const Home = () => {
+  const [packages, setPackages] = useState([]);
+  const [profiles, setProfiles] = useState([]);
   const [showOverview, setShowOverview] = useState(false);
   const [showDiscount, setShowDiscount] = useState(false);
   const [showService, setShowService] = useState(false);
@@ -59,6 +62,28 @@ const Home = () => {
     }
   };
 
+  const fetchProfiles = async () => {
+    try {
+      const response = await api.get(`/profile/getHost`);
+      setProfiles(response.data);
+    } catch (error) {
+      console.error("Error fetching profiles:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfiles();
+  }, []);
+
+  const fetchPackage = async () => {
+    const response = await api.get("/package/getPackages");
+    setPackages(response.data);
+  };
+
+  useEffect(() => {
+    fetchPackage();
+  }, []);
+
   return (
     <div>
       <Header
@@ -87,15 +112,36 @@ const Home = () => {
       </Row>
 
       {/*Steps*/}
-      <Row
-        className="text-oder mt-3"
-        style={{ textAlign: "center", color: "#8d188d" }}
-      >
+      <Row className="text-oder mt-3" style={{ textAlign: "center", color: "#8d188d" }}>
         <Col>STEPS TO BOOK BIRTHDAY PARTY</Col>
       </Row>
 
-      {/* Package */}
       <Row style={{ alignItems: "center" }} className="m-5">
+        {/* Host */}
+        <Col className="steps-col">
+          <Card className="steps-card ">
+            <Card.Img
+              className="steps-img"
+              src="https://images.unsplash.com/photo-1455732063391-5f50f4df1854?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            />
+            <Card.Body className="steps-body">
+              <Card.Title>SELECT PARTY HOST</Card.Title>
+              <Card.Text className="steps-content">
+                "Host Party" offers professional birthday party planning services to ensure a memorable celebration.
+                With creative design, diverse planning options, and dedicated staff, we tailor each event to your
+                preferences. Let us handle the details so you can enjoy a stress-free and unforgettable birthday
+                experience. Contact us today to start planning your perfect party!
+              </Card.Text>
+
+              <Link to="/host">
+                <Card.Text className="link-name" as="a" href="#birthday-packages">
+                  Let’s see the list Party Host!
+                </Card.Text>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        {/* Package */}
         <Col className="steps-col">
           <Card className="steps-card ">
             <Card.Img
@@ -105,11 +151,9 @@ const Home = () => {
             <Card.Body className="steps-body">
               <Card.Title>SELECT PREFERENCE & PACKAGE</Card.Title>
               <Card.Text className="steps-content">
-                The Big Box offers options to book your party during operational
-                hours or as a private event. We have predefined party bundles
-                for you to choose from. Select what meets best for your needs.
-                Consider upgrading to infinite pass on a discounted price for
-                unlimited fun extravaganza!
+                The Big Box offers options to book your party during operational hours or as a private event. We have
+                predefined party bundles for you to choose from. Select what meets best for your needs. Consider
+                upgrading to infinite pass on a discounted price for unlimited fun extravaganza!
               </Card.Text>
               <Card.Link className="link-name" as="a" href="#birthday-packages">
                 Let’s see the Packages!
@@ -122,23 +166,14 @@ const Home = () => {
 
         <Col className="steps-col">
           <Card className="steps-card">
-            <Card.Img
-              className="steps-img"
-              src="https://thebigbox.ca/wp-content/uploads/2020/07/food.jpg"
-            />
+            <Card.Img className="steps-img" src="https://thebigbox.ca/wp-content/uploads/2020/07/food.jpg" />
             <Card.Body className="steps-body">
               <Card.Title>PICK A FOOD COMBO</Card.Title>
               <Card.Text className="steps-content">
-                Choose from our menu the variety of food options available to
-                cater to your guests of all ages. We do offer gluten-friendly
-                and Halal options for families with dietary/religious
-                restrictions.
+                Choose from our menu the variety of food options available to cater to your guests of all ages. We do
+                offer gluten-friendly and Halal options for families with dietary/religious restrictions.
               </Card.Text>
-              <Card.Link
-                className="link-name"
-                as="a"
-                href="#check-food-options"
-              >
+              <Card.Link className="link-name" as="a" href="#check-food-options">
                 Check Food Options Now!
               </Card.Link>
             </Card.Body>
@@ -149,18 +184,13 @@ const Home = () => {
 
         <Col className="steps-col">
           <Card className="steps-card">
-            <Card.Img
-              className="steps-img"
-              src="https://thebigbox.ca/wp-content/uploads/2020/07/birthday2.jpg"
-            />
+            <Card.Img className="steps-img" src="https://thebigbox.ca/wp-content/uploads/2020/07/birthday2.jpg" />
             <Card.Body className="steps-body">
               <Card.Title>RESERVE YOUR SPOT ONLINE</Card.Title>
               <Card.Text className="steps-content">
-                Once you select your best fit package and food combo, you are
-                now ready to book your birthday online by clicking the link
-                below. After deposit payment, your spot will be reserved and a
-                confirmation email will be sent to you with all the booking
-                details.
+                Once you select your best fit package and food combo, you are now ready to book your birthday online by
+                clicking the link below. After deposit payment, your spot will be reserved and a confirmation email will
+                be sent to you with all the booking details.
               </Card.Text>
               <Card.Link className="link-name" as="a" href="/host">
                 Book Now!
@@ -194,10 +224,7 @@ const Home = () => {
       </Row>
 
       {/*Party*/}
-      <Row
-        className="text-oder mt-3"
-        style={{ textAlign: "center", fontSize: "400%" }}
-      >
+      <Row className="text-oder mt-3" style={{ textAlign: "center", fontSize: "400%" }}>
         <Col style={{ color: "#8d188d" }}>PARTY PACKAGES</Col>
       </Row>
 
@@ -221,17 +248,10 @@ const Home = () => {
                 ULTIMATE
               </Card.Title>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
-                <Card
-                  className="card-text-party"
-                  style={{ textAlign: "center", padding: "10px" }}
-                >
+                <Card className="card-text-party" style={{ textAlign: "center", padding: "10px" }}>
                   <Card.Text className="text-party1">$649.99</Card.Text>
-                  <Card.Text className="text-party2">
-                    + GST for 10 participants
-                  </Card.Text>
-                  <Card.Text className="text-party2">
-                    $54.99 per additional participant
-                  </Card.Text>
+                  <Card.Text className="text-party2">+ GST for 10 participants</Card.Text>
+                  <Card.Text className="text-party2">$54.99 per additional participant</Card.Text>
                 </Card>
               </Row>
               <Card.Text className="party-content">
@@ -240,9 +260,7 @@ const Home = () => {
                   <li>Includes up to 20 adult admissions to Leisure Lagoon</li>
                   <li>Private party space for 90 minutes</li>
                   <li>Unlimited Play time before & after the party time</li>
-                  <li>
-                    1000 E-tickets for the birthday child to redeem Prizes
-                  </li>
+                  <li>1000 E-tickets for the birthday child to redeem Prizes</li>
                   <li>40 arcade credits for each child</li>
                   <li>1 bumper car ride for each child</li>
                   <li>1 Virtual box ride for each child</li>
@@ -282,17 +300,10 @@ const Home = () => {
                 FANTASTIC
               </Card.Title>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
-                <Card
-                  className="card-text-party"
-                  style={{ textAlign: "center", padding: "10px" }}
-                >
+                <Card className="card-text-party" style={{ textAlign: "center", padding: "10px" }}>
                   <Card.Text className="text-party1">$399.99</Card.Text>
-                  <Card.Text className="text-party2">
-                    + GST for 10 participants
-                  </Card.Text>
-                  <Card.Text className="text-party2">
-                    $32.99 per additional participant
-                  </Card.Text>
+                  <Card.Text className="text-party2">+ GST for 10 participants</Card.Text>
+                  <Card.Text className="text-party2">$32.99 per additional participant</Card.Text>
                 </Card>
               </Row>
               <Card.Text className="party-content">
@@ -338,17 +349,10 @@ const Home = () => {
                 CLASSIC
               </Card.Title>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
-                <Card
-                  className="card-text-party"
-                  style={{ textAlign: "center", padding: "10px" }}
-                >
+                <Card className="card-text-party" style={{ textAlign: "center", padding: "10px" }}>
                   <Card.Text className="text-party1">$299.99</Card.Text>
-                  <Card.Text className="text-party2">
-                    + GST for 10 participants
-                  </Card.Text>
-                  <Card.Text className="text-party2">
-                    $22.99 per additional participant
-                  </Card.Text>
+                  <Card.Text className="text-party2">+ GST for 10 participants</Card.Text>
+                  <Card.Text className="text-party2">$22.99 per additional participant</Card.Text>
                 </Card>
               </Row>
               <Card.Text className="party-content">
@@ -377,10 +381,7 @@ const Home = () => {
       {/*Topic*/}
 
       {/* Party Pagkages */}
-      <Card.Title
-        className="m-5"
-        style={{ textAlign: "center", color: "#8d188d", fontSize: "450%" }}
-      >
+      <Card.Title className="m-5" style={{ textAlign: "center", color: "#8d188d", fontSize: "450%" }}>
         PARTY PACKAGES
       </Card.Title>
       <Row className="m-4" id="check-food-options">
@@ -395,14 +396,11 @@ const Home = () => {
             <Card.Body className="food-home-body">
               <Card.Title className="title-food-home">Pizza Combo</Card.Title>
               <Card.Text>
-                3‐12″ Pizza & 2 Jugs of Pop (Choice of Cheese, Pepperoni,
-                Hawaiian, Chicken, Beef or Veggie)
+                3‐12″ Pizza & 2 Jugs of Pop (Choice of Cheese, Pepperoni, Hawaiian, Chicken, Beef or Veggie)
               </Card.Text>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="food-price-home">
-                  <Card.Text className="mb-0 price-title1-home">
-                    $15.95
-                  </Card.Text>
+                  <Card.Text className="mb-0 price-title1-home">$15.95</Card.Text>
                   <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
@@ -419,17 +417,11 @@ const Home = () => {
               src="https://thebigbox.ca/wp-content/uploads/2020/04/tender-fries.png"
             />
             <Card.Body className="food-home-body">
-              <Card.Title className="title-food-home">
-                Chicken Tenders Combo
-              </Card.Title>
-              <Card.Text>
-                20 Chicken Tenders, 6 Trays of Fries & 2 Jugs of Pop/Juice.
-              </Card.Text>
+              <Card.Title className="title-food-home">Chicken Tenders Combo</Card.Title>
+              <Card.Text>20 Chicken Tenders, 6 Trays of Fries & 2 Jugs of Pop/Juice.</Card.Text>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="food-price-home">
-                  <Card.Text className="mb-0 price-title1-home">
-                    $69.99
-                  </Card.Text>
+                  <Card.Text className="mb-0 price-title1-home">$69.99</Card.Text>
                   <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
@@ -446,18 +438,14 @@ const Home = () => {
               src="https://thebigbox.ca/wp-content/uploads/2020/04/sandwich-platter-400x400.png"
             />
             <Card.Body className="food-home-body">
-              <Card.Title className="title-food-home">
-                Sandwich Combo
-              </Card.Title>
+              <Card.Title className="title-food-home">Sandwich Combo</Card.Title>
               <Card.Text>
-                7 Sandwiches with options of Ham, Turkey, Chicken, Roast Beef &
-                Vegetarian. with 2 jugs of Pop also included.
+                7 Sandwiches with options of Ham, Turkey, Chicken, Roast Beef & Vegetarian. with 2 jugs of Pop also
+                included.
               </Card.Text>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="food-price-home">
-                  <Card.Text className="mb-0 price-title1-home">
-                    $69.99
-                  </Card.Text>
+                  <Card.Text className="mb-0 price-title1-home">$69.99</Card.Text>
                   <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
@@ -475,15 +463,10 @@ const Home = () => {
             />
             <Card.Body className="food-home-body">
               <Card.Title className="title-food-home">Fruit Platter</Card.Title>
-              <Card.Text>
-                A variety of freshly cut seasonal fruits served in a family
-                platter.
-              </Card.Text>
+              <Card.Text>A variety of freshly cut seasonal fruits served in a family platter.</Card.Text>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="food-price-home">
-                  <Card.Text className="mb-0 price-title1-home">
-                    $35.00
-                  </Card.Text>
+                  <Card.Text className="mb-0 price-title1-home">$35.00</Card.Text>
                   <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
@@ -500,18 +483,11 @@ const Home = () => {
               src="https://thebigbox.ca/wp-content/uploads/2020/04/veggie.png"
             />
             <Card.Body className="food-home-body">
-              <Card.Title className="title-food-home">
-                Veggie Platter
-              </Card.Title>
-              <Card.Text>
-                A variety of freshly procured seasonal vegetables served in a
-                family platter.
-              </Card.Text>
+              <Card.Title className="title-food-home">Veggie Platter</Card.Title>
+              <Card.Text>A variety of freshly procured seasonal vegetables served in a family platter.</Card.Text>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="food-price-home">
-                  <Card.Text className="mb-0 price-title1-home">
-                    $35.00
-                  </Card.Text>
+                  <Card.Text className="mb-0 price-title1-home">$35.00</Card.Text>
                   <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
@@ -528,18 +504,14 @@ const Home = () => {
               src="https://thebigbox.ca/wp-content/uploads/2020/04/cookie_platter-4-400x400.png"
             />
             <Card.Body className="food-home-body">
-              <Card.Title className="title-food-home">
-                Cookies Platter
-              </Card.Title>
+              <Card.Title className="title-food-home">Cookies Platter</Card.Title>
               <Card.Text>
-                A delicious assortment of cookies. Flavors include Chocolate
-                Chip, Double Chocolate, Oatmeal & Oatmeal Raisin.
+                A delicious assortment of cookies. Flavors include Chocolate Chip, Double Chocolate, Oatmeal & Oatmeal
+                Raisin.
               </Card.Text>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="food-price-home">
-                  <Card.Text className="mb-0 price-title1-home">
-                    $40.00
-                  </Card.Text>
+                  <Card.Text className="mb-0 price-title1-home">$40.00</Card.Text>
                   <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
@@ -547,11 +519,9 @@ const Home = () => {
           </Card>
         </Col>
 
-        <Card.Text
-          style={{ textAlign: "center", marginTop: "20px", color: "#8d188d" }}
-        >
-          *Other food options from The Bite Box Cafe can be made available upon
-          request<CardLink href="/food"> (View our full menu)</CardLink>
+        <Card.Text style={{ textAlign: "center", marginTop: "20px", color: "#8d188d" }}>
+          *Other food options from The Bite Box Cafe can be made available upon request
+          <CardLink href="/food"> (View our full menu)</CardLink>
         </Card.Text>
       </Row>
 

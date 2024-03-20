@@ -49,7 +49,7 @@ const Service = ({ isSelected, data }) => {
       <img src={data.picture} />
       <p>{data.serviceName}</p>
       <p>
-        <strong style={{ color: "red" }}>VND{data.price}</strong>
+        <strong style={{ color: "red" }}>{data.price} VND</strong>
       </p>
     </div>
   );

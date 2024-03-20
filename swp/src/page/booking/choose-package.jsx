@@ -22,9 +22,11 @@ export const ChoosePackage = () => {
 
   return (
     <>
-      {packages.map((item) => (
-        <Package data={item} isSelected={item?.id === selectedPackages?.id} />
-      ))}
+      {packages
+        .filter((item) => !item.deleted)
+        .map((item) => (
+          <Package data={item} isSelected={item?.id === selectedPackages?.id} />
+        ))}
     </>
   );
 };

@@ -8,12 +8,15 @@ import Discount from "../../component/Navbar/Discount";
 import Service from "../../component/Navbar/Service";
 import Contact from "../../component/Navbar/Contact";
 import Footer from "../../component/Footer";
+import HeaderLogin from "../../component/HeaderLogin";
+import { useSelector } from "react-redux";
 
 const Food = () => {
   const [showOverview, setShowOverview] = useState(false);
   const [showDiscount, setShowDiscount] = useState(false);
   const [showService, setShowService] = useState(false);
   const [showContact, setShowContact] = useState(false);
+  const user = useSelector((store) => store.user);
 
   const hideAll = () => {
     setShowOverview(false);
@@ -57,22 +60,30 @@ const Food = () => {
       setShowContact(true);
     }
   };
+
   return (
     <div>
-      <Header
-        toggleOverview={toggleOverview}
-        toggleDiscount={toggleDiscount}
-        toggleService={toggleService}
-        toggleContact={toggleContact}
-      />
+      {user ? (
+        <HeaderLogin
+          toggleOverview={toggleOverview}
+          toggleDiscount={toggleDiscount}
+          toggleService={toggleService}
+          toggleContact={toggleContact}
+        />
+      ) : (
+        <Header
+          toggleOverview={toggleOverview}
+          toggleDiscount={toggleDiscount}
+          toggleService={toggleService}
+          toggleContact={toggleContact}
+        />
+      )}
       {showOverview && <Overview />}
       {showDiscount && <Discount />}
       {showService && <Service />}
       {showContact && <Contact />}
       <Container className="mt-3">
-        <h1 style={{ textAlign: "center", color: "#8d188d" }}>
-          FPTBOOKING MENU
-        </h1>
+        <h1 style={{ textAlign: "center", color: "#8d188d" }}>FPTBOOKING MENU</h1>
         <Row className="test1">
           {/*Food1*/}
           <Col className="m-3" style={{ textAlign: "center" }}>
@@ -83,9 +94,7 @@ const Food = () => {
                 src="https://thebigbox.ca/wp-content/uploads/2020/04/traditional-cheese-pizza.png"
               />
               <Card.Body className="food-card-body">
-                <Card.Title className="title-food">
-                  Traditional Pizza
-                </Card.Title>
+                <Card.Title className="title-food">Traditional Pizza</Card.Title>
                 <Card.Text>Pepperoni / Hawaiian / Beef / Chicken</Card.Text>
                 <Row
                   style={{
@@ -104,9 +113,7 @@ const Food = () => {
                     <Card.Text className="price-title2">+ GST</Card.Text>
                   </Card>
                 </Row>
-                <Card.Text className="mt-1">
-                  Gluten-friendly option available
-                </Card.Text>
+                <Card.Text className="mt-1">Gluten-friendly option available</Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -119,9 +126,7 @@ const Food = () => {
                 src="https://thebigbox.ca/wp-content/uploads/2020/04/traditional-cheese-pizza-1.png"
               />
               <Card.Body className="food-card-body">
-                <Card.Title className="title-food">
-                  Traditional Pizza
-                </Card.Title>
+                <Card.Title className="title-food">Traditional Pizza</Card.Title>
                 <Card.Text>Vegetarian / Cheese</Card.Text>
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price" style={{ marginRight: "5px" }}>
@@ -135,9 +140,7 @@ const Food = () => {
                     <Card.Text className="price-title2">+ GST</Card.Text>
                   </Card>
                 </Row>
-                <Card.Text className="mt-1">
-                  Gluten-friendly option available
-                </Card.Text>
+                <Card.Text className="mt-1">Gluten-friendly option available</Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -152,8 +155,7 @@ const Food = () => {
               <Card.Body className="food-card-body">
                 <Card.Title className="title-food">Chicken Wings</Card.Title>
                 <Card.Text>
-                  8 pieces served with veggies & ranch Hot / Teriyaki / Honey
-                  Garlic / Salt & Pepper / Plain
+                  8 pieces served with veggies & ranch Hot / Teriyaki / Honey Garlic / Salt & Pepper / Plain
                 </Card.Text>
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">
@@ -161,9 +163,7 @@ const Food = () => {
                     <Card.Text className="price-title2">+ GST</Card.Text>
                   </Card>
                 </Row>
-                <Card.Text className="mt-1">
-                  Gluten-friendly option available
-                </Card.Text>
+                <Card.Text className="mt-1">Gluten-friendly option available</Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -180,29 +180,20 @@ const Food = () => {
               />
               <Card.Body className="food-card-body">
                 <Card.Title className="title-food">Chicken Tenders</Card.Title>
-                <Card.Text>
-                  Sweet n’ Sour, Honey Mustard & BBQ Sauces available to choose
-                  from.
-                </Card.Text>
+                <Card.Text>Sweet n’ Sour, Honey Mustard & BBQ Sauces available to choose from.</Card.Text>
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price" style={{ marginRight: "5px" }}>
-                    <Card.Title className="price-detail">
-                      Tenders only
-                    </Card.Title>
+                    <Card.Title className="price-detail">Tenders only</Card.Title>
                     <Card.Text className="mb-0 price-title1">$6.95</Card.Text>
                     <Card.Text className="price-title2">+ GST</Card.Text>
                   </Card>
                   <Card className="food-price">
-                    <Card.Title className="price-detail">
-                      w/ Fries & Drink
-                    </Card.Title>
+                    <Card.Title className="price-detail">w/ Fries & Drink</Card.Title>
                     <Card.Text className="mb-0 price-title1">$10.95</Card.Text>
                     <Card.Text className="price-title2">+ GST</Card.Text>
                   </Card>
                 </Row>
-                <Card.Text className="mt-1">
-                  Gluten-friendly option available
-                </Card.Text>
+                <Card.Text className="mt-1">Gluten-friendly option available</Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -216,22 +207,15 @@ const Food = () => {
               />
               <Card.Body className="food-card-body">
                 <Card.Title className="title-food">Hot Dog</Card.Title>
-                <Card.Text>
-                  Exotic Beef Hot Dog served in a slit of the partially sliced
-                  bun.
-                </Card.Text>
+                <Card.Text>Exotic Beef Hot Dog served in a slit of the partially sliced bun.</Card.Text>
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price" style={{ marginRight: "5px" }}>
-                    <Card.Title className="price-detail">
-                      Hot dog only
-                    </Card.Title>
+                    <Card.Title className="price-detail">Hot dog only</Card.Title>
                     <Card.Text className="mb-0 price-title1">$4.50</Card.Text>
                     <Card.Text className="price-title2">+ GST</Card.Text>
                   </Card>
                   <Card className="food-price">
-                    <Card.Title className="price-detail">
-                      w/ Fries & Drink
-                    </Card.Title>
+                    <Card.Title className="price-detail">w/ Fries & Drink</Card.Title>
                     <Card.Text className="mb-0 price-title1  ">$9.90</Card.Text>
                     <Card.Text className="price-title2">+ GST</Card.Text>
                   </Card>
@@ -250,15 +234,10 @@ const Food = () => {
               <Card.Body className="food-card-body">
                 <Card.Title className="title-food">Nachos Platter</Card.Title>
                 <Card.Text>**THIS ITEM IS CURRENTLY UNAVAILABLE**</Card.Text>
-                <Card.Text>
-                  Add a delicious meat topping. Options include Fajita Chicken
-                  or Beef.
-                </Card.Text>
+                <Card.Text>Add a delicious meat topping. Options include Fajita Chicken or Beef.</Card.Text>
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">
-                    <Card.Text style={{ fontWeight: "bold", fontSize: "20px" }}>
-                      N/A
-                    </Card.Text>
+                    <Card.Text style={{ fontWeight: "bold", fontSize: "20px" }}>N/A</Card.Text>
                   </Card>
                 </Row>
                 <Card.Text>$1.99 + GST per topping</Card.Text>
@@ -317,9 +296,7 @@ const Food = () => {
                 src="https://thebigbox.ca/wp-content/uploads/2020/04/fruit-plus-veggie.png"
               />
               <Card.Body>
-                <Card.Title className="title-food">
-                  Veggie / Friut Cups
-                </Card.Title>
+                <Card.Title className="title-food">Veggie / Friut Cups</Card.Title>
 
                 <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                   <Card className="food-price">

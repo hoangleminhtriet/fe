@@ -4,8 +4,10 @@ import { PlusOutlined } from "@ant-design/icons";
 import {
   Button,
   Cascader,
+  Checkbox,
   Col,
   DatePicker,
+  Flex,
   Form,
   Input,
   InputNumber,
@@ -20,6 +22,7 @@ import { Link, useNavigate } from "react-router-dom";
 import uploadFile from "../../utils/upload";
 import api from "../../config/axios";
 import { toast } from "react-toastify";
+import PolicyButton from "./policy";
 const { RangePicker } = DatePicker;
 const formItemLayout = {
   labelCol: {
@@ -79,9 +82,7 @@ const Register = () => {
     }
     setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
-    setPreviewTitle(
-      file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
-    );
+    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf("/") + 1));
   };
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   const onFinish = async (values) => {
@@ -257,6 +258,12 @@ const Register = () => {
             <Input />
           </Form.Item>
 
+          <Flex justifyContent="center" align="center" mb={5}>
+            <Checkbox w="fit-content" size="lg" fontWeight="normal">
+              Agree to Terms and Conditions
+            </Checkbox>
+            &nbsp; <PolicyButton />
+          </Flex>
           <Form.Item>
             <p>
               Have an account? <Link to={"/login"}>Sign in</Link>
@@ -269,12 +276,7 @@ const Register = () => {
           </Form.Item>
         </Form>
       </div>
-      <Modal
-        open={previewOpen}
-        title={previewTitle}
-        footer={null}
-        onCancel={handleCancel}
-      >
+      <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
         <img
           alt="example"
           style={{

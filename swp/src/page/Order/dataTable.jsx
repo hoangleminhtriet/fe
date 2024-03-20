@@ -51,6 +51,7 @@ const DataTable = () => {
         if (record.status === "deposit") {
           color = "processing";
         }
+
         return (
           <Tag color={color} key={`status-${record.id}-${record.status}`}>
             {record.status?.toUpperCase()}
@@ -84,13 +85,13 @@ const DataTable = () => {
   ];
 
   const handleRefuse = async () => {
-    const response = await api.get("/api/order/refuse");
+    const response = await api.patch("/api/order/refuse");
     console.table(response.data);
     fetchData();
   };
 
   const handleAccept = async () => {
-    const response = await api.get("/api/order/accept");
+    const response = await api.patch("/api/order/accept");
     console.table(response.data);
     fetchData();
   };
