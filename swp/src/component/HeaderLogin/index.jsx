@@ -44,7 +44,7 @@ const HeaderLogin = ({ toggleOverview, toggleDiscount, toggleService, toggleCont
   return (
     <BootstrapNavbar expand="lg" className="main-nav">
       <Container>
-        <NavLink className="button-header" to="/">
+        <NavLink className="button-header" to="/customer">
           <img className="logo-nav" alt="" src={Logo} />
         </NavLink>
 

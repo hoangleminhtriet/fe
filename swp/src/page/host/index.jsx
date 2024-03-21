@@ -40,7 +40,7 @@ const ChooseProfile = () => {
 
       <Link
         as={RouterLink}
-        to="/"
+        to="/customer"
         style={{
           color: "red",
           fontSize: 15,

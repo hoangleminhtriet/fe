@@ -2,16 +2,19 @@ import { Button, Card, CardLink, Col, Image, Row } from "react-bootstrap";
 import Banner from "../../assets/image/home1.png";
 import "./index.scss";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../component/Header";
 import Overview from "../../component/Navbar/Overview";
 import Discount from "../../component/Navbar/Discount";
 import Service from "../../component/Navbar/Service";
 import Contact from "../../component/Navbar/Contact";
 import Footer from "../../component/Footer";
+import api from "../../config/axios";
 import HeaderLogin from "../../component/HeaderLogin";
 
 const HomeLogin = () => {
+  const [packages, setPackages] = useState([]);
+  const [profiles, setProfiles] = useState([]);
   const [showOverview, setShowOverview] = useState(false);
   const [showDiscount, setShowDiscount] = useState(false);
   const [showService, setShowService] = useState(false);
@@ -60,6 +63,28 @@ const HomeLogin = () => {
     }
   };
 
+  const fetchProfiles = async () => {
+    try {
+      const response = await api.get(`/profile/getHost`);
+      setProfiles(response.data);
+    } catch (error) {
+      console.error("Error fetching profiles:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfiles();
+  }, []);
+
+  const fetchPackage = async () => {
+    const response = await api.get("/package/getPackages");
+    setPackages(response.data);
+  };
+
+  useEffect(() => {
+    fetchPackage();
+  }, []);
+
   return (
     <div>
       <HeaderLogin
@@ -92,8 +117,32 @@ const HomeLogin = () => {
         <Col>STEPS TO BOOK BIRTHDAY PARTY</Col>
       </Row>
 
-      {/* Package */}
       <Row style={{ alignItems: "center" }} className="m-5">
+        {/* Host */}
+        <Col className="steps-col">
+          <Card className="steps-card ">
+            <Card.Img
+              className="steps-img"
+              src="https://images.unsplash.com/photo-1455732063391-5f50f4df1854?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            />
+            <Card.Body className="steps-body">
+              <Card.Title>SELECT PARTY HOST</Card.Title>
+              <Card.Text className="steps-content">
+                "Host Party" offers professional birthday party planning services to ensure a memorable celebration.
+                With creative design, diverse planning options, and dedicated staff, we tailor each event to your
+                preferences. Let us handle the details so you can enjoy a stress-free and unforgettable birthday
+                experience. Contact us today to start planning your perfect party!
+              </Card.Text>
+
+              <Link to="/host">
+                <Card.Text className="link-name" as="a" href="#birthday-packages">
+                  Let’s see the list Party Host!
+                </Card.Text>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        {/* Package */}
         <Col className="steps-col">
           <Card className="steps-card ">
             <Card.Img

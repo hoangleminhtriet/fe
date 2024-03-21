@@ -101,7 +101,7 @@ const Home = () => {
         <Col className="text-booking">
           Booking <strong>Birthday</strong> For Kids.
           <Col>
-            <Link to="/host">
+            <Link to="/login">
               <Button className="mt-5">Book Now!!</Button>
             </Link>
           </Col>
