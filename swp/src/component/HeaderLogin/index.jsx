@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/features/userSlice";
 import { useEffect } from "react";
 import { Avatar, Dropdown, Row } from "antd";
+import { reset } from "../../redux/features/bookingSlice";
 
 const HeaderLogin = ({ toggleOverview, toggleDiscount, toggleService, toggleContact }) => {
   const user = useSelector((store) => store.user);
@@ -27,6 +28,7 @@ const HeaderLogin = ({ toggleOverview, toggleDiscount, toggleService, toggleCont
       label: (
         <div
           onClick={() => {
+            dispatch(reset());
             dispatch(logout());
           }}
         >

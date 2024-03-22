@@ -41,22 +41,26 @@ const Service = ({ data, fetchPackage }) => {
   };
 
   const handleDelete = async (id) => {
-    try {
-      const response = await api.delete(`/service/deleteService/${id}`);
-      console.log(response.data);
-
-      const newData = dataSource.filter((service) => service.id != id);
-      setDataSource(newData);
-      fetchPackage();
-      message.success("Deleted successfully");
-    } catch (error) {
-      console.error("Error deleting packageID:", error);
-      message.error("Failed to delete packageID");
-    }
+    Modal.confirm({
+      title: "Confirm",
+      content: "Are you sure you want to delete this Service?",
+      onOk: async () => {
+        try {
+          const response = await api.delete(`/service/deleteService/${id}`);
+          console.log(response.data);
+          const newData = dataSource.filter((service) => service.id !== id);
+          setDataSource(newData);
+          fetchPackage();
+          message.success("Deleted successfully");
+          // Cập nhật trạng thái của modal thành false sau khi xóa thành công
+          setModalVisible(false);
+        } catch (error) {
+          console.error("Error deleting packageID:", error);
+          message.error("Failed to delete packageID");
+        }
+      },
+    });
   };
-  useEffect(() => {
-    fetchPackage();
-  }, []);
 
   const handleModalCancel = () => {
     setModalVisible(false);
@@ -405,6 +409,22 @@ const Package = () => {
   useEffect(() => {
     fetchPackage();
   }, []);
+  const showDeleteConfirm = (id) => {
+    Modal.confirm({
+      title: "Confirm",
+      content: "Are you sure you want to delete this Package?",
+      onOk: async () => {
+        try {
+          await api.delete(`/package/deletePackage/${id}`);
+          fetchPackage();
+          message.success("Deleted successfully");
+        } catch (error) {
+          console.error("Error deleting packageID:", error);
+          message.error("Failed to delete packageID");
+        }
+      },
+    });
+  };
 
   return (
     <div>
@@ -444,14 +464,7 @@ const Package = () => {
                     >
                       Edit
                     </Button>
-                    <Button
-                      type="primary"
-                      danger
-                      onClick={async () => {
-                        await api.delete(`/package/deletePackage/${item.id}`);
-                        fetchPackage();
-                      }}
-                    >
+                    <Button type="primary" danger onClick={() => showDeleteConfirm(item.id)}>
                       Delete
                     </Button>
                   </Col>

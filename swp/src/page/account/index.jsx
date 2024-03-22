@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table, Breadcrumb, Space, message, Tag, Avatar } from "antd";
+import { Button, Table, Breadcrumb, Space, message, Tag, Avatar, Modal } from "antd";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import api from "../../config/axios";
 import { toast } from "react-toastify";
@@ -68,17 +68,23 @@ const Account = () => {
   }, []);
 
   const handleDelete = async (record) => {
-    try {
-      const response = await api.delete(`profile/deleteProfile/${record.id}`);
-      console.log(response.data);
-      const newData = dataSource.filter((item) => !item.deleted);
-      setDataSource(newData);
-      toast.success("Delete successfully");
-      fetchAccount();
-    } catch (error) {
-      console.error("Error deleting account:", error);
-      message.error("Failed to delete account");
-    }
+    Modal.confirm({
+      title: "Confirm",
+      content: "Are you sure you want to delete this Account?",
+      onOk: async () => {
+        try {
+          const response = await api.delete(`profile/deleteProfile/${record.id}`);
+          console.log(response.data);
+          const newData = dataSource.filter((item) => item.id !== record.id);
+          setDataSource(newData);
+          toast.success("Delete successfully");
+          fetchAccount();
+        } catch (error) {
+          console.error("Error deleting account:", error);
+          message.error("Failed to delete account");
+        }
+      },
+    });
   };
 
   return (

@@ -81,16 +81,6 @@ export const FillInformation = ({ form, setCurrent, current }) => {
           <Form.Item label="Date" name="date" rules={[{ required: true, message: "Please input your date" }]}>
             <DatePicker />
           </Form.Item>
-          <Form.Item
-            style={{
-              marginLeft: 10,
-            }}
-            label="Total Guest"
-            name="TotalGuest"
-            rules={[{ required: true, message: "Please input your TotalGuest" }]}
-          >
-            <Input type="number" />
-          </Form.Item>
         </Row>
 
         <Form.Item label="Time" name={"scheduleId"} rules={[{ required: true, message: "Please input your schedule" }]}>

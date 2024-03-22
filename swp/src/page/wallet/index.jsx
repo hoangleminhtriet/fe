@@ -44,7 +44,7 @@ const Wallet = () => {
       title: "Total",
       dataIndex: "money",
       render: (value, record) => {
-        if (record.to && record.to.account && record.to.account.id == user.id) {
+        if (record.to && record.to.account && record.to.account.id == user?.id) {
           return <Tag color="green">{`+${formatCurrency(value)}`}</Tag>;
         } else {
           return <Tag color="red">{`-${formatCurrency(value)}`}</Tag>;

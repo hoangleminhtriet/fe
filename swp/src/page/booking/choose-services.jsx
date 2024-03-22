@@ -28,16 +28,18 @@ export const ChooseServices = () => {
   return (
     <div className="services">
       <Row gutter={[12, 12]}>
-        {services.map((item) => (
-          <Col
-            span={4}
-            onClick={() => {
-              handleSelectService(item);
-            }}
-          >
-            <Service data={item} isSelected={selectedServices?.map((item) => item.id).includes(item.id)} />
-          </Col>
-        ))}
+        {services
+          .filter((item) => !item.isDeleted)
+          .map((item) => (
+            <Col
+              span={4}
+              onClick={() => {
+                handleSelectService(item);
+              }}
+            >
+              <Service data={item} isSelected={selectedServices?.map((item) => item.id).includes(item.id)} />
+            </Col>
+          ))}
       </Row>
     </div>
   );

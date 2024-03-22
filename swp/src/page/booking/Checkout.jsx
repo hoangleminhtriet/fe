@@ -178,6 +178,7 @@ const Checkout = ({ setCartItemsIndex }) => {
   cartItems.forEach((item) => {
     subtotal += item.price * item.quantity;
   });
+
   return (
     <Flex w="full" mt="50px" gap={10}>
       <Box w="full">
@@ -230,7 +231,9 @@ const Checkout = ({ setCartItemsIndex }) => {
                         )}
                       </Flex>
                     </Td>
-                    <Td>${(item.price * item.quantity).toFixed(2)}</Td>
+                    <Td>
+                      {(item.price * item.quantity).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
+                    </Td>
                     <Td>
                       {item.type !== "package" && (
                         <Button
@@ -249,7 +252,7 @@ const Checkout = ({ setCartItemsIndex }) => {
           </Table>
         </TableContainer>
         <Text textAlign="right" mt={10}>
-          Total: ${subtotal.toFixed(2)}
+          Total: {subtotal.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
         </Text>
         <Divider my={10} />
       </Box>
@@ -299,6 +302,7 @@ const Checkout = ({ setCartItemsIndex }) => {
             w="200px"
             mb={10}
           />
+
           <FormLabel fontSize="15px">Date</FormLabel>
           <DatePicker
             disabled
