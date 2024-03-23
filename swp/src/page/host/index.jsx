@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, List } from "antd";
+import { Avatar, Card } from "antd";
 import { Link } from "react-router-dom"; // Import Link for navigation
 import api from "../../config/axios";
 import { Link as RouterLink } from "react-router-dom";
@@ -51,21 +51,41 @@ const ChooseProfile = () => {
         Back to home &gt;
       </Link>
 
-      <List
-        itemLayout="horizontal"
-        dataSource={profiles}
-        renderItem={(profile, index) => (
-          <Link to={`/booking/${profile.id}`}>
-            <List.Item onClick={() => handleProfileSelect(profile)}>
-              <List.Item.Meta
-                avatar={<Avatar src={profile.avatar} />}
-                title={<a>{profile.fullName}</a>}
-                description={<a>{profile.email}</a>}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap",
+          maxWidth: "1500px", // Set maximum width for the container
+          margin: "0 auto", // Center the container
+        }}
+      >
+        {profiles.map((profile, index) => (
+          <Link key={index} to={`/booking/${profile.id}`}>
+            <Card
+              style={{
+                width: 300,
+                height: 150,
+                margin: 20,
+                transition: "box-shadow 0.3s",
+                boxShadow: "none",
+                borderRadius: 10,
+              }}
+              hoverable
+              onClick={() => handleProfileSelect(profile)}
+              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 10px lightblue")}
+              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+            >
+              <Card.Meta
+                avatar={<Avatar src={profile.avatar} size={90} style={{ marginRight: 20 }} />}
+                title={<div style={{ marginBottom: 10 }}>{profile.fullName}</div>}
+                description={profile.email}
               />
-            </List.Item>
+            </Card>
           </Link>
-        )}
-      />
+        ))}
+      </div>
     </>
   );
 };
