@@ -2,6 +2,7 @@ import { Row, Col, Image, Form, Button, Container } from "react-bootstrap";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import Logo from "../../assets/image/logo.png";
+import { Flex } from "antd";
 
 const Footer = () => {
   return (
@@ -19,47 +20,30 @@ const Footer = () => {
           <Col style={{ textAlign: "left" }}>
             <Image src={Logo} alt="FPT Booking" style={{ maxWidth: "150px" }} />
             <div>
-              <FaFacebook size={30} className="m-1" style={{ color: "#fff" }} />
-              <AiFillTwitterCircle
-                size={30}
-                className="m-4"
-                style={{ color: "#fff" }}
-              />
-              <FaInstagram
-                size={30}
-                className="m-1"
-                style={{ color: "#fff" }}
-              />
+              <Flex align="center">
+                <FaFacebook size={30} className="m-1" style={{ color: "#fff" }} />
+                <AiFillTwitterCircle size={30} className="m-4" style={{ color: "#fff" }} />
+                <FaInstagram size={30} className="m-1" style={{ color: "#fff" }} />
+              </Flex>
             </div>
           </Col>
 
           <Col style={{ textAlign: "left" }}>
-            <p>Địa chỉ:</p>
+            <p>Address:</p>
             <p>FPT University HCMC</p>
             <p>Saigon Hi-tech park district 9</p>
-            <Form>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Control
-                  type="email"
-                  placeholder="Nhập địa chỉ email của bạn"
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Đăng ký nhận mail
-              </Button>
-            </Form>
           </Col>
 
           <Col style={{ textAlign: "left" }}>
             <p>Email:</p>
             <a href="mailto:contact@fptbooking.com" style={{ color: "#fff" }}>
-              contact@fptbooking.com
+              birthdaykids@bookingbirthday.com
             </a>
           </Col>
 
           <Col style={{ textAlign: "left" }}>
-            <p>Số điện thoại:</p>
-            <p>0123456789</p>
+            <p>Phone number:</p>
+            <p>6477333333</p>
           </Col>
         </Row>
       </Container>

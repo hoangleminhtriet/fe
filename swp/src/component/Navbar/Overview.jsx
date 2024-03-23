@@ -10,18 +10,14 @@ const Overview = () => {
   }, []);
 
   return (
-    <Container
-      className={`content-container ${isVisible ? "fade-in" : "fade-out"}`}
-    >
+    <Container className={`content-container ${isVisible ? "fade-in" : "fade-out"}`}>
       <div className="content-item overview-content" style={{ margin: "5%" }}>
-        <h1>-- Giới Thiệu --</h1>
-        Chào mừng đến với dự án "FPTBooking" - nơi tận hưởng niềm vui tuyệt vời
-        của bữa tiệc sinh nhật cho trẻ em! Chúng tôi tự hào cung cấp dịch vụ đặt
-        tiệc chuyên nghiệp, tạo ra không gian lý tưởng để các bé yêu có những
-        khoảnh khắc đáng nhớ. Từ trang trí độc đáo đến các hoạt động thú vị,
-        chúng tôi đảm bảo mọi chi tiết được chăm sóc kỹ lưỡng. Hãy để
-        "FPTBooking" giúp bạn biến ước mơ tiệc sinh nhật của con thành hiện
-        thực! Overview
+        <h1>-- Introduction --</h1>
+        Welcome to the "Booking birthday for Kids" project - where you can enjoy the fantastic joy of children's
+        birthday parties! We pride ourselves on providing professional party booking services, creating an ideal space
+        for children to have memorable moments. From unique decorations to fun activities, we ensure that every detail
+        is carefully taken care of. Let "BirthdayKids" help you turn your child's birthday party dreams into reality!
+        Overview
       </div>
     </Container>
   );

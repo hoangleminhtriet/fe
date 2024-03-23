@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../../component/Header";
 import Overview from "../../component/Navbar/Overview";
-import Discount from "../../component/Navbar/Discount";
 import Service from "../../component/Navbar/Service";
 import Contact from "../../component/Navbar/Contact";
 import Footer from "../../component/Footer";
@@ -22,7 +21,6 @@ const HomeLogin = () => {
 
   const hideAll = () => {
     setShowOverview(false);
-    setShowDiscount(false);
     setShowService(false);
     setShowContact(false);
   };
@@ -33,15 +31,6 @@ const HomeLogin = () => {
     } else {
       hideAll();
       setShowOverview(true);
-    }
-  };
-
-  const toggleDiscount = () => {
-    if (showDiscount) {
-      hideAll();
-    } else {
-      hideAll();
-      setShowDiscount(true);
     }
   };
 
@@ -87,14 +76,8 @@ const HomeLogin = () => {
 
   return (
     <div>
-      <HeaderLogin
-        toggleOverview={toggleOverview}
-        toggleDiscount={toggleDiscount}
-        toggleService={toggleService}
-        toggleContact={toggleContact}
-      />
+      <HeaderLogin toggleOverview={toggleOverview} toggleService={toggleService} toggleContact={toggleContact} />
       {showOverview && <Overview />}
-      {showDiscount && <Discount />}
       {showService && <Service />}
       {showContact && <Contact />}
       {/*Banner*/}
@@ -251,7 +234,6 @@ const HomeLogin = () => {
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="card-text-party" style={{ textAlign: "center", padding: "10px" }}>
                   <Card.Text className="text-party1">$649.99</Card.Text>
-                  <Card.Text className="text-party2">+ GST for 10 participants</Card.Text>
                   <Card.Text className="text-party2">$54.99 per additional participant</Card.Text>
                 </Card>
               </Row>
@@ -303,7 +285,6 @@ const HomeLogin = () => {
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="card-text-party" style={{ textAlign: "center", padding: "10px" }}>
                   <Card.Text className="text-party1">$399.99</Card.Text>
-                  <Card.Text className="text-party2">+ GST for 10 participants</Card.Text>
                   <Card.Text className="text-party2">$32.99 per additional participant</Card.Text>
                 </Card>
               </Row>
@@ -352,7 +333,6 @@ const HomeLogin = () => {
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="card-text-party" style={{ textAlign: "center", padding: "10px" }}>
                   <Card.Text className="text-party1">$299.99</Card.Text>
-                  <Card.Text className="text-party2">+ GST for 10 participants</Card.Text>
                   <Card.Text className="text-party2">$22.99 per additional participant</Card.Text>
                 </Card>
               </Row>
@@ -402,7 +382,6 @@ const HomeLogin = () => {
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="food-price-home">
                   <Card.Text className="mb-0 price-title1-home">$15.95</Card.Text>
-                  <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
             </Card.Body>
@@ -423,7 +402,6 @@ const HomeLogin = () => {
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="food-price-home">
                   <Card.Text className="mb-0 price-title1-home">$69.99</Card.Text>
-                  <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
             </Card.Body>
@@ -447,7 +425,6 @@ const HomeLogin = () => {
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="food-price-home">
                   <Card.Text className="mb-0 price-title1-home">$69.99</Card.Text>
-                  <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
             </Card.Body>
@@ -468,7 +445,6 @@ const HomeLogin = () => {
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="food-price-home">
                   <Card.Text className="mb-0 price-title1-home">$35.00</Card.Text>
-                  <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
             </Card.Body>
@@ -489,7 +465,6 @@ const HomeLogin = () => {
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="food-price-home">
                   <Card.Text className="mb-0 price-title1-home">$35.00</Card.Text>
-                  <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
             </Card.Body>
@@ -513,7 +488,6 @@ const HomeLogin = () => {
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="food-price-home">
                   <Card.Text className="mb-0 price-title1-home">$40.00</Card.Text>
-                  <Card.Text className="price-title2-home">+ GST</Card.Text>
                 </Card>
               </Row>
             </Card.Body>

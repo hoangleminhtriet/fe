@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { Avatar, Dropdown, Row } from "antd";
 import { reset } from "../../redux/features/bookingSlice";
 
-const HeaderLogin = ({ toggleOverview, toggleDiscount, toggleService, toggleContact }) => {
+const HeaderLogin = ({ toggleOverview, toggleService, toggleContact }) => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Use useNavigate hook
@@ -55,9 +55,6 @@ const HeaderLogin = ({ toggleOverview, toggleDiscount, toggleService, toggleCont
           <Nav>
             <Button className="button-header" onClick={toggleOverview}>
               Overview
-            </Button>
-            <Button className="button-header" onClick={toggleDiscount}>
-              Discount
             </Button>
 
             <Button className="button-header">

@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Avatar, Card } from "antd";
-import { Link } from "react-router-dom"; // Import Link for navigation
+import { Link } from "react-router-dom";
 import api from "../../config/axios";
 import { Link as RouterLink } from "react-router-dom";
 
 const ChooseProfile = () => {
   const [profiles, setProfiles] = useState([]);
-  const [selectedProfile, setSelectedProfile] = useState(null); // New state to store selected profile
-
-  const fetchProfiles = async () => {
-    try {
-      const response = await api.get(`/profile/getHost`);
-      setProfiles(response.data);
-    } catch (error) {
-      console.error("Error fetching profiles:", error);
-    }
-  };
+  const [selectedProfile, setSelectedProfile] = useState(null);
 
   useEffect(() => {
     fetchProfiles();
   }, []);
 
+  const fetchProfiles = async () => {
+    try {
+      const response = await api.get(`/profile/getHost`);
+      // Filter out profiles where isDeleted is true
+      const filteredProfiles = response.data.filter((profile) => !profile.deleted);
+      setProfiles(filteredProfiles);
+    } catch (error) {
+      console.error("Error fetching profiles:", error);
+    }
+  };
+
   const handleProfileSelect = (profile) => {
-    setSelectedProfile(profile); // Set the selected profile
+    setSelectedProfile(profile);
   };
 
   return (
@@ -57,8 +59,8 @@ const ChooseProfile = () => {
           justifyContent: "center",
           alignItems: "center",
           flexWrap: "wrap",
-          maxWidth: "1500px", // Set maximum width for the container
-          margin: "0 auto", // Center the container
+          maxWidth: "1500px",
+          margin: "0 auto",
         }}
       >
         {profiles.map((profile, index) => (

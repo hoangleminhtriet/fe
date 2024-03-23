@@ -9,15 +9,12 @@ const Contact = () => {
     setIsVisible(true);
   }, []);
   return (
-    <Container
-      c
-      className={`content-container ${isVisible ? "fade-in" : "fade-out"}`}
-    >
+    <Container c className={`content-container ${isVisible ? "fade-in" : "fade-out"}`}>
       <div className="content-item" style={{ margin: "5%" }}>
-        <h1>Thông tin liên hệ</h1>
-        <h2>Địa chỉ: FPT University HCMC Saigon Hi-tech park district </h2>
+        <h1>Contact:</h1>
+        <h2>Address: FPT University HCMC Saigon Hi-tech park district </h2>
         <h3>Email: contact@contentionary.com</h3>
-        <h4>Số điện thoại: 0123456789</h4>
+        <h4>Phone number: 6477333333</h4>
       </div>
     </Container>
   );

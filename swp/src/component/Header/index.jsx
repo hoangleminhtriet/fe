@@ -4,7 +4,7 @@ import Logo from "../../assets/image/logo.png";
 import "./index.scss";
 import { Link, NavLink } from "react-router-dom";
 
-const Header = ({ toggleOverview, toggleDiscount, toggleService, toggleContact }) => {
+const Header = ({ toggleOverview, toggleService, toggleContact }) => {
   return (
     <BootstrapNavbar expand="lg" className="main-nav">
       <Container>
@@ -17,9 +17,6 @@ const Header = ({ toggleOverview, toggleDiscount, toggleService, toggleContact }
           <Nav>
             <Button className="button-header" onClick={toggleOverview}>
               Overview
-            </Button>
-            <Button className="button-header" onClick={toggleDiscount}>
-              Discount
             </Button>
 
             <Button className="button-header">
