@@ -1,18 +1,14 @@
 import React from "react";
-import { HeaderLogin } from "../../component/HeaderLogin";
-import "./Policy.css";
+import "./index.css";
 export const Policy = () => {
   return (
     <div>
-      <HeaderLogin />
       <div className="container ">
         <section className="user-policy">
           <h1 className="heading">Privacy Policy</h1>
           <div className="policy-content">
             <p className="policy-title">
-              Welcome to Birthday Blitz Hub Website! We are thrilled to have you celebrate your special day with us.
-              Before you proceed with booking and enjoying our services, please take a moment to review our policies
-              outlined below.
+              
             </p>
 
             <div className="policy-desc">
@@ -37,9 +33,12 @@ export const Policy = () => {
               <div className="policy-container">
                 <p className="policy-desc__header">3. Cancellation and Refund:</p>
                 <p className="policy-desc__content">
-                  - Cancellations must be made at least 10 days before the event to receive a partial refund.
+                  - Cancellations must be made at least 10 days before the event and you will forfeit 15% of the total
+                  amount you paid for the party.
                 </p>
-                <p className="policy-desc__content">- Refunds are processed within 5 business days.</p>
+                <p className="policy-desc__content">
+                  - You will receive a refund of 85% of the total banquet amount within 5 working days.
+                </p>
               </div>
               <div className="policy-container">
                 <p className="policy-desc__header">4. Changes and Modifications:</p>
@@ -57,8 +56,8 @@ export const Policy = () => {
                   - The customer is responsible for any damages caused to the premises or equipment during the event.
                 </p>
                 <p className="policy-desc__content">
-                  - Birthday Blitz Hub and our Associated Host is not liable for any injuries, accidents, or loss of
-                  personal belongings.
+                  - Booking Birthday For Kids and our Associated Host is not liable for any injuries, accidents, or loss
+                  of personal belongings.
                 </p>
               </div>
               <div className="policy-container">
@@ -86,13 +85,13 @@ export const Policy = () => {
             </div>
 
             <p className="policy-end">
-              By proceeding with the booking, you agree to adhere to the policies outlined above. Birthday Blitz Hub
-              reserves the right to modify these policies at any time, with the updated version being effective
+              By proceeding with the booking, you agree to adhere to the policies outlined above. Booking Birthday For
+              Kids reserves the right to modify these policies at any time, with the updated version being effective
               immediately.
             </p>
             <p className="policy-end">
-              Thank you for choosing Birthday Blitz Hub to celebrate your special occasion! If you have any questions or
-              concerns, please contact our customer service team at birtdayblitzhub@gmail.com.
+              Thank you for choosing Booking Birthday For Kids to celebrate your special occasion! If you have any
+              questions or concerns, please contact our customer service team at birthdaykids@bookingbirthday.com.
             </p>
           </div>
         </section>

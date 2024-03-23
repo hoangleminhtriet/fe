@@ -47,6 +47,7 @@ const Register = () => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
+  const [agreed, setAgreed] = useState(false); // Thêm state cho checkbox
   const [fileList, setFileList] = useState([]);
   const navigate = useNavigate();
   const getBase64 = (file) =>
@@ -86,6 +87,11 @@ const Register = () => {
   };
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   const onFinish = async (values) => {
+    if (!agreed) {
+      // Kiểm tra xem người dùng đã đồng ý với Điều khoản và Điều kiện chưa
+      toast.error("Please agree to Terms and Conditions");
+      return; // Không tiếp tục đăng ký nếu chưa đồng ý
+    }
     console.log(values);
     const url = await uploadFile(values.avatar.file.originFileObj);
     try {
@@ -259,7 +265,7 @@ const Register = () => {
           </Form.Item>
 
           <Flex justifyContent="center" align="center" mb={5}>
-            <Checkbox w="fit-content" size="lg" fontWeight="normal">
+            <Checkbox w="fit-content" size="lg" fontWeight="normal" onChange={(e) => setAgreed(e.target.checked)}>
               Agree to Terms and Conditions
             </Checkbox>
             &nbsp; <PolicyButton />
@@ -269,7 +275,7 @@ const Register = () => {
               Have an account? <Link to={"/login"}>Sign in</Link>
             </p>
             <Row justify={"center"}>
-              <Button type="primary" htmlType="signIn">
+              <Button type="primary" htmlType="submit" disabled={!agreed}>
                 Sign up
               </Button>
             </Row>

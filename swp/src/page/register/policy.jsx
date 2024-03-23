@@ -21,7 +21,7 @@ const PolicyButton = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent maxW="900px">
-          <ModalHeader>Term and Condition of Birthday Blitz Hub</ModalHeader>
+          <ModalHeader>Term and Condition of Booking Birthday For Kids Website</ModalHeader>
           <ModalBody>
             <Box p={10}>
               <div className="container ">
@@ -29,9 +29,9 @@ const PolicyButton = () => {
                   <h1 className="heading">Privacy Policy</h1>
                   <div className="policy-content">
                     <p className="policy-title">
-                      Welcome to Birthday Blitz Hub Website! We are thrilled to have you celebrate your special day with
-                      us. Before you proceed with booking and enjoying our services, please take a moment to review our
-                      policies outlined below.
+                      Welcome to Booking Birthday For Kids Website! We are thrilled to have you celebrate your special
+                      day with us.Before you proceed with booking and enjoying our services, please take a moment to
+                      review our policies outlined below.
                     </p>
 
                     <div className="policy-desc">
@@ -58,9 +58,12 @@ const PolicyButton = () => {
                       <div className="policy-container">
                         <p className="policy-desc__header">3. Cancellation and Refund:</p>
                         <p className="policy-desc__content">
-                          - Cancellations must be made at least 10 days before the event to receive a partial refund.
+                          - Cancellations must be made at least 10 days before the event and you will forfeit 15% of the
+                          total amount you paid for the party.
                         </p>
-                        <p className="policy-desc__content">- Refunds are processed within 5 business days.</p>
+                        <p className="policy-desc__content">
+                          - You will receive a refund of 85% of the total banquet amount within 5 working days.
+                        </p>
                       </div>
                       <div className="policy-container">
                         <p className="policy-desc__header">4. Changes and Modifications:</p>
@@ -79,8 +82,8 @@ const PolicyButton = () => {
                           event.
                         </p>
                         <p className="policy-desc__content">
-                          - Birthday Blitz Hub and our Associated Host is not liable for any injuries, accidents, or
-                          loss of personal belongings.
+                          - Booking Birthday For Kids and our Associated Host is not liable for any injuries, accidents,
+                          or loss of personal belongings.
                         </p>
                       </div>
                       <div className="policy-container">
@@ -93,7 +96,7 @@ const PolicyButton = () => {
                       <div className="policy-container">
                         <p className="policy-desc__header">7. Force Majeure:</p>
                         <p className="policy-desc__content">
-                          - Birthday Blitz Hub is not liable for any failure or delay in performance due to
+                          - Booking Birthday For Kids is not liable for any failure or delay in performance due to
                           circumstances beyond our control, such as natural disasters, strikes, or government actions.
                           If any of the above circumstances does occurred, you can contact our associated host to make
                           changes.
@@ -109,13 +112,14 @@ const PolicyButton = () => {
                     </div>
 
                     <p className="policy-end">
-                      By proceeding with the booking, you agree to adhere to the policies outlined above. Birthday Blitz
-                      Hub reserves the right to modify these policies at any time, with the updated version being
-                      effective immediately.
+                      By proceeding with the booking, you agree to adhere to the policies outlined above. Booking
+                      Birthday For Kids reserves the right to modify these policies at any time, with the updated
+                      version being effective immediately.
                     </p>
                     <p className="policy-end">
-                      Thank you for choosing Birthday Blitz Hub to celebrate your special occasion! If you have any
-                      questions or concerns, please contact our customer service team at birtdayblitzhub@gmail.com.
+                      Thank you for choosing Booking Birthday For Kids to celebrate your special occasion! If you have
+                      any questions or concerns, please contact our customer service team at
+                      birthdaykids@bookingbirthday.com.
                     </p>
                   </div>
                 </section>
