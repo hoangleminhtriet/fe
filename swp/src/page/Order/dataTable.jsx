@@ -64,7 +64,7 @@ const DataTable = () => {
       key: "action",
       render: (_, record) => (
         <Space size="middle">
-          {record.status !== "ACCEPT" && record.status !== "REFUSE" && (
+          {record.status !== "ACCEPT" && record.status !== "REFUSE" && record.status !== "ORDERED" && (
             <Button
               type="primary"
               onClick={() => {
@@ -74,7 +74,7 @@ const DataTable = () => {
               Finish
             </Button>
           )}
-          {record.status !== "REFUSE" && record.status !== "ACCEPT" && (
+          {record.status !== "REFUSE" && record.status !== "ACCEPT" && record.status !== "ORDERED" && (
             <Button
               onClick={() => {
                 handleRefuse(record);

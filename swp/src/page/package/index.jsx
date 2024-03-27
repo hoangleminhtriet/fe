@@ -514,7 +514,7 @@ const Package = () => {
           <Row gutter={12}>
             <Col span={12}>
               <Form.Item
-                label="Capacity"
+                label="Number of guests"
                 name={"capacity"}
                 rules={[
                   {

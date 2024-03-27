@@ -133,8 +133,8 @@ const Home = () => {
             <Card.Body className="steps-body">
               <Card.Title>SELECT PREFERENCE & PACKAGE</Card.Title>
               <Card.Text className="steps-content">
-                The Big Box offers options to book your party during operational hours or as a private event. We have
-                predefined party bundles for you to choose from. Select what meets best for your needs. Consider
+                The BirthdayKids offers options to book your party during operational hours or as a private event. We
+                have predefined party bundles for you to choose from. Select what meets best for your needs. Consider
                 upgrading to infinite pass on a discounted price for unlimited fun extravaganza!
               </Card.Text>
               <Card.Link className="link-name" as="a" href="#birthday-packages">
@@ -227,12 +227,11 @@ const Home = () => {
                   borderRadius: "20px",
                 }}
               >
-                ULTIMATE
+                COMMON
               </Card.Title>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="card-text-party" style={{ textAlign: "center", padding: "10px" }}>
                   <Card.Text className="text-party1">$649.99</Card.Text>
-                  <Card.Text className="text-party2">$54.99 per additional participant</Card.Text>
                 </Card>
               </Row>
               <Card.Text className="party-content">
@@ -278,12 +277,11 @@ const Home = () => {
                   borderRadius: "20px",
                 }}
               >
-                FANTASTIC
+                BALANCE
               </Card.Title>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="card-text-party" style={{ textAlign: "center", padding: "10px" }}>
                   <Card.Text className="text-party1">$399.99</Card.Text>
-                  <Card.Text className="text-party2">$32.99 per additional participant</Card.Text>
                 </Card>
               </Row>
               <Card.Text className="party-content">
@@ -326,12 +324,11 @@ const Home = () => {
                   borderRadius: "20px",
                 }}
               >
-                CLASSIC
+                EXPENSIVE
               </Card.Title>
               <Row style={{ flexWrap: "nowrap", justifyContent: "center" }}>
                 <Card className="card-text-party" style={{ textAlign: "center", padding: "10px" }}>
                   <Card.Text className="text-party1">$299.99</Card.Text>
-                  <Card.Text className="text-party2">$22.99 per additional participant</Card.Text>
                 </Card>
               </Row>
               <Card.Text className="party-content">

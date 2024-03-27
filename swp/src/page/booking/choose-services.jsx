@@ -45,13 +45,17 @@ export const ChooseServices = () => {
   );
 };
 
+const formatCurrency = (amount) => {
+  return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(amount);
+};
+
 const Service = ({ isSelected, data }) => {
   return (
     <div className={`service-item-order ${isSelected ? "select" : ""}`}>
       <img src={data.picture} />
       <p>{data.serviceName}</p>
       <p>
-        <strong style={{ color: "red" }}>{data.price} VND</strong>
+        <strong style={{ color: "red" }}>{formatCurrency(data.price)} </strong>
       </p>
     </div>
   );

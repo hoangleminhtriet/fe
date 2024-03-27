@@ -38,6 +38,10 @@ const Package = ({ isSelected, data }) => {
     dispatch(updatePackage(data));
   };
 
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(amount);
+  };
+
   return (
     <div className={`package ${isSelected ? "select" : ""}`} onClick={handleSelectPackage}>
       <Row>
@@ -46,11 +50,16 @@ const Package = ({ isSelected, data }) => {
         </Col>
         <Col span={19}>
           <h1>{data.name}</h1>
-          <p>{data.description}</p>
+          <p>
+            <strong>Description:</strong> {data.description}
+          </p>
+          <p>
+            <strong>Number of Guests:</strong> {data.capacity}
+          </p>
           <ul>
             {data.services.map((item) => (
               <li>
-                <strong> {item.serviceName} </strong>- Price: {item.price}VND
+                <strong> {item.serviceName} </strong>- Price: {formatCurrency(item.price)}
                 <Col span={8}>
                   <Image width={150} height={150} src={item.picture} />
                 </Col>
